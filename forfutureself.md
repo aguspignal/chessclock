@@ -1,11 +1,9 @@
 # Home
 
 -   two different times
--   sound
+-   sound (requires new build)
 
 # Clock
-
--   extra seconds
 
 # Presets
 

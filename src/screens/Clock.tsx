@@ -1,10 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { ClockProps } from "../types/navigation"
-import { theme } from "../utils/theme"
-import Icon from "@react-native-vector-icons/material-design-icons"
-import { useEffect, useState } from "react"
 import { parseTimeFromSeconds, parseTimeWithExtra } from "../utils/parsing"
 import { STATUS_BAR_HEIGHT } from "../utils/constants"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { theme } from "../utils/theme"
+import { useEffect, useState } from "react"
+import IconButton from "../components/IconButton"
 
 export default function Clock({ navigation, route }: ClockProps) {
 	const time = route.params.time
@@ -35,12 +35,14 @@ export default function Clock({ navigation, route }: ClockProps) {
 		}
 	}
 
-	const restartClock = () => {
+	function restartClock() {
 		clearInterval(intervalId)
 		setIsTopRunning(false)
 		setIsBottomRunning(false)
+
 		setTopPlayerClock(timeInSeconds)
 		setBottomPlayerClock(timeInSeconds)
+
 		setTopPlayerCount(0)
 		setBottomPlayerCount(0)
 	}
@@ -49,22 +51,30 @@ export default function Clock({ navigation, route }: ClockProps) {
 		if (topPlayerMoved && isTopRunning) {
 			stopTopPlayerTimer()
 			startBottomPlayerTimer()
+
+			setTopPlayerClock((prev) => prev + extraSeconds)
 			setTopPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(true)
 		} else if (!topPlayerMoved && isBottomRunning) {
 			stopBottomPlayerTimer()
 			startTopPlayerTimer()
+
+			setBottomPlayerClock((prev) => prev + extraSeconds)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
 		} else if (!isTopRunning && !isBottomRunning) {
 			topPlayerMoved ? startTopPlayerTimer() : startBottomPlayerTimer()
 		}
+
+		if (route.params.isSoundEnabled) {
+			// play sound
+		}
 	}
 
-	const startTopPlayerTimer = () => {
+	function startTopPlayerTimer() {
 		if (isTopRunning || topPlayerClock === 0) return
-		setIsTopRunning(true)
 
+		setIsTopRunning(true)
 		setTopPlayerClock((prev) => prev - 1)
 
 		const id = setInterval(() => {
@@ -80,12 +90,12 @@ export default function Clock({ navigation, route }: ClockProps) {
 		setIntervalId(id)
 	}
 
-	const stopTopPlayerTimer = () => {
+	function stopTopPlayerTimer() {
 		clearInterval(intervalId)
 		setIsTopRunning(false)
 	}
 
-	const startBottomPlayerTimer = () => {
+	function startBottomPlayerTimer() {
 		if (isBottomRunning || bottomPlayerClock === 0) return
 		setIsBottomRunning(true)
 
@@ -104,7 +114,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 		setIntervalId(id)
 	}
 
-	const stopBottomPlayerTimer = () => {
+	function stopBottomPlayerTimer() {
 		clearInterval(intervalId)
 		setIsBottomRunning(false)
 	}
@@ -142,21 +152,14 @@ export default function Clock({ navigation, route }: ClockProps) {
 			</TouchableOpacity>
 
 			<View style={styles.actionsContainer}>
-				<TouchableOpacity onPress={handleExitClock}>
-					<Icon name="cancel" size={theme.fontSize.xl} color={theme.colors.textLight} />
-				</TouchableOpacity>
+				<IconButton onPress={handleExitClock} iconName="cancel" />
 
-				<TouchableOpacity onPress={handleStartPause}>
-					<Icon
-						name={isTopRunning || isBottomRunning ? "pause" : "play"}
-						size={theme.fontSize.xl}
-						color={theme.colors.textLight}
-					/>
-				</TouchableOpacity>
+				<IconButton
+					onPress={handleStartPause}
+					iconName={isTopRunning || isBottomRunning ? "pause" : "play"}
+				/>
 
-				<TouchableOpacity onPress={restartClock}>
-					<Icon name="restart" size={theme.fontSize.xl} color={theme.colors.textLight} />
-				</TouchableOpacity>
+				<IconButton onPress={restartClock} iconName="restart" />
 			</View>
 
 			<TouchableOpacity
@@ -189,32 +192,32 @@ export default function Clock({ navigation, route }: ClockProps) {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		backgroundColor: theme.colors.backgroundDark,
+		flex: 1,
 	},
 	topContainer: {
 		paddingBottom: STATUS_BAR_HEIGHT - STATUS_BAR_HEIGHT / 3,
 		transform: [{ rotate: "-180deg" }],
 	},
 	clockContainer: {
+		alignItems: "center",
 		flex: 1,
 		justifyContent: "space-between",
-		alignItems: "center",
 	},
 	extraInfoText: {
-		fontSize: theme.fontSize.s,
 		color: theme.colors.textDark,
+		fontSize: theme.fontSize.s,
 		marginVertical: theme.spacing.xxs,
 	},
 	timer: {
+		color: theme.colors.textDark,
 		fontSize: 80,
 		fontWeight: "600",
-		color: theme.colors.textDark,
 	},
 	actionsContainer: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		paddingVertical: theme.spacing.xs,
 		paddingHorizontal: theme.spacing.xl,
+		paddingVertical: theme.spacing.xs,
 	},
 })

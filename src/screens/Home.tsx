@@ -51,6 +51,7 @@ export default function Home({ navigation }: HomeProps) {
 		navigation.navigate("Clock", {
 			time: time,
 			extraSeconds: isNaN(Number(extraSeconds)) ? 0 : Number(extraSeconds),
+			isSoundEnabled: sound,
 		})
 	}
 
@@ -80,7 +81,6 @@ export default function Home({ navigation }: HomeProps) {
 				</TouchableOpacity>
 
 				<View style={styles.timeConfigContainer}>
-					{/* btn DISPLAY MODAL */}
 					<TouchableOpacity onPress={handleOpenTimeModal} style={styles.clockContainer}>
 						<View style={styles.timeContainer}>
 							{time.hours === 0 ? (
@@ -185,8 +185,9 @@ export default function Home({ navigation }: HomeProps) {
 						<TouchableOpacity onPress={handleCancelModal}>
 							<Text style={styles.timeModalText}>Cancel</Text>
 						</TouchableOpacity>
+
 						<TouchableOpacity onPress={handleSaveModal}>
-							<Text style={[styles.timeModalText, { marginLeft: theme.spacing.m }]}>
+							<Text style={[styles.timeModalText, { marginLeft: theme.spacing.l }]}>
 								Save
 							</Text>
 						</TouchableOpacity>
@@ -199,9 +200,9 @@ export default function Home({ navigation }: HomeProps) {
 
 const styles = StyleSheet.create({
 	container: {
+		backgroundColor: theme.colors.backgroundDark,
 		flex: 1,
 		justifyContent: "space-between",
-		backgroundColor: theme.colors.backgroundDark,
 	},
 	timeConfigContainer: {
 		marginTop: theme.spacing.s,
@@ -211,10 +212,10 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	timeContainer: {
-		flexDirection: "row",
-		padding: theme.spacing.s,
 		backgroundColor: theme.colors.grayLight,
 		borderRadius: theme.spacing.xs,
+		flexDirection: "row",
+		padding: theme.spacing.s,
 	},
 	timeText: {
 		fontSize: theme.fontSize.xl,
@@ -225,42 +226,43 @@ const styles = StyleSheet.create({
 	},
 	startBtn: {
 		backgroundColor: theme.colors.grayLight,
-		paddingVertical: theme.spacing.s,
-		paddingHorizontal: theme.spacing.m,
-		marginVertical: theme.spacing.xxl,
 		borderRadius: theme.spacing.xxs,
+		marginVertical: theme.spacing.xxl,
+		paddingHorizontal: theme.spacing.m,
+		paddingVertical: theme.spacing.s,
 	},
 	startBtnText: {
 		fontSize: theme.fontSize.s,
 		fontWeight: "500",
 	},
 	timeModalContainer: {
-		backgroundColor: theme.colors.backgroundDark,
-		justifyContent: "center",
 		alignItems: "center",
-		paddingVertical: theme.spacing.s,
-		paddingHorizontal: theme.spacing.l,
 		alignSelf: "center",
-		borderRadius: 8,
+		backgroundColor: theme.colors.backgroundDark,
+		borderRadius: 16,
+		justifyContent: "center",
+		paddingHorizontal: theme.spacing.l,
+		paddingVertical: theme.spacing.m,
 	},
 	timeModalText: {
 		color: theme.colors.textLight,
-		fontSize: theme.fontSize.s,
+		fontSize: theme.fontSize.m,
 		fontWeight: "500",
 	},
 	timeModalInputsContainer: {
-		flexDirection: "row",
 		alignItems: "center",
+		flexDirection: "row",
 	},
 	timeModalInputContainer: {
 		backgroundColor: theme.colors.grayLight,
-		padding: theme.spacing.xxs,
-		marginVertical: theme.spacing.s,
-		borderRadius: 4,
+		borderRadius: 8,
+		marginVertical: theme.spacing.m,
+		paddingVertical: theme.spacing.xxs,
 	},
 	timeModalInput: {
-		fontSize: theme.fontSize.l,
+		fontSize: theme.fontSize.xl,
 		fontWeight: "500",
+		paddingHorizontal: theme.spacing.s,
 	},
 	timeModalColon: {
 		color: theme.colors.grayLight,
@@ -269,16 +271,16 @@ const styles = StyleSheet.create({
 		marginHorizontal: 4,
 	},
 	timeModalActionsContainer: {
-		flexDirection: "row",
 		alignSelf: "flex-end",
 		borderRadius: 8,
+		flexDirection: "row",
 	},
 	configContainer: {
+		alignItems: "center",
 		flexDirection: "row",
 		justifyContent: "center",
-		alignItems: "center",
-		paddingHorizontal: theme.spacing.s,
 		marginVertical: theme.spacing.s,
+		paddingHorizontal: theme.spacing.s,
 	},
 	configText: {
 		color: theme.colors.textLight,
@@ -286,12 +288,12 @@ const styles = StyleSheet.create({
 		fontWeight: "500",
 	},
 	extraSecondsInput: {
+		borderBottomColor: theme.colors.textLight,
+		borderBottomWidth: 2,
 		color: theme.colors.textLight,
 		fontSize: theme.fontSize.m,
 		fontWeight: "500",
 		marginLeft: theme.spacing.xxs,
 		paddingHorizontal: theme.spacing.xxs,
-		borderBottomColor: theme.colors.textLight,
-		borderBottomWidth: 2,
 	},
 })

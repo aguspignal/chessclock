@@ -6,6 +6,7 @@ export type StackParamList = {
 	Clock: {
 		time: PresetTime
 		extraSeconds: number
+		isSoundEnabled: boolean
 	}
 }
 
