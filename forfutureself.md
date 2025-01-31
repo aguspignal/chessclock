@@ -1,12 +1,11 @@
--   clock first with values from inputs and after that work on presets
-
 # Home
 
 -   two different times
+-   sound
 
 # Clock
 
--   clock
+-   extra seconds
 
 # Presets
 
