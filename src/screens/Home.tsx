@@ -7,7 +7,8 @@ import Modal from "react-native-modal"
 import React from "react"
 
 export default function Home({ navigation, route }: HomeProps) {
-	const defaultPreset = route.params.defaultPreset
+	// let defaultPreset = route.params.defaultPreset
+	const [defaultPreset, setDefaultPreset] = useState<Preset>(route.params.defaultPreset)
 	const [toggle, setToggle] = useState<boolean>(false)
 	const [sound, setSound] = useState<boolean>(true)
 
@@ -15,9 +16,15 @@ export default function Home({ navigation, route }: HomeProps) {
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
+	const [extraSeconds, setExtraSeconds] = useState<string>("")
 
 	const [time, setTime] = useState<PresetTime>({ hours: 0, minutes: 0, seconds: 0 })
-	const [extraSeconds, setExtraSeconds] = useState<string>("")
+
+	const customPreset: Preset = {
+		name: "Custom",
+		time: { hours: 0, minutes: 0, seconds: 0 },
+		extraSeconds: 0,
+	}
 
 	function handleChangePreset() {
 		navigation.navigate("Presets")
@@ -35,10 +42,6 @@ export default function Home({ navigation, route }: HomeProps) {
 		setIsTimeModalVisible(true)
 	}
 
-	function handleCancelModal() {
-		setIsTimeModalVisible(false)
-	}
-
 	function handleSaveModal() {
 		setTime({
 			hours: hours.length === 0 || isNaN(Number(hours)) ? 0 : Number(hours),
@@ -46,6 +49,7 @@ export default function Home({ navigation, route }: HomeProps) {
 			seconds: seconds.length === 0 || isNaN(Number(seconds)) ? 0 : Number(seconds),
 		})
 		setIsTimeModalVisible(false)
+		setDefaultPreset(customPreset)
 	}
 
 	function handleStart() {
@@ -146,8 +150,8 @@ export default function Home({ navigation, route }: HomeProps) {
 
 			<Modal
 				isVisible={isTimeModalVisible}
-				onBackButtonPress={handleCancelModal}
-				onBackdropPress={handleCancelModal}
+				onBackButtonPress={() => setIsTimeModalVisible(false)}
+				onBackdropPress={() => setIsTimeModalVisible(false)}
 			>
 				<View style={styles.timeModalContainer}>
 					<Text style={styles.timeModalText}>Adjust time</Text>
@@ -196,7 +200,7 @@ export default function Home({ navigation, route }: HomeProps) {
 					</View>
 
 					<View style={styles.timeModalActionsContainer}>
-						<TouchableOpacity onPress={handleCancelModal}>
+						<TouchableOpacity onPress={() => setIsTimeModalVisible(false)}>
 							<Text style={styles.timeModalText}>Cancel</Text>
 						</TouchableOpacity>
 

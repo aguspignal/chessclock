@@ -8,5 +8,4 @@
 # Presets
 
 -   orderPresetsByDuration()
--   add presets
--   edit presets
+-   see where tf to save user presets
