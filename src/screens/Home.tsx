@@ -1,12 +1,13 @@
 import { HomeProps } from "../types/navigation"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { theme } from "../utils/theme"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import Modal from "react-native-modal"
 import React from "react"
 
-export default function Home({ navigation }: HomeProps) {
+export default function Home({ navigation, route }: HomeProps) {
+	const defaultPreset = route.params.defaultPreset
 	const [toggle, setToggle] = useState<boolean>(false)
 	const [sound, setSound] = useState<boolean>(true)
 
@@ -26,7 +27,7 @@ export default function Home({ navigation }: HomeProps) {
 		setSound(!sound)
 	}
 
-	function handleToggle() {
+	async function handleToggle() {
 		setToggle(!toggle)
 	}
 
@@ -49,17 +50,26 @@ export default function Home({ navigation }: HomeProps) {
 
 	function handleStart() {
 		navigation.navigate("Clock", {
-			time: time,
+			time,
 			extraSeconds: isNaN(Number(extraSeconds)) ? 0 : Number(extraSeconds),
 			isSoundEnabled: sound,
 		})
 	}
 
+	useEffect(() => {
+		setTime({
+			hours: defaultPreset.time.hours,
+			minutes: defaultPreset.time.minutes,
+			seconds: defaultPreset.time.seconds,
+		})
+		setExtraSeconds(`${defaultPreset.extraSeconds}`)
+	}, [])
+
 	return (
 		<View style={styles.container}>
 			<View>
 				<TouchableOpacity onPress={handleChangePreset}>
-					<ConfigBox title="Choose preset time" valueName="Custom" />
+					<ConfigBox title="Choose preset time" valueName={defaultPreset.name} />
 				</TouchableOpacity>
 
 				<TouchableOpacity onPress={handleSound} activeOpacity={1}>
@@ -159,7 +169,9 @@ export default function Home({ navigation }: HomeProps) {
 						<View style={styles.timeModalInputContainer}>
 							<TextInput
 								style={styles.timeModalInput}
-								onChangeText={setMinutes}
+								onChangeText={(t) => {
+									Number(t) > 59 ? setMinutes("59") : setMinutes(t)
+								}}
 								value={minutes}
 								maxLength={2}
 								placeholder="00"
@@ -172,7 +184,9 @@ export default function Home({ navigation }: HomeProps) {
 						<View style={styles.timeModalInputContainer}>
 							<TextInput
 								style={styles.timeModalInput}
-								onChangeText={setSeconds}
+								onChangeText={(t) => {
+									Number(t) > 59 ? setSeconds("59") : setSeconds(t)
+								}}
 								value={seconds}
 								maxLength={2}
 								placeholder="00"

@@ -5,6 +5,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { theme } from "../utils/theme"
 import { useEffect, useState } from "react"
 import IconButton from "../components/IconButton"
+import Sound from "react-native-sound"
 
 export default function Clock({ navigation, route }: ClockProps) {
 	const time = route.params.time
@@ -22,8 +23,15 @@ export default function Clock({ navigation, route }: ClockProps) {
 	const [bottomPlayerCount, setBottomPlayerCount] = useState<number>(0)
 	const [lastMoveWasTop, setLastMoveWasTop] = useState<boolean>(false)
 
+	const clickSound = new Sound("click.mp3", Sound.MAIN_BUNDLE, (err) => {
+		if (err) {
+			console.log(err)
+			return
+		}
+	})
+
 	function handleExitClock() {
-		navigation.popToTop()
+		navigation.goBack()
 	}
 
 	function handleStartPause() {
@@ -67,7 +75,11 @@ export default function Clock({ navigation, route }: ClockProps) {
 		}
 
 		if (route.params.isSoundEnabled) {
-			// play sound
+			clickSound.play((success) => {
+				if (!success) {
+					console.log("playback failed due to audio decoding errors")
+				}
+			})
 		}
 	}
 

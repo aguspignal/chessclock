@@ -1,14 +1,27 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
+import { orderPresetsByDuration } from "../utils/parsing"
+import { PresetsProps } from "../types/navigation"
 import { theme } from "../utils/theme"
-import Icon from "@react-native-vector-icons/material-design-icons"
 import ConfigBox from "../components/ConfigBox"
+import IconButton from "../components/IconButton"
 import presets from "../utils/presets.json"
+import useLocalStorage from "../hooks/useLocalStorage"
 
-export default function Presets() {
-	function handleSelectPreset(time: Preset) {}
+export default function Presets({ navigation }: PresetsProps) {
+	const { storeInLocalStorage } = useLocalStorage()
 
-	function orderPresetsByDuration(presets: Preset[]): Preset[] {
-		return presets
+	async function handleSelectPreset(preset: Preset) {
+		storeInLocalStorage({ preset })
+			.then(() => {
+				navigation.reset({
+					index: 0,
+					routes: [{ name: "Home", params: { defaultPreset: preset } }],
+				})
+			})
+			.catch((e) => {
+				console.log(e)
+				navigation.popToTop()
+			})
 	}
 
 	function handleAddPreset() {}
@@ -18,23 +31,9 @@ export default function Presets() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.actionsContainer}>
-				<TouchableOpacity onPress={handleAddPreset}>
-					<Icon
-						name="plus"
-						color={theme.colors.textLight}
-						size={theme.fontSize.xl}
-						style={styles.actionIcon}
-					/>
-				</TouchableOpacity>
+				<IconButton onPress={handleAddPreset} iconName="plus" style={styles.actionIcon} />
 
-				<TouchableOpacity onPress={handleEdit}>
-					<Icon
-						name="pencil"
-						color={theme.colors.textLight}
-						size={theme.fontSize.l}
-						style={styles.actionIcon}
-					/>
-				</TouchableOpacity>
+				<IconButton onPress={handleEdit} iconName="pencil" style={styles.actionIcon} />
 			</View>
 
 			<View style={styles.presetsContainer}>

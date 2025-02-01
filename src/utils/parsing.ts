@@ -23,3 +23,7 @@ export function parseTimeWithExtra(seconds: number, extra: number) {
 
 	return `${hs > 0 ? hsString : ""}${minString + secString}${extra > 0 ? extraString : ""}`
 }
+
+export function orderPresetsByDuration(presets: Preset[]): Preset[] {
+	return presets
+}

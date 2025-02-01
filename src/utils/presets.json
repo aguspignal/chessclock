@@ -1,12 +1,12 @@
 [
     {
-        "name": "5 min | 3s",
+        "name": "1 hr 30 min",
         "time": {
-            "hours": 0, 
-            "minutes": 5,
+            "hours": 1, 
+            "minutes": 30,
             "seconds": 0
         },
-        "extraSeconds": 3
+        "extraSeconds": 0
     },
     {
         "name": "10 min | 5s",
@@ -18,21 +18,21 @@
         "extraSeconds": 5
     },
     {
-        "name": "1 hr",
+        "name": "1 min",
         "time": {
-            "hours": 1, 
-            "minutes": 0,
+            "hours": 0, 
+            "minutes": 1,
             "seconds": 0
         },
         "extraSeconds": 0
     },
     {
-        "name": "1 hr 30 min",
+        "name": "5 min | 3s",
         "time": {
-            "hours": 1, 
-            "minutes": 30,
+            "hours": 0, 
+            "minutes": 5,
             "seconds": 0
         },
-        "extraSeconds": 0
+        "extraSeconds": 3
     }
 ]
