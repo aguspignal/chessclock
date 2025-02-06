@@ -1,16 +1,16 @@
 import { ClockProps } from "../types/navigation"
-import { parseTimeFromSeconds, parseTimeWithExtra } from "../utils/parsing"
-import { STATUS_BAR_HEIGHT } from "../utils/constants"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { theme } from "../utils/theme"
 import { useEffect, useState } from "react"
 import IconButton from "../components/IconButton"
+import PlayerClock from "../components/PlayerClock"
 import Sound from "react-native-sound"
 
 export default function Clock({ navigation, route }: ClockProps) {
 	const time = route.params.time
 	const timeInSeconds = time.hours * 3600 + time.minutes * 60 + time.seconds
-	const extraSeconds = route.params.extraSeconds
+	const timeIncrement = route.params.timeIncrement
+	const clockOrientation = route.params.clockOrientation
 
 	const [topPlayerClock, setTopPlayerClock] = useState(timeInSeconds)
 	const [bottomPlayerClock, setBottomPlayerClock] = useState(timeInSeconds)
@@ -29,10 +29,6 @@ export default function Clock({ navigation, route }: ClockProps) {
 			return
 		}
 	})
-
-	function handleExitClock() {
-		navigation.goBack()
-	}
 
 	function handleStartPause() {
 		if (isTopRunning || isBottomRunning) {
@@ -55,31 +51,36 @@ export default function Clock({ navigation, route }: ClockProps) {
 		setBottomPlayerCount(0)
 	}
 
-	function handleMove(topPlayerMoved: boolean) {
-		if (topPlayerMoved && isTopRunning) {
-			stopTopPlayerTimer()
-			startBottomPlayerTimer()
-
-			setTopPlayerClock((prev) => prev + extraSeconds)
-			setTopPlayerCount((prev) => prev + 1)
-			setLastMoveWasTop(true)
-		} else if (!topPlayerMoved && isBottomRunning) {
-			stopBottomPlayerTimer()
-			startTopPlayerTimer()
-
-			setBottomPlayerClock((prev) => prev + extraSeconds)
-			setBottomPlayerCount((prev) => prev + 1)
-			setLastMoveWasTop(false)
-		} else if (!isTopRunning && !isBottomRunning) {
-			topPlayerMoved ? startTopPlayerTimer() : startBottomPlayerTimer()
-		}
-
+	function playMoveSound() {
 		if (route.params.isSoundEnabled) {
 			clickSound.play((success) => {
 				if (!success) {
 					console.log("playback failed due to audio decoding errors")
 				}
 			})
+		}
+	}
+
+	function handleMove(topPlayerMoved: boolean) {
+		if (topPlayerMoved && isTopRunning) {
+			stopTopPlayerTimer()
+			startBottomPlayerTimer()
+
+			setTopPlayerClock((prev) => prev + timeIncrement)
+			setTopPlayerCount((prev) => prev + 1)
+			setLastMoveWasTop(true)
+			playMoveSound()
+		} else if (!topPlayerMoved && isBottomRunning) {
+			stopBottomPlayerTimer()
+			startTopPlayerTimer()
+
+			setBottomPlayerClock((prev) => prev + timeIncrement)
+			setBottomPlayerCount((prev) => prev + 1)
+			setLastMoveWasTop(false)
+			playMoveSound()
+		} else if (!isTopRunning && !isBottomRunning) {
+			topPlayerMoved ? startTopPlayerTimer() : startBottomPlayerTimer()
+			playMoveSound()
 		}
 	}
 
@@ -137,34 +138,18 @@ export default function Clock({ navigation, route }: ClockProps) {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity
-				onPress={() => handleMove(true)}
-				style={[
-					styles.clockContainer,
-					styles.topContainer,
-					isTopRunning
-						? topPlayerClock === 0
-							? { backgroundColor: theme.colors.red }
-							: topPlayerClock <= 10
-							? { backgroundColor: theme.colors.orange }
-							: topPlayerClock <= 30
-							? { backgroundColor: theme.colors.yellow }
-							: { backgroundColor: theme.colors.green }
-						: { backgroundColor: theme.colors.grayLight },
-				]}
-				activeOpacity={0.8}
-			>
-				<Text style={styles.extraInfoText}>Moves: {topPlayerCount}</Text>
-
-				<Text style={styles.timer}>{parseTimeFromSeconds(topPlayerClock)}</Text>
-
-				<Text style={styles.extraInfoText}>
-					{parseTimeWithExtra(timeInSeconds, extraSeconds)}
-				</Text>
-			</TouchableOpacity>
+			<PlayerClock
+				isTopPlayer
+				onMove={handleMove}
+				playerClock={topPlayerClock}
+				movesCount={topPlayerCount}
+				timeInSeconds={timeInSeconds}
+				timeIncrement={timeIncrement}
+				clockOrientation={clockOrientation}
+			/>
 
 			<View style={styles.actionsContainer}>
-				<IconButton onPress={handleExitClock} iconName="cancel" />
+				<IconButton onPress={() => navigation.goBack()} iconName="cancel" />
 
 				<IconButton
 					onPress={handleStartPause}
@@ -174,30 +159,15 @@ export default function Clock({ navigation, route }: ClockProps) {
 				<IconButton onPress={restartClock} iconName="restart" />
 			</View>
 
-			<TouchableOpacity
-				onPress={() => handleMove(false)}
-				style={[
-					styles.clockContainer,
-					isBottomRunning
-						? bottomPlayerClock === 0
-							? { backgroundColor: theme.colors.red }
-							: bottomPlayerClock <= 10
-							? { backgroundColor: theme.colors.orange }
-							: bottomPlayerClock <= 30
-							? { backgroundColor: theme.colors.yellow }
-							: { backgroundColor: theme.colors.green }
-						: { backgroundColor: theme.colors.grayLight },
-				]}
-				activeOpacity={0.95}
-			>
-				<Text style={styles.extraInfoText}>Moves: {bottomPlayerCount}</Text>
-
-				<Text style={styles.timer}>{parseTimeFromSeconds(bottomPlayerClock)}</Text>
-
-				<Text style={styles.extraInfoText}>
-					{parseTimeWithExtra(timeInSeconds, extraSeconds)}
-				</Text>
-			</TouchableOpacity>
+			<PlayerClock
+				isTopPlayer={false}
+				onMove={handleMove}
+				playerClock={bottomPlayerClock}
+				movesCount={bottomPlayerCount}
+				timeInSeconds={timeInSeconds}
+				timeIncrement={timeIncrement}
+				clockOrientation={clockOrientation}
+			/>
 		</View>
 	)
 }
@@ -206,25 +176,6 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: theme.colors.backgroundDark,
 		flex: 1,
-	},
-	topContainer: {
-		paddingBottom: STATUS_BAR_HEIGHT - STATUS_BAR_HEIGHT / 3,
-		transform: [{ rotate: "-180deg" }],
-	},
-	clockContainer: {
-		alignItems: "center",
-		flex: 1,
-		justifyContent: "space-between",
-	},
-	extraInfoText: {
-		color: theme.colors.textDark,
-		fontSize: theme.fontSize.s,
-		marginVertical: theme.spacing.xxs,
-	},
-	timer: {
-		color: theme.colors.textDark,
-		fontSize: 80,
-		fontWeight: "600",
 	},
 	actionsContainer: {
 		flexDirection: "row",

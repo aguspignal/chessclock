@@ -6,7 +6,7 @@
             "minutes": 1,
             "seconds": 0
         },
-        "extraSeconds": 0
+        "timeIncrement": 0
     },
     {
         "name": "3 min | 5s",
@@ -15,7 +15,7 @@
             "minutes": 3,
             "seconds": 0
         },
-        "extraSeconds": 5
+        "timeIncrement": 5
     },
     {
         "name": "5 min | 5s",
@@ -24,7 +24,7 @@
             "minutes": 5,
             "seconds": 0
         },
-        "extraSeconds": 5
+        "timeIncrement": 5
     },
     {
         "name": "10 min | 5s",
@@ -33,7 +33,7 @@
             "minutes": 10,
             "seconds": 0
         },
-        "extraSeconds": 5
+        "timeIncrement": 5
     },
     {
         "name": "15 min | 3s",
@@ -42,7 +42,7 @@
             "minutes": 15,
             "seconds": 0
         },
-        "extraSeconds": 3
+        "timeIncrement": 3
     },
     {
         "name": "1 hr",
@@ -51,6 +51,6 @@
             "minutes": 0,
             "seconds": 0
         },
-        "extraSeconds": 0
+        "timeIncrement": 0
     }
 ]

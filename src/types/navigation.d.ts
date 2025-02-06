@@ -7,8 +7,9 @@ export type StackParamList = {
 	Presets: undefined
 	Clock: {
 		time: PresetTime
-		extraSeconds: number
+		timeIncrement: number
 		isSoundEnabled: boolean
+		clockOrientation: ClockOrientation
 	}
 }
 

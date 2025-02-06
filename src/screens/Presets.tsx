@@ -16,7 +16,7 @@ export default function Presets({ navigation }: PresetsProps) {
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
-	const [extraSeconds, setExtraSeconds] = useState<string>("")
+	const [timeIncrement, setTimeIncrement] = useState<string>("")
 
 	async function handleSelectPreset(preset: Preset) {
 		storeInLocalStorage({ preset })
@@ -33,7 +33,7 @@ export default function Presets({ navigation }: PresetsProps) {
 	}
 
 	function handleSaveModal() {
-		// const presetName = parseTimeToPresetName(hours, minutes, seconds, extraSeconds)
+		// const presetName = parseTimeToPresetName(hours, minutes, seconds, timeIncrement)
 		// if (presetName === "") return
 		// const newPreset: Preset = {
 		// 	name: presetName,
@@ -42,7 +42,7 @@ export default function Presets({ navigation }: PresetsProps) {
 		// 		minutes: Number(minutes),
 		// 		seconds: Number(seconds),
 		// 	},
-		// 	extraSeconds: Number(extraSeconds),
+		// 	timeIncrement: Number(timeIncrement),
 		// }
 		// save
 	}
@@ -133,11 +133,11 @@ export default function Presets({ navigation }: PresetsProps) {
 						<Text style={styles.configText}>Extra seconds</Text>
 						<View>
 							<TextInput
-								style={styles.extraSecondsInput}
+								style={styles.timeIncrementInput}
 								onChangeText={(t) => {
-									Number(t) > 59 ? setExtraSeconds("59") : setExtraSeconds(t)
+									Number(t) > 59 ? setTimeIncrement("59") : setTimeIncrement(t)
 								}}
-								value={extraSeconds}
+								value={timeIncrement}
 								maxLength={2}
 								placeholder="0"
 								placeholderTextColor={theme.colors.grayDark}
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
 		fontSize: theme.fontSize.m,
 		fontWeight: "500",
 	},
-	extraSecondsInput: {
+	timeIncrementInput: {
 		borderBottomColor: theme.colors.textLight,
 		borderBottomWidth: 2,
 		color: theme.colors.textLight,

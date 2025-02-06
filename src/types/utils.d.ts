@@ -1,7 +1,7 @@
 type Preset = {
 	name: string
 	time: PresetTime
-	extraSeconds: number
+	timeIncrement: number
 }
 
 type PresetTime = {
@@ -9,3 +9,5 @@ type PresetTime = {
 	minutes: number
 	seconds: number
 }
+
+type ClockOrientation = "Vertical" | "Horizontal"

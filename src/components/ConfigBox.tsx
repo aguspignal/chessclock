@@ -1,6 +1,8 @@
 import { StyleSheet, Switch, Text, View } from "react-native"
 import { theme } from "../utils/theme"
 import Icon from "@react-native-vector-icons/material-design-icons"
+import { Dropdown } from "react-native-element-dropdown"
+import React from "react"
 
 type Props = {
 	title: string
@@ -8,7 +10,11 @@ type Props = {
 	isIcon?: boolean
 	isToggle?: boolean
 	toggleValue?: boolean
-	toggleChange?: React.Dispatch<React.SetStateAction<boolean>>
+	onToggleChange?: React.Dispatch<React.SetStateAction<boolean>>
+	isDropdown?: boolean
+	onDropdownChange?: React.Dispatch<React.SetStateAction<any>>
+	dropdownData?: { label: string; value: string }[]
+	dropdownDefaultValue?: string
 	centered?: boolean
 	biggerValue?: boolean
 }
@@ -19,7 +25,11 @@ export default function ConfigBox({
 	isIcon = false,
 	isToggle = false,
 	toggleValue = false,
-	toggleChange = () => {},
+	onToggleChange = () => {},
+	isDropdown = false,
+	onDropdownChange = () => {},
+	dropdownData = [],
+	dropdownDefaultValue = "",
 	centered = false,
 	biggerValue = false,
 }: Props) {
@@ -35,7 +45,19 @@ export default function ConfigBox({
 					size={theme.fontSize.m}
 				/>
 			) : isToggle ? (
-				<Switch value={toggleValue} onValueChange={() => toggleChange(!toggleValue)} />
+				<Switch value={toggleValue} onValueChange={() => onToggleChange(!toggleValue)} />
+			) : isDropdown ? (
+				<Dropdown
+					style={styles.dropdown}
+					itemContainerStyle={styles.dropdownItem}
+					selectedTextStyle={styles.dropdownText}
+					labelField="label"
+					valueField="value"
+					value={dropdownDefaultValue}
+					data={dropdownData}
+					onChange={(i) => onDropdownChange(i.value)}
+					renderRightIcon={() => <></>}
+				/>
 			) : (
 				<View style={[centered ? { marginHorizontal: theme.spacing.xs } : ""]}>
 					<Text
@@ -64,5 +86,15 @@ const styles = StyleSheet.create({
 		color: theme.colors.textLight,
 		fontSize: theme.fontSize.s,
 		fontWeight: "500",
+	},
+	dropdown: {
+		flex: 1,
+	},
+	dropdownItem: {},
+	dropdownText: {
+		color: theme.colors.textLight,
+		fontSize: theme.fontSize.s,
+		textAlign: "right",
+		paddingHorizontal: theme.spacing.xxs,
 	},
 })

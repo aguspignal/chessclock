@@ -7,35 +7,27 @@ import Modal from "react-native-modal"
 import React from "react"
 
 export default function Home({ navigation, route }: HomeProps) {
-	// let defaultPreset = route.params.defaultPreset
 	const [defaultPreset, setDefaultPreset] = useState<Preset>(route.params.defaultPreset)
-	const [toggle, setToggle] = useState<boolean>(false)
+	const [clockOrientation, setClockOrientation] = useState<ClockOrientation>("Vertical")
 	const [sound, setSound] = useState<boolean>(true)
+	const [toggle, setToggle] = useState<boolean>(false)
 
 	const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false)
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
-	const [extraSeconds, setExtraSeconds] = useState<string>("")
+	const [timeIncrement, setTimeIncrement] = useState<string>("")
 
 	const [time, setTime] = useState<PresetTime>({ hours: 0, minutes: 0, seconds: 0 })
 
 	const customPreset: Preset = {
 		name: "Custom",
 		time: { hours: 0, minutes: 0, seconds: 0 },
-		extraSeconds: 0,
+		timeIncrement: 0,
 	}
 
 	function handleChangePreset() {
 		navigation.navigate("Presets")
-	}
-
-	function handleSound() {
-		setSound(!sound)
-	}
-
-	async function handleToggle() {
-		setToggle(!toggle)
 	}
 
 	function handleOpenTimeModal() {
@@ -55,8 +47,9 @@ export default function Home({ navigation, route }: HomeProps) {
 	function handleStart() {
 		navigation.navigate("Clock", {
 			time,
-			extraSeconds: isNaN(Number(extraSeconds)) ? 0 : Number(extraSeconds),
+			timeIncrement: isNaN(Number(timeIncrement)) ? 0 : Number(timeIncrement),
 			isSoundEnabled: sound,
+			clockOrientation,
 		})
 	}
 
@@ -66,7 +59,7 @@ export default function Home({ navigation, route }: HomeProps) {
 			minutes: defaultPreset.time.minutes,
 			seconds: defaultPreset.time.seconds,
 		})
-		setExtraSeconds(`${defaultPreset.extraSeconds}`)
+		setTimeIncrement(`${defaultPreset.timeIncrement}`)
 	}, [])
 
 	return (
@@ -76,21 +69,32 @@ export default function Home({ navigation, route }: HomeProps) {
 					<ConfigBox title="Choose preset time" valueName={defaultPreset.name} />
 				</TouchableOpacity>
 
-				<TouchableOpacity onPress={handleSound} activeOpacity={1}>
+				<ConfigBox
+					title="Clock orientation"
+					isDropdown
+					dropdownData={[
+						{ label: "Vertical", value: "Vertical" },
+						{ label: "Horizontal", value: "Horizontal" },
+					]}
+					onDropdownChange={setClockOrientation}
+					dropdownDefaultValue={clockOrientation}
+				/>
+
+				<TouchableOpacity onPress={() => setSound(!sound)} activeOpacity={1}>
 					<ConfigBox
 						title="Sound"
 						valueName={sound ? "volume-high" : "volume-mute"}
-						isIcon={true}
+						isIcon
 					/>
 				</TouchableOpacity>
 
-				<TouchableOpacity onPress={handleToggle} activeOpacity={1}>
+				<TouchableOpacity onPress={() => setToggle(!toggle)} activeOpacity={1}>
 					<ConfigBox
 						title="Different times"
 						valueName="toggle"
-						isToggle={true}
+						isToggle
 						toggleValue={toggle}
-						toggleChange={setToggle}
+						onToggleChange={setToggle}
 					/>
 				</TouchableOpacity>
 
@@ -124,14 +128,14 @@ export default function Home({ navigation, route }: HomeProps) {
 					</TouchableOpacity>
 
 					<View style={styles.configContainer}>
-						<Text style={styles.configText}>Extra seconds</Text>
+						<Text style={styles.configText}>Time increment</Text>
 						<View>
 							<TextInput
-								style={styles.extraSecondsInput}
+								style={styles.timeIncrementInput}
 								onChangeText={(t) => {
-									Number(t) > 59 ? setExtraSeconds("59") : setExtraSeconds(t)
+									Number(t) > 59 ? setTimeIncrement("59") : setTimeIncrement(t)
 								}}
-								value={extraSeconds}
+								value={timeIncrement}
 								maxLength={2}
 								placeholder="0"
 								placeholderTextColor={theme.colors.grayDark}
@@ -305,7 +309,7 @@ const styles = StyleSheet.create({
 		fontSize: theme.fontSize.s,
 		fontWeight: "500",
 	},
-	extraSecondsInput: {
+	timeIncrementInput: {
 		borderBottomColor: theme.colors.textLight,
 		borderBottomWidth: 2,
 		color: theme.colors.textLight,
