@@ -1,7 +1,7 @@
+import { Dropdown } from "react-native-element-dropdown"
 import { StyleSheet, Switch, Text, View } from "react-native"
 import { theme } from "../utils/theme"
 import Icon from "@react-native-vector-icons/material-design-icons"
-import { Dropdown } from "react-native-element-dropdown"
 import React from "react"
 
 type Props = {

@@ -1,7 +1,5 @@
 # Home
 
--   two different times
-
 # Clock
 
 # Presets

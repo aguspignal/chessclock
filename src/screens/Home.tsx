@@ -1,10 +1,11 @@
 import { HomeProps } from "../types/navigation"
+import { parseHoursToText, parseMinutesToText, parseSecondsToText } from "../utils/parsing"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { theme } from "../utils/theme"
 import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
-import Modal from "react-native-modal"
 import React from "react"
+import TimeInputModal from "../components/TimeInputModal"
 
 export default function Home({ navigation, route }: HomeProps) {
 	const [defaultPreset, setDefaultPreset] = useState<Preset>(route.params.defaultPreset)
@@ -18,7 +19,14 @@ export default function Home({ navigation, route }: HomeProps) {
 	const [seconds, setSeconds] = useState<string>("")
 	const [timeIncrement, setTimeIncrement] = useState<string>("")
 
+	const [isSecondTimeModalVisible, setIsSecondTimeModalVisible] = useState<boolean>(false)
+	const [secondHours, setSecondHours] = useState<string>("")
+	const [secondMinutes, setSecondMinutes] = useState<string>("")
+	const [secondSeconds, setSecondSeconds] = useState<string>("")
+	const [secondTimeIncrement, setSecondTimeIncrement] = useState<string>("")
+
 	const [time, setTime] = useState<PresetTime>({ hours: 0, minutes: 0, seconds: 0 })
+	const [secondTime, setSecondTime] = useState<PresetTime>({ hours: 0, minutes: 0, seconds: 0 })
 
 	const customPreset: Preset = {
 		name: "Custom",
@@ -28,10 +36,6 @@ export default function Home({ navigation, route }: HomeProps) {
 
 	function handleChangePreset() {
 		navigation.navigate("Presets")
-	}
-
-	function handleOpenTimeModal() {
-		setIsTimeModalVisible(true)
 	}
 
 	function handleSaveModal() {
@@ -44,12 +48,34 @@ export default function Home({ navigation, route }: HomeProps) {
 		setDefaultPreset(customPreset)
 	}
 
+	function handleSaveSecondModal() {
+		setSecondTime({
+			hours: secondHours.length === 0 || isNaN(Number(secondHours)) ? 0 : Number(secondHours),
+			minutes:
+				secondMinutes.length === 0 || isNaN(Number(secondMinutes))
+					? 0
+					: Number(secondMinutes),
+			seconds:
+				secondSeconds.length === 0 || isNaN(Number(secondSeconds))
+					? 0
+					: Number(secondSeconds),
+		})
+		setIsSecondTimeModalVisible(false)
+		setDefaultPreset(customPreset)
+	}
+
 	function handleStart() {
 		navigation.navigate("Clock", {
 			time,
 			timeIncrement: isNaN(Number(timeIncrement)) ? 0 : Number(timeIncrement),
 			isSoundEnabled: sound,
 			clockOrientation,
+			secondTime: withDifferentTimes ? secondTime : null,
+			secondTimeIncrement: withDifferentTimes
+				? isNaN(Number(secondTimeIncrement))
+					? 0
+					: Number(secondTimeIncrement)
+				: null,
 		})
 	}
 
@@ -102,31 +128,14 @@ export default function Home({ navigation, route }: HomeProps) {
 				</TouchableOpacity>
 
 				<View style={styles.timeConfigContainer}>
-					<TouchableOpacity onPress={handleOpenTimeModal} style={styles.clockContainer}>
+					<TouchableOpacity
+						onPress={() => setIsTimeModalVisible(true)}
+						style={styles.clockContainer}
+					>
 						<View style={styles.timeContainer}>
-							{time.hours === 0 ? (
-								<></>
-							) : (
-								<Text style={styles.timeText}>
-									{time.hours < 10 ? `0${time.hours}` : time.hours}
-								</Text>
-							)}
-							{time.hours === 0 ? <></> : <Text style={styles.timeText}>:</Text>}
-							<Text style={styles.timeText}>
-								{time.minutes === 0
-									? "00"
-									: time.minutes < 10
-									? `0${time.minutes}`
-									: time.minutes}
-							</Text>
-							<Text style={styles.timeText}>:</Text>
-							<Text style={styles.timeText}>
-								{time.seconds === 0
-									? "00"
-									: time.seconds < 10
-									? `0${time.seconds}`
-									: time.seconds}
-							</Text>
+							{parseHoursToText(time.hours)}
+							{parseMinutesToText(time.minutes)}
+							{parseSecondsToText(time.seconds)}
 						</View>
 					</TouchableOpacity>
 
@@ -147,6 +156,42 @@ export default function Home({ navigation, route }: HomeProps) {
 						</View>
 					</View>
 				</View>
+
+				{withDifferentTimes ? (
+					<View style={styles.timeConfigContainer}>
+						<TouchableOpacity
+							onPress={() => setIsSecondTimeModalVisible(true)}
+							style={styles.clockContainer}
+						>
+							<View style={styles.timeContainer}>
+								{parseHoursToText(secondTime.hours)}
+								{parseMinutesToText(secondTime.minutes)}
+								{parseSecondsToText(secondTime.seconds)}
+							</View>
+						</TouchableOpacity>
+
+						<View style={styles.configContainer}>
+							<Text style={styles.configText}>Time increment</Text>
+							<View>
+								<TextInput
+									style={styles.timeIncrementInput}
+									onChangeText={(t) => {
+										Number(t) > 59
+											? setSecondTimeIncrement("59")
+											: setSecondTimeIncrement(t)
+									}}
+									value={secondTimeIncrement}
+									maxLength={2}
+									placeholder="0"
+									placeholderTextColor={theme.colors.grayDark}
+									keyboardType="numeric"
+								/>
+							</View>
+						</View>
+					</View>
+				) : (
+					<></>
+				)}
 			</View>
 
 			<View style={styles.startBtnContainer}>
@@ -155,70 +200,29 @@ export default function Home({ navigation, route }: HomeProps) {
 				</TouchableOpacity>
 			</View>
 
-			<Modal
+			<TimeInputModal
 				isVisible={isTimeModalVisible}
-				onBackButtonPress={() => setIsTimeModalVisible(false)}
-				onBackdropPress={() => setIsTimeModalVisible(false)}
-			>
-				<View style={styles.timeModalContainer}>
-					<Text style={styles.timeModalText}>Adjust time</Text>
+				setIsVisible={setIsTimeModalVisible}
+				onSave={handleSaveModal}
+				hours={hours}
+				minutes={minutes}
+				seconds={seconds}
+				setHours={setHours}
+				setMinutes={setMinutes}
+				setSeconds={setSeconds}
+			/>
 
-					<View style={styles.timeModalInputsContainer}>
-						<View style={styles.timeModalInputContainer}>
-							<TextInput
-								style={styles.timeModalInput}
-								onChangeText={setHours}
-								value={hours}
-								maxLength={2}
-								placeholder="00"
-								keyboardType="numeric"
-							/>
-						</View>
-
-						<Text style={styles.timeModalColon}>:</Text>
-
-						<View style={styles.timeModalInputContainer}>
-							<TextInput
-								style={styles.timeModalInput}
-								onChangeText={(t) => {
-									Number(t) > 59 ? setMinutes("59") : setMinutes(t)
-								}}
-								value={minutes}
-								maxLength={2}
-								placeholder="00"
-								keyboardType="numeric"
-							/>
-						</View>
-
-						<Text style={styles.timeModalColon}>:</Text>
-
-						<View style={styles.timeModalInputContainer}>
-							<TextInput
-								style={styles.timeModalInput}
-								onChangeText={(t) => {
-									Number(t) > 59 ? setSeconds("59") : setSeconds(t)
-								}}
-								value={seconds}
-								maxLength={2}
-								placeholder="00"
-								keyboardType="numeric"
-							/>
-						</View>
-					</View>
-
-					<View style={styles.timeModalActionsContainer}>
-						<TouchableOpacity onPress={() => setIsTimeModalVisible(false)}>
-							<Text style={styles.timeModalText}>Cancel</Text>
-						</TouchableOpacity>
-
-						<TouchableOpacity onPress={handleSaveModal}>
-							<Text style={[styles.timeModalText, { marginLeft: theme.spacing.l }]}>
-								Save
-							</Text>
-						</TouchableOpacity>
-					</View>
-				</View>
-			</Modal>
+			<TimeInputModal
+				isVisible={isSecondTimeModalVisible}
+				setIsVisible={setIsSecondTimeModalVisible}
+				onSave={handleSaveSecondModal}
+				hours={secondHours}
+				minutes={secondMinutes}
+				seconds={secondSeconds}
+				setHours={setSecondHours}
+				setMinutes={setSecondMinutes}
+				setSeconds={setSecondSeconds}
+			/>
 		</View>
 	)
 }

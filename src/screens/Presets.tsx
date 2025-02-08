@@ -2,12 +2,12 @@ import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "r
 import { orderPresetsByDuration, parseTimeToPresetName } from "../utils/parsing"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../utils/theme"
+import { useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import IconButton from "../components/IconButton"
-import presets from "../utils/presets.json"
 import Modal from "react-native-modal"
+import presets from "../utils/presets.json"
 import useLocalStorage from "../hooks/useLocalStorage"
-import { useState } from "react"
 
 export default function Presets({ navigation }: PresetsProps) {
 	const { storeInLocalStorage } = useLocalStorage()

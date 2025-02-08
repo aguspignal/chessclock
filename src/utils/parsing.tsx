@@ -1,3 +1,6 @@
+import { StyleProp, Text, TextStyle, View } from "react-native"
+import { theme } from "./theme"
+
 export function parseTimeFromSeconds(seconds: number) {
 	const hs = Math.floor(seconds / 3600)
 	const min = Math.floor((seconds - hs * 3600) / 60)
@@ -35,6 +38,44 @@ export function parseTimeToPresetName(hs: string, min: string, sec: string, extr
 	const extraSeconds = isNaN(Number(hs)) || Number(hs) === 0 ? "" : `| ${Number(extra)}s`
 
 	return `${hours}${minutes}${seconds}${extraSeconds}`
+}
+
+export function parseHoursToText(hours: number) {
+	if (hours === 0) return <></>
+
+	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.xl, fontWeight: "500" }
+
+	return (
+		<View style={{ flexDirection: "row" }}>
+			<Text style={textStyle}>{hours < 10 ? `0${hours}` : hours}</Text>
+			{hours === 0 ? <></> : <Text style={textStyle}>:</Text>}
+		</View>
+	)
+}
+
+export function parseMinutesToText(minutes: number) {
+	const text = minutes === 0 ? "00" : minutes < 10 ? `0${minutes}` : `${minutes}`
+
+	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.xl, fontWeight: "500" }
+
+	return (
+		<View style={{ flexDirection: "row" }}>
+			<Text style={textStyle}>{text}</Text>
+			<Text style={textStyle}>:</Text>
+		</View>
+	)
+}
+
+export function parseSecondsToText(seconds: number) {
+	const text = seconds === 0 ? "00" : seconds < 10 ? `0${seconds}` : `${seconds}`
+
+	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.xl, fontWeight: "500" }
+
+	return (
+		<View style={{ flexDirection: "row" }}>
+			<Text style={textStyle}>{text}</Text>
+		</View>
+	)
 }
 
 export function orderPresetsByDuration(presets: Preset[]): Preset[] {

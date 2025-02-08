@@ -10,6 +10,8 @@ export type StackParamList = {
 		timeIncrement: number
 		isSoundEnabled: boolean
 		clockOrientation: ClockOrientation
+		secondTime: PresetTime | null
+		secondTimeIncrement: number | null
 	}
 }
 

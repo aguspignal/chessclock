@@ -9,11 +9,22 @@ import Sound from "react-native-sound"
 export default function Clock({ navigation, route }: ClockProps) {
 	const time = route.params.time
 	const timeInSeconds = time.hours * 3600 + time.minutes * 60 + time.seconds
+
+	const secondTime = route.params.secondTime
+	const secondTimeInSeconds =
+		secondTime === null
+			? null
+			: secondTime.hours * 3600 + secondTime.minutes * 60 + secondTime.seconds
+
 	const timeIncrement = route.params.timeIncrement
+	const secondTimeIncrement = route.params.secondTimeIncrement
+
 	const clockOrientation = route.params.clockOrientation
 
 	const [topPlayerClock, setTopPlayerClock] = useState(timeInSeconds)
-	const [bottomPlayerClock, setBottomPlayerClock] = useState(timeInSeconds)
+	const [bottomPlayerClock, setBottomPlayerClock] = useState(
+		secondTimeInSeconds ? secondTimeInSeconds : timeInSeconds,
+	)
 
 	const [isTopPlaying, setIsTopPlaying] = useState(false)
 	const [isBottomPlaying, setIsBottomPlaying] = useState(false)
@@ -45,7 +56,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 		setIsBottomPlaying(false)
 
 		setTopPlayerClock(timeInSeconds)
-		setBottomPlayerClock(timeInSeconds)
+		setBottomPlayerClock(secondTimeInSeconds ? secondTimeInSeconds : timeInSeconds)
 
 		setTopPlayerCount(0)
 		setBottomPlayerCount(0)
@@ -74,7 +85,9 @@ export default function Clock({ navigation, route }: ClockProps) {
 			stopBottomPlayerTimer()
 			startTopPlayerTimer()
 
-			setBottomPlayerClock((prev) => prev + timeIncrement)
+			setBottomPlayerClock((prev) =>
+				secondTimeIncrement ? prev + secondTimeIncrement : prev + timeIncrement,
+			)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
 			playMoveSound()
@@ -166,8 +179,8 @@ export default function Clock({ navigation, route }: ClockProps) {
 				onMove={handleMove}
 				playerClock={bottomPlayerClock}
 				movesCount={bottomPlayerCount}
-				timeInSeconds={timeInSeconds}
-				timeIncrement={timeIncrement}
+				timeInSeconds={secondTimeInSeconds ? secondTimeInSeconds : timeInSeconds}
+				timeIncrement={secondTimeIncrement ? secondTimeIncrement : timeIncrement}
 				clockOrientation={clockOrientation}
 			/>
 		</View>
