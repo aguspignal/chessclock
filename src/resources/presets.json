@@ -7,7 +7,17 @@
             "seconds": 0
         },
         "timeIncrement": 0
-    },{
+    },
+    {
+        "name": "1 min | 2s",
+        "time": {
+            "hours": 0, 
+            "minutes": 1,
+            "seconds": 0
+        },
+        "timeIncrement": 2
+    },
+    {
         "name": "2 min | 1s",
         "time": {
             "hours": 0, 
@@ -15,6 +25,15 @@
             "seconds": 0
         },
         "timeIncrement": 1
+    },
+    {
+        "name": "3 min",
+        "time": {
+            "hours": 0, 
+            "minutes": 3,
+            "seconds": 0
+        },
+        "timeIncrement": 0
     },
     {
         "name": "3 min | 2s",
@@ -33,6 +52,24 @@
             "seconds": 0
         },
         "timeIncrement": 5
+    },
+    {
+        "name": "5 min",
+        "time": {
+            "hours": 0, 
+            "minutes": 5,
+            "seconds": 0
+        },
+        "timeIncrement": 0
+    },
+    {
+        "name": "5 min | 2s",
+        "time": {
+            "hours": 0, 
+            "minutes": 5,
+            "seconds": 0
+        },
+        "timeIncrement": 2
     },
     {
         "name": "5 min | 5s",

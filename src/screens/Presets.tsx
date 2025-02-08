@@ -49,13 +49,13 @@ export default function Presets({ navigation }: PresetsProps) {
 
 	return (
 		<View style={styles.container}>
-			<View style={styles.actionsContainer}>
+			{/* <View style={styles.actionsContainer}>
 				<IconButton
 					onPress={() => setIsTimeModalVisible(true)}
 					iconName="plus"
 					title="Add preset"
 				/>
-			</View>
+			</View> */}
 
 			<View>
 				<FlatList
