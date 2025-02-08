@@ -6,7 +6,7 @@ import { useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import IconButton from "../components/IconButton"
 import Modal from "react-native-modal"
-import presets from "../utils/presets.json"
+import presets from "../resources/presets.json"
 import useLocalStorage from "../hooks/useLocalStorage"
 
 export default function Presets({ navigation }: PresetsProps) {
