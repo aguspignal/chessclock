@@ -15,8 +15,8 @@ export default function Clock({ navigation, route }: ClockProps) {
 	const [topPlayerClock, setTopPlayerClock] = useState(timeInSeconds)
 	const [bottomPlayerClock, setBottomPlayerClock] = useState(timeInSeconds)
 
-	const [isTopRunning, setIsTopRunning] = useState(false)
-	const [isBottomRunning, setIsBottomRunning] = useState(false)
+	const [isTopPlaying, setIsTopPlaying] = useState(false)
+	const [isBottomPlaying, setIsBottomPlaying] = useState(false)
 	const [intervalId, setIntervalId] = useState<NodeJS.Timeout>()
 
 	const [topPlayerCount, setTopPlayerCount] = useState<number>(0)
@@ -31,7 +31,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 	})
 
 	function handleStartPause() {
-		if (isTopRunning || isBottomRunning) {
+		if (isTopPlaying || isBottomPlaying) {
 			stopTopPlayerTimer()
 			stopBottomPlayerTimer()
 		} else {
@@ -41,8 +41,8 @@ export default function Clock({ navigation, route }: ClockProps) {
 
 	function restartClock() {
 		clearInterval(intervalId)
-		setIsTopRunning(false)
-		setIsBottomRunning(false)
+		setIsTopPlaying(false)
+		setIsBottomPlaying(false)
 
 		setTopPlayerClock(timeInSeconds)
 		setBottomPlayerClock(timeInSeconds)
@@ -62,7 +62,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 	}
 
 	function handleMove(topPlayerMoved: boolean) {
-		if (topPlayerMoved && isTopRunning) {
+		if (topPlayerMoved && isTopPlaying) {
 			stopTopPlayerTimer()
 			startBottomPlayerTimer()
 
@@ -70,7 +70,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 			setTopPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(true)
 			playMoveSound()
-		} else if (!topPlayerMoved && isBottomRunning) {
+		} else if (!topPlayerMoved && isBottomPlaying) {
 			stopBottomPlayerTimer()
 			startTopPlayerTimer()
 
@@ -78,23 +78,23 @@ export default function Clock({ navigation, route }: ClockProps) {
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
 			playMoveSound()
-		} else if (!isTopRunning && !isBottomRunning) {
+		} else if (!isTopPlaying && !isBottomPlaying) {
 			topPlayerMoved ? startTopPlayerTimer() : startBottomPlayerTimer()
 			playMoveSound()
 		}
 	}
 
 	function startTopPlayerTimer() {
-		if (isTopRunning || topPlayerClock === 0) return
+		if (isTopPlaying || topPlayerClock === 0) return
 
-		setIsTopRunning(true)
+		setIsTopPlaying(true)
 		setTopPlayerClock((prev) => prev - 1)
 
 		const id = setInterval(() => {
 			setTopPlayerClock((prev) => {
 				if (prev <= 1) {
 					clearInterval(id)
-					setIsTopRunning(false)
+					setIsTopPlaying(false)
 					return 0
 				}
 				return prev - 1
@@ -105,12 +105,12 @@ export default function Clock({ navigation, route }: ClockProps) {
 
 	function stopTopPlayerTimer() {
 		clearInterval(intervalId)
-		setIsTopRunning(false)
+		setIsTopPlaying(false)
 	}
 
 	function startBottomPlayerTimer() {
-		if (isBottomRunning || bottomPlayerClock === 0) return
-		setIsBottomRunning(true)
+		if (isBottomPlaying || bottomPlayerClock === 0) return
+		setIsBottomPlaying(true)
 
 		setBottomPlayerClock((prev) => prev - 1)
 
@@ -118,7 +118,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 			setBottomPlayerClock((prev) => {
 				if (prev <= 1) {
 					clearInterval(id)
-					setIsBottomRunning(false)
+					setIsBottomPlaying(false)
 					return 0
 				}
 				return prev - 1
@@ -129,7 +129,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 
 	function stopBottomPlayerTimer() {
 		clearInterval(intervalId)
-		setIsBottomRunning(false)
+		setIsBottomPlaying(false)
 	}
 
 	useEffect(() => {
@@ -140,6 +140,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 		<View style={styles.container}>
 			<PlayerClock
 				isTopPlayer
+				isPlaying={isTopPlaying}
 				onMove={handleMove}
 				playerClock={topPlayerClock}
 				movesCount={topPlayerCount}
@@ -153,7 +154,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 
 				<IconButton
 					onPress={handleStartPause}
-					iconName={isTopRunning || isBottomRunning ? "pause" : "play"}
+					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
 				/>
 
 				<IconButton onPress={restartClock} iconName="restart" />
@@ -161,6 +162,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 
 			<PlayerClock
 				isTopPlayer={false}
+				isPlaying={isBottomPlaying}
 				onMove={handleMove}
 				playerClock={bottomPlayerClock}
 				movesCount={bottomPlayerCount}

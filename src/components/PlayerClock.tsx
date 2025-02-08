@@ -1,10 +1,11 @@
 import { parseTimeFromSeconds, parseTimeWithExtra } from "../utils/parsing"
 import { STATUS_BAR_HEIGHT } from "../utils/constants"
-import { StyleSheet, Text, TouchableOpacity } from "react-native"
+import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
 import { theme } from "../utils/theme"
 
 type Props = {
 	isTopPlayer: boolean
+	isPlaying: boolean
 	onMove: (topPlayerMoved: boolean) => void
 	clockOrientation: ClockOrientation
 	movesCount: number
@@ -15,6 +16,7 @@ type Props = {
 
 export default function PlayerClock({
 	isTopPlayer,
+	isPlaying,
 	onMove,
 	clockOrientation,
 	movesCount,
@@ -23,48 +25,57 @@ export default function PlayerClock({
 	timeIncrement,
 }: Props) {
 	const clockOrientationStyle = isTopPlayer
-		? clockOrientation === "Vertical"
-			? {
-					transform: [{ rotate: "-180deg" }],
-					paddingBottom: STATUS_BAR_HEIGHT - STATUS_BAR_HEIGHT / 3,
-			  }
-			: { transform: [{ rotate: "-90deg" }] }
-		: clockOrientation === "Vertical"
-		? {}
-		: { transform: [{ rotate: "-90deg" }] }
-
-	const clockColorStyle = {}
-
-	// const topContainerColorStyle =
-	// isTopRunning && topPlayerClock <= 10
-	//     ? { backgroundColor: theme.colors.orange }
-	//     : isTopRunning && topPlayerClock <= 30
-	//     ? { backgroundColor: theme.colors.yellow }
-	//     : isTopRunning
-	//     ? { backgroundColor: theme.colors.green }
-	//     : { backgroundColor: theme.colors.grayLight }
+		? clockOrientation === "Horizontal"
+			? { transform: [{ rotate: "-90deg" }] }
+			: { transform: [{ rotate: "-180deg" }] }
+		: clockOrientation === "Horizontal"
+		? { transform: [{ rotate: "-90deg" }] }
+		: {}
+	const clockColorStyle: StyleProp<ViewStyle> =
+		playerClock === 0
+			? {}
+			: !isPlaying
+			? { backgroundColor: theme.colors.grayLight }
+			: playerClock <= 10
+			? { backgroundColor: theme.colors.orange }
+			: playerClock <= 30
+			? { backgroundColor: theme.colors.yellow }
+			: { backgroundColor: theme.colors.green }
 
 	return (
 		<TouchableOpacity
 			onPress={() => onMove(isTopPlayer)}
-			style={[styles.clockContainer, clockOrientationStyle, clockColorStyle]}
+			style={[styles.container, clockOrientationStyle]}
 			activeOpacity={0.9}
 		>
-			<Text style={styles.extraInfoText}>Moves: {movesCount}</Text>
+			<View
+				style={[
+					styles.clockContainer,
+					clockColorStyle,
+					isTopPlayer && clockOrientation === "Vertical"
+						? { paddingBottom: STATUS_BAR_HEIGHT }
+						: {},
+				]}
+			>
+				<Text style={styles.extraInfoText}>Moves: {movesCount}</Text>
 
-			<Text style={styles.timer}>{parseTimeFromSeconds(playerClock)}</Text>
+				<Text style={styles.timer}>{parseTimeFromSeconds(playerClock)}</Text>
 
-			<Text style={styles.extraInfoText}>
-				{parseTimeWithExtra(timeInSeconds, timeIncrement)}
-			</Text>
+				<Text style={styles.extraInfoText}>
+					{parseTimeWithExtra(timeInSeconds, timeIncrement)}
+				</Text>
+			</View>
 		</TouchableOpacity>
 	)
 }
 
 const styles = StyleSheet.create({
+	container: {
+		backgroundColor: theme.colors.red,
+		flex: 1,
+	},
 	clockContainer: {
 		alignItems: "center",
-		backgroundColor: theme.colors.grayLight,
 		flex: 1,
 		justifyContent: "space-between",
 	},

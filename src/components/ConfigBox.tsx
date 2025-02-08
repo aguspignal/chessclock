@@ -16,7 +16,6 @@ type Props = {
 	dropdownData?: { label: string; value: string }[]
 	dropdownDefaultValue?: string
 	centered?: boolean
-	biggerValue?: boolean
 }
 
 export default function ConfigBox({
@@ -31,11 +30,10 @@ export default function ConfigBox({
 	dropdownData = [],
 	dropdownDefaultValue = "",
 	centered = false,
-	biggerValue = false,
 }: Props) {
 	return (
 		<View style={[styles.configContainer, centered ? { justifyContent: "center" } : ""]}>
-			<Text style={styles.configText}>{title}</Text>
+			<Text style={[styles.configText]}>{title}</Text>
 
 			{isIcon ? (
 				<Icon
@@ -49,7 +47,6 @@ export default function ConfigBox({
 			) : isDropdown ? (
 				<Dropdown
 					style={styles.dropdown}
-					itemContainerStyle={styles.dropdownItem}
 					selectedTextStyle={styles.dropdownText}
 					labelField="label"
 					valueField="value"
@@ -60,14 +57,7 @@ export default function ConfigBox({
 				/>
 			) : (
 				<View style={[centered ? { marginHorizontal: theme.spacing.xs } : ""]}>
-					<Text
-						style={[
-							styles.configText,
-							biggerValue ? { fontSize: theme.fontSize.m } : "",
-						]}
-					>
-						{valueName}
-					</Text>
+					<Text style={[styles.configText]}>{valueName}</Text>
 				</View>
 			)}
 		</View>
@@ -84,17 +74,16 @@ const styles = StyleSheet.create({
 	},
 	configText: {
 		color: theme.colors.textLight,
+		flex: 1,
 		fontSize: theme.fontSize.s,
 		fontWeight: "500",
 	},
 	dropdown: {
 		flex: 1,
 	},
-	dropdownItem: {},
 	dropdownText: {
 		color: theme.colors.textLight,
 		fontSize: theme.fontSize.s,
 		textAlign: "right",
-		paddingHorizontal: theme.spacing.xxs,
 	},
 })

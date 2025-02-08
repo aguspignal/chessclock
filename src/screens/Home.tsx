@@ -10,7 +10,7 @@ export default function Home({ navigation, route }: HomeProps) {
 	const [defaultPreset, setDefaultPreset] = useState<Preset>(route.params.defaultPreset)
 	const [clockOrientation, setClockOrientation] = useState<ClockOrientation>("Vertical")
 	const [sound, setSound] = useState<boolean>(true)
-	const [toggle, setToggle] = useState<boolean>(false)
+	const [withDifferentTimes, setWithDifferentTimes] = useState<boolean>(false)
 
 	const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false)
 	const [hours, setHours] = useState<string>("")
@@ -88,13 +88,16 @@ export default function Home({ navigation, route }: HomeProps) {
 					/>
 				</TouchableOpacity>
 
-				<TouchableOpacity onPress={() => setToggle(!toggle)} activeOpacity={1}>
+				<TouchableOpacity
+					onPress={() => setWithDifferentTimes(!withDifferentTimes)}
+					activeOpacity={1}
+				>
 					<ConfigBox
 						title="Different times"
 						valueName="toggle"
 						isToggle
-						toggleValue={toggle}
-						onToggleChange={setToggle}
+						toggleValue={withDifferentTimes}
+						onToggleChange={setWithDifferentTimes}
 					/>
 				</TouchableOpacity>
 

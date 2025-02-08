@@ -1,12 +1,8 @@
 # Home
 
 -   two different times
--   don't play sound while not moving
--   clock orientation dropdown width
 
 # Clock
-
--   clock colors
 
 # Presets
 
