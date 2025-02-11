@@ -5,25 +5,35 @@ import Modal from "react-native-modal"
 type Props = {
 	isVisible: boolean
 	setIsVisible: React.Dispatch<React.SetStateAction<boolean>>
+	title?: string
+	saveActionTitle?: string
+	onSave: () => void
 	hours: string
 	setHours: React.Dispatch<React.SetStateAction<string>>
 	minutes: string
 	setMinutes: React.Dispatch<React.SetStateAction<string>>
 	seconds: string
 	setSeconds: React.Dispatch<React.SetStateAction<string>>
-	onSave: () => void
+	withIncrementInput?: boolean
+	increment?: string
+	setIncrement?: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function TimeInputModal({
 	isVisible,
 	setIsVisible,
+	title = "",
+	saveActionTitle = "Save",
+	onSave,
 	hours,
 	minutes,
 	seconds,
 	setHours,
 	setMinutes,
 	setSeconds,
-	onSave,
+	withIncrementInput = false,
+	increment,
+	setIncrement = () => {},
 }: Props) {
 	return (
 		<Modal
@@ -31,13 +41,13 @@ export default function TimeInputModal({
 			onBackButtonPress={() => setIsVisible(false)}
 			onBackdropPress={() => setIsVisible(false)}
 		>
-			<View style={styles.timeModalContainer}>
-				<Text style={styles.timeModalText}>Adjust time</Text>
+			<View style={styles.container}>
+				<Text style={styles.text}>{title}</Text>
 
-				<View style={styles.timeModalInputsContainer}>
-					<View style={styles.timeModalInputContainer}>
+				<View style={styles.inputsContainer}>
+					<View style={styles.inputContainer}>
 						<TextInput
-							style={styles.timeModalInput}
+							style={styles.input}
 							onChangeText={setHours}
 							value={hours}
 							maxLength={2}
@@ -46,11 +56,11 @@ export default function TimeInputModal({
 						/>
 					</View>
 
-					<Text style={styles.timeModalColon}>:</Text>
+					<Text style={styles.colon}>:</Text>
 
-					<View style={styles.timeModalInputContainer}>
+					<View style={styles.inputContainer}>
 						<TextInput
-							style={styles.timeModalInput}
+							style={styles.input}
 							onChangeText={(t) => {
 								Number(t) > 59 ? setMinutes("59") : setMinutes(t)
 							}}
@@ -61,11 +71,11 @@ export default function TimeInputModal({
 						/>
 					</View>
 
-					<Text style={styles.timeModalColon}>:</Text>
+					<Text style={styles.colon}>:</Text>
 
-					<View style={styles.timeModalInputContainer}>
+					<View style={styles.inputContainer}>
 						<TextInput
-							style={styles.timeModalInput}
+							style={styles.input}
 							onChangeText={(t) => {
 								Number(t) > 59 ? setSeconds("59") : setSeconds(t)
 							}}
@@ -77,14 +87,41 @@ export default function TimeInputModal({
 					</View>
 				</View>
 
-				<View style={styles.timeModalActionsContainer}>
-					<TouchableOpacity onPress={() => setIsVisible(false)}>
-						<Text style={styles.timeModalText}>Cancel</Text>
+				{withIncrementInput ? (
+					<View style={styles.configContainer}>
+						<Text style={styles.text}>Time increment</Text>
+						<View>
+							<TextInput
+								style={styles.timeIncrementInput}
+								onChangeText={(t) => {
+									Number(t) > 59 ? setIncrement("59") : setIncrement(t)
+								}}
+								value={increment}
+								maxLength={2}
+								placeholder="0"
+								placeholderTextColor={theme.colors.grayDark}
+								keyboardType="numeric"
+							/>
+						</View>
+					</View>
+				) : (
+					<></>
+				)}
+
+				<View style={styles.actionsContainer}>
+					<TouchableOpacity
+						onPress={() => setIsVisible(false)}
+						style={styles.actionContainer}
+					>
+						<Text style={styles.text}>Cancel</Text>
 					</TouchableOpacity>
 
-					<TouchableOpacity onPress={onSave}>
-						<Text style={[styles.timeModalText, { marginLeft: theme.spacing.l }]}>
-							Save
+					<TouchableOpacity
+						onPress={onSave}
+						style={[styles.actionContainer, styles.confirmAction]}
+					>
+						<Text style={[styles.text, { color: theme.colors.textDark }]}>
+							{saveActionTitle}
 						</Text>
 					</TouchableOpacity>
 				</View>
@@ -94,44 +131,66 @@ export default function TimeInputModal({
 }
 
 const styles = StyleSheet.create({
-	timeModalContainer: {
+	container: {
 		alignItems: "center",
-		alignSelf: "center",
 		backgroundColor: theme.colors.backgroundDark,
 		borderRadius: 16,
 		justifyContent: "center",
-		paddingHorizontal: theme.spacing.l,
-		paddingVertical: theme.spacing.m,
+		padding: theme.spacing.l,
 	},
-	timeModalText: {
+	text: {
 		color: theme.colors.textLight,
 		fontSize: theme.fontSize.m,
 		fontWeight: "500",
+		textAlign: "center",
 	},
-	timeModalInputsContainer: {
+	inputsContainer: {
 		alignItems: "center",
 		flexDirection: "row",
+		marginVertical: theme.spacing.m,
 	},
-	timeModalInputContainer: {
+	inputContainer: {
 		backgroundColor: theme.colors.grayLight,
 		borderRadius: 8,
-		marginVertical: theme.spacing.m,
 		paddingVertical: theme.spacing.xxs,
 	},
-	timeModalInput: {
+	input: {
 		fontSize: theme.fontSize.xl,
 		fontWeight: "500",
 		paddingHorizontal: theme.spacing.s,
 	},
-	timeModalColon: {
+	colon: {
 		color: theme.colors.grayLight,
 		fontSize: theme.fontSize.xl,
 		fontWeight: "500",
 		marginHorizontal: 4,
 	},
-	timeModalActionsContainer: {
-		alignSelf: "flex-end",
-		borderRadius: 8,
+	configContainer: {
+		alignItems: "center",
 		flexDirection: "row",
+		justifyContent: "center",
+		marginBottom: theme.spacing.l,
+	},
+	timeIncrementInput: {
+		borderBottomColor: theme.colors.textLight,
+		borderBottomWidth: 2,
+		color: theme.colors.textLight,
+		fontSize: theme.fontSize.l,
+		fontWeight: "500",
+		marginLeft: theme.spacing.xxs,
+		paddingHorizontal: theme.spacing.xxs,
+	},
+	actionsContainer: {
+		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "center",
+	},
+	actionContainer: {
+		flex: 1,
+	},
+	confirmAction: {
+		backgroundColor: theme.colors.green,
+		borderRadius: theme.spacing.xxs,
+		paddingVertical: theme.spacing.xxs,
 	},
 })

@@ -142,6 +142,7 @@ export default function Home({ navigation, route }: HomeProps) {
 								style={styles.timeIncrementInput}
 								onChangeText={(t) => {
 									Number(t) > 59 ? setTimeIncrement("59") : setTimeIncrement(t)
+									setDefaultPreset(customPreset)
 								}}
 								value={timeIncrement}
 								maxLength={2}
@@ -199,6 +200,8 @@ export default function Home({ navigation, route }: HomeProps) {
 			<TimeInputModal
 				isVisible={isTimeModalVisible}
 				setIsVisible={setIsTimeModalVisible}
+				title="Adjust time"
+				saveActionTitle="Confirm"
 				onSave={handleSaveModal}
 				hours={hours}
 				minutes={minutes}
@@ -211,6 +214,8 @@ export default function Home({ navigation, route }: HomeProps) {
 			<TimeInputModal
 				isVisible={isSecondTimeModalVisible}
 				setIsVisible={setIsSecondTimeModalVisible}
+				title="Adjust time"
+				saveActionTitle="Confirm"
 				onSave={handleSaveSecondModal}
 				hours={secondHours}
 				minutes={secondMinutes}

@@ -19,11 +19,16 @@ export default function useDatabase() {
 				$s: preset.seconds,
 				$ti: preset.timeIncrement,
 			},
-		)
+		).catch((e) => console.log(e))
+	}
+
+	async function deletePreset(preset: Preset) {
+		db.runAsync("DELETE FROM Presets WHERE name = ?", preset.name).catch((e) => console.log(e))
 	}
 
 	return {
 		getAllPresets,
 		postPreset,
+		deletePreset,
 	}
 }

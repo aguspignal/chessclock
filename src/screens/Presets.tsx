@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
 import {
 	parseDatabasePresets,
 	parsePresetToDatabasePreset,
@@ -9,16 +9,20 @@ import { theme } from "../utils/theme"
 import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import IconButton from "../components/IconButton"
-import Modal from "react-native-modal"
 import useDatabase from "../hooks/useDatabase"
 import useLocalStorage from "../hooks/useLocalStorage"
+import TimeInputModal from "../components/TimeInputModal"
+import ConfirmationModal from "../components/ConfirmationModal"
 
 export default function Presets({ navigation }: PresetsProps) {
 	const { storeInLocalStorage } = useLocalStorage()
-	const { getAllPresets, postPreset } = useDatabase()
+	const { getAllPresets, postPreset, deletePreset } = useDatabase()
 
 	const [flatlistData, setFlatlistData] = useState<Preset[]>([])
-	const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false)
+	const [timeModalVisible, setTimeModalVisible] = useState<boolean>(false)
+	const [confirmationModalVisible, setConfirmationModalVisible] = useState<boolean>(false)
+	const [selectedItem, setSelectedItem] = useState<Preset | null>(null)
+	const [isEditing, setIsEditing] = useState<boolean>(false)
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
@@ -38,7 +42,7 @@ export default function Presets({ navigation }: PresetsProps) {
 			})
 	}
 
-	async function handleSaveModal() {
+	async function handleSaveTimeModal() {
 		const presetName = parseTimeToPresetName(hours, minutes, seconds, timeIncrement)
 		if (presetName === "") return
 
@@ -57,7 +61,27 @@ export default function Presets({ navigation }: PresetsProps) {
 		const dbPresets = await getAllPresets()
 		setFlatlistData(parseDatabasePresets(dbPresets))
 
-		setIsTimeModalVisible(false)
+		setTimeModalVisible(false)
+	}
+
+	function handlePressItem(item: Preset) {
+		if (isEditing) {
+			setConfirmationModalVisible(true)
+			setSelectedItem(item)
+		} else {
+			handleSelectPreset(item)
+		}
+	}
+
+	async function handleConfirmDeletion() {
+		if (!selectedItem) return
+
+		await deletePreset(selectedItem)
+
+		const dbPresets = await getAllPresets()
+		setFlatlistData(parseDatabasePresets(dbPresets))
+
+		setConfirmationModalVisible(false)
 	}
 
 	useEffect(() => {
@@ -72,10 +96,19 @@ export default function Presets({ navigation }: PresetsProps) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.actionsContainer}>
+				{isEditing ? (
+					<View></View>
+				) : (
+					<IconButton
+						onPress={() => setTimeModalVisible(true)}
+						iconName="plus"
+						title="Add preset"
+					/>
+				)}
+
 				<IconButton
-					onPress={() => setIsTimeModalVisible(true)}
-					iconName="plus"
-					title="Add preset"
+					onPress={() => setIsEditing(!isEditing)}
+					iconName={isEditing ? "window-close" : "pencil"}
 				/>
 			</View>
 
@@ -86,13 +119,16 @@ export default function Presets({ navigation }: PresetsProps) {
 					renderItem={({ item }) => {
 						return (
 							<TouchableOpacity
-								onPress={() => handleSelectPreset(item)}
+								onPress={() => handlePressItem(item)}
+								onLongPress={() => console.log("hello")}
+								style={styles.flatlistItemContainer}
+								delayLongPress={500}
 								activeOpacity={0.75}
 							>
 								<ConfigBox
 									title={item.name}
-									isIcon={true}
-									valueName="chevron-right"
+									isIcon
+									valueName={isEditing ? "delete" : "chevron-right"}
 								/>
 							</TouchableOpacity>
 						)
@@ -100,99 +136,45 @@ export default function Presets({ navigation }: PresetsProps) {
 				/>
 			</View>
 
-			<Modal
-				isVisible={isTimeModalVisible}
-				onBackButtonPress={() => setIsTimeModalVisible(false)}
-				onBackdropPress={() => setIsTimeModalVisible(false)}
-			>
-				<View style={styles.timeModalContainer}>
-					<Text style={styles.timeModalText}>Create new preset time</Text>
+			<TimeInputModal
+				isVisible={timeModalVisible}
+				setIsVisible={setTimeModalVisible}
+				title="Create new preset time"
+				saveActionTitle="Confirm"
+				onSave={handleSaveTimeModal}
+				hours={hours}
+				setHours={setHours}
+				minutes={minutes}
+				setMinutes={setMinutes}
+				seconds={seconds}
+				setSeconds={setSeconds}
+				withIncrementInput
+				increment={timeIncrement}
+				setIncrement={setTimeIncrement}
+			/>
 
-					<View style={styles.timeModalInputsContainer}>
-						<View style={styles.timeModalInputContainer}>
-							<TextInput
-								style={styles.timeModalInput}
-								onChangeText={setHours}
-								value={hours}
-								maxLength={2}
-								placeholder="00"
-								keyboardType="numeric"
-							/>
-						</View>
-
-						<Text style={styles.timeModalColon}>:</Text>
-
-						<View style={styles.timeModalInputContainer}>
-							<TextInput
-								style={styles.timeModalInput}
-								onChangeText={(t) => {
-									Number(t) > 59 ? setMinutes("59") : setMinutes(t)
-								}}
-								value={minutes}
-								maxLength={2}
-								placeholder="00"
-								keyboardType="numeric"
-							/>
-						</View>
-
-						<Text style={styles.timeModalColon}>:</Text>
-
-						<View style={styles.timeModalInputContainer}>
-							<TextInput
-								style={styles.timeModalInput}
-								onChangeText={(t) => {
-									Number(t) > 59 ? setSeconds("59") : setSeconds(t)
-								}}
-								value={seconds}
-								maxLength={2}
-								placeholder="00"
-								keyboardType="numeric"
-							/>
-						</View>
-					</View>
-
-					<View style={styles.configContainer}>
-						<Text style={styles.configText}>Extra seconds</Text>
-						<View>
-							<TextInput
-								style={styles.timeIncrementInput}
-								onChangeText={(t) => {
-									Number(t) > 59 ? setTimeIncrement("59") : setTimeIncrement(t)
-								}}
-								value={timeIncrement}
-								maxLength={2}
-								placeholder="0"
-								placeholderTextColor={theme.colors.grayDark}
-								keyboardType="numeric"
-							/>
-						</View>
-					</View>
-
-					<View style={styles.timeModalActionsContainer}>
-						<TouchableOpacity onPress={() => setIsTimeModalVisible(false)}>
-							<Text style={styles.timeModalText}>Cancel</Text>
-						</TouchableOpacity>
-
-						<TouchableOpacity onPress={handleSaveModal}>
-							<Text style={[styles.timeModalText, { marginLeft: theme.spacing.l }]}>
-								Save
-							</Text>
-						</TouchableOpacity>
-					</View>
-				</View>
-			</Modal>
+			<ConfirmationModal
+				isVisible={confirmationModalVisible}
+				setIsVisible={setConfirmationModalVisible}
+				title="Are you sure you want to delete this preset?"
+				saveActionTitle="Delete"
+				onSave={handleConfirmDeletion}
+			/>
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		backgroundColor: theme.colors.backgroundDark,
+		flex: 1,
 	},
 	actionsContainer: {
-		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "space-between",
 		marginVertical: theme.spacing.xs,
+		paddingLeft: theme.spacing.s,
+		paddingRight: theme.spacing.m,
 	},
 	timeModalContainer: {
 		alignItems: "center",
@@ -257,5 +239,8 @@ const styles = StyleSheet.create({
 	},
 	flatlistContainer: {
 		flex: 1,
+	},
+	flatlistItemContainer: {
+		padding: theme.spacing.xxs,
 	},
 })
