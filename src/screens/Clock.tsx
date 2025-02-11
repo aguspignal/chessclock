@@ -1,6 +1,6 @@
 import { ClockProps } from "../types/navigation"
 import { StyleSheet, View } from "react-native"
-import { theme } from "../utils/theme"
+import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"

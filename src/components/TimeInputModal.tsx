@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { theme } from "../utils/theme"
+import { theme } from "../resources/theme"
 import Modal from "react-native-modal"
 
 type Props = {

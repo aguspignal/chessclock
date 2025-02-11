@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
 import { parsePresetToDatabasePreset, parseTimeToPresetName } from "../utils/parsing"
 import { PresetsProps } from "../types/navigation"
-import { theme } from "../utils/theme"
+import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import IconButton from "../components/IconButton"

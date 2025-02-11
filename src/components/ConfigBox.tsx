@@ -1,6 +1,6 @@
 import { Dropdown } from "react-native-element-dropdown"
 import { StyleSheet, Switch, Text, View } from "react-native"
-import { theme } from "../utils/theme"
+import { theme } from "../resources/theme"
 import Icon from "@react-native-vector-icons/material-design-icons"
 import React from "react"
 

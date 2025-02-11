@@ -1,7 +1,7 @@
 import { HomeProps } from "../types/navigation"
 import { parseHoursToText, parseMinutesToText, parseSecondsToText } from "../utils/parsing"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { theme } from "../utils/theme"
+import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import React from "react"

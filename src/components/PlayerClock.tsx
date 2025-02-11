@@ -1,7 +1,7 @@
 import { parseTimeFromSeconds, parseTimeWithExtra } from "../utils/parsing"
 import { STATUS_BAR_HEIGHT } from "../utils/constants"
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
-import { theme } from "../utils/theme"
+import { theme } from "../resources/theme"
 
 type Props = {
 	isTopPlayer: boolean
