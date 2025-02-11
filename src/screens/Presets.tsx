@@ -1,9 +1,5 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
-import {
-	parseDatabasePresets,
-	parsePresetToDatabasePreset,
-	parseTimeToPresetName,
-} from "../utils/parsing"
+import { parsePresetToDatabasePreset, parseTimeToPresetName } from "../utils/parsing"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../utils/theme"
 import { useEffect, useState } from "react"
@@ -27,6 +23,11 @@ export default function Presets({ navigation }: PresetsProps) {
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
 	const [timeIncrement, setTimeIncrement] = useState<string>("")
+
+	async function refreshFlatlist() {
+		const presets = await getAllPresets()
+		setFlatlistData(presets)
+	}
 
 	async function handleSelectPreset(preset: Preset) {
 		storeInLocalStorage({ preset })
@@ -58,9 +59,7 @@ export default function Presets({ navigation }: PresetsProps) {
 
 		await postPreset(parsePresetToDatabasePreset(newPreset))
 
-		const dbPresets = await getAllPresets()
-		setFlatlistData(parseDatabasePresets(dbPresets))
-
+		refreshFlatlist()
 		setTimeModalVisible(false)
 	}
 
@@ -78,19 +77,17 @@ export default function Presets({ navigation }: PresetsProps) {
 
 		await deletePreset(selectedItem)
 
-		const dbPresets = await getAllPresets()
-		setFlatlistData(parseDatabasePresets(dbPresets))
-
+		refreshFlatlist()
 		setConfirmationModalVisible(false)
 	}
 
 	useEffect(() => {
-		const getFlatlistData = async () => {
-			const dbPresets = await getAllPresets()
-			setFlatlistData(parseDatabasePresets(dbPresets))
-		}
+		// const getFlatlistData = async () => {
+		// 	const presets = await getAllPresets()
+		// 	setFlatlistData(presets)
+		// }
 
-		getFlatlistData()
+		refreshFlatlist()
 	}, [])
 
 	return (

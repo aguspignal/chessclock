@@ -90,7 +90,7 @@ export function parseJSONPresetsToQueryValue(presets: Preset[]) {
 	)
 }
 
-export function parseDatabasePresets(dbPresets: DatabasePreset[]) {
+export function parseDatabasePresetsArray(dbPresets: DatabasePreset[]) {
 	return dbPresets.map((p) => {
 		const preset: Preset = {
 			name: p.name,
@@ -103,6 +103,19 @@ export function parseDatabasePresets(dbPresets: DatabasePreset[]) {
 		}
 		return preset
 	})
+}
+
+export function parseDatabasePreset(dbPreset: DatabasePreset) {
+	const preset: Preset = {
+		name: dbPreset.name,
+		time: {
+			hours: dbPreset.hours,
+			minutes: dbPreset.minutes,
+			seconds: dbPreset.seconds,
+		},
+		timeIncrement: dbPreset.timeIncrement,
+	}
+	return preset
 }
 
 export function parsePresetToDatabasePreset(preset: Preset) {

@@ -163,7 +163,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 			/>
 
 			<View style={styles.actionsContainer}>
-				<IconButton onPress={() => navigation.goBack()} iconName="cancel" />
+				<IconButton onPress={() => navigation.goBack()} iconName="arrow-left" />
 
 				<IconButton
 					onPress={handleStartPause}

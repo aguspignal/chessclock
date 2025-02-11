@@ -1,15 +1,16 @@
 import { useSQLiteContext } from "expo-sqlite"
 import { DatabasePreset } from "../types/database"
+import { parseDatabasePresetsArray } from "../utils/parsing"
 
 export default function useDatabase() {
 	const db = useSQLiteContext()
 
-	async function getAllPresets() {
+	async function getAllPresets(): Promise<Preset[]> {
 		const presets = await db.getAllAsync<DatabasePreset>("SELECT * FROM Presets")
-		return presets
+		return parseDatabasePresetsArray(presets)
 	}
 
-	async function postPreset(preset: DatabasePreset) {
+	async function postPreset(preset: DatabasePreset): Promise<void> {
 		db.runAsync(
 			"INSERT INTO Presets (name, hours, minutes, seconds, timeIncrement) VALUES ($n, $h, $m, $s, $ti)",
 			{
@@ -22,7 +23,7 @@ export default function useDatabase() {
 		).catch((e) => console.log(e))
 	}
 
-	async function deletePreset(preset: Preset) {
+	async function deletePreset(preset: Preset): Promise<void> {
 		db.runAsync("DELETE FROM Presets WHERE name = ?", preset.name).catch((e) => console.log(e))
 	}
 
