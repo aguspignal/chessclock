@@ -1,3 +1,4 @@
+import { DatabasePreset } from "../types/database"
 import { StyleProp, Text, TextStyle, View } from "react-native"
 import { theme } from "./theme"
 
@@ -27,17 +28,17 @@ export function parseTimeWithExtra(seconds: number, extra: number) {
 	return `${hs > 0 ? hsString : ""}${minString + secString}${extra > 0 ? extraString : ""}`
 }
 
-export function parseTimeToPresetName(hs: string, min: string, sec: string, extra: string): string {
+export function parseTimeToPresetName(hs: string, min: string, sec: string, inc: string): string {
 	if (Number(hs) === 0 && Number(min) === 0 && Number(sec) === 0) return ""
 	if (hs === "" && min === "" && sec === "") return ""
 
 	// "1 hr " "1 min " "1 sec " "| 1s"
 	const hours: string = isNaN(Number(hs)) || Number(hs) === 0 ? "" : `${hs} hr `
-	const minutes: string = `${min} min `
-	const seconds: string = `${sec} sec `
-	const extraSeconds = isNaN(Number(hs)) || Number(hs) === 0 ? "" : `| ${Number(extra)}s`
+	const minutes: string = isNaN(Number(min)) || Number(min) === 0 ? "" : `${min} min `
+	const seconds: string = isNaN(Number(sec)) || Number(sec) === 0 ? "" : `${sec} sec `
+	const increment = isNaN(Number(inc)) || Number(inc) === 0 ? "" : `| ${Number(inc)}s`
 
-	return `${hours}${minutes}${seconds}${extraSeconds}`
+	return `${hours}${minutes}${seconds}${increment}`
 }
 
 export function parseHoursToText(hours: number) {
@@ -80,4 +81,37 @@ export function parseSecondsToText(seconds: number) {
 
 export function orderPresetsByDuration(presets: Preset[]): Preset[] {
 	return presets
+}
+
+export function parseJSONPresetsToQueryValue(presets: Preset[]) {
+	return presets.map(
+		(p) =>
+			`('${p.name}', ${p.time.hours}, ${p.time.minutes}, ${p.time.seconds}, ${p.timeIncrement})`,
+	)
+}
+
+export function parseDatabasePresets(dbPresets: DatabasePreset[]) {
+	return dbPresets.map((p) => {
+		const preset: Preset = {
+			name: p.name,
+			time: {
+				hours: p.hours,
+				minutes: p.minutes,
+				seconds: p.seconds,
+			},
+			timeIncrement: p.timeIncrement,
+		}
+		return preset
+	})
+}
+
+export function parsePresetToDatabasePreset(preset: Preset) {
+	const dbPreset: DatabasePreset = {
+		name: preset.name,
+		hours: preset.time.hours,
+		minutes: preset.time.minutes,
+		seconds: preset.time.seconds,
+		timeIncrement: preset.timeIncrement,
+	}
+	return dbPreset
 }

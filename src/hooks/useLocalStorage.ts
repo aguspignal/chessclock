@@ -1,6 +1,6 @@
 import { LocalStorageData } from "../types/storage"
 import { LOCAL_STORAGE_KEY } from "../utils/constants"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import AsyncStorage from "expo-sqlite/kv-store"
 
 export default function useLocalStorage() {
 	async function storeInLocalStorage(value: LocalStorageData): Promise<void> {

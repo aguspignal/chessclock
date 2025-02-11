@@ -34,10 +34,6 @@ export default function Home({ navigation, route }: HomeProps) {
 		timeIncrement: 0,
 	}
 
-	function handleChangePreset() {
-		navigation.navigate("Presets")
-	}
-
 	function handleSaveModal() {
 		setTime({
 			hours: hours.length === 0 || isNaN(Number(hours)) ? 0 : Number(hours),
@@ -91,7 +87,7 @@ export default function Home({ navigation, route }: HomeProps) {
 	return (
 		<View style={styles.container}>
 			<View>
-				<TouchableOpacity onPress={handleChangePreset}>
+				<TouchableOpacity onPress={() => navigation.navigate("Presets")}>
 					<ConfigBox title="Choose preset time" valueName={defaultPreset.name} />
 				</TouchableOpacity>
 

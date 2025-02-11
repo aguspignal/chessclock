@@ -1,8 +1,13 @@
-# Home
+# App
 
-# Clock
+    - Loading screen
+
+# Home
 
 # Presets
 
--   orderPresetsByDuration()
--   see where tf to save user presets if allowing to add presets (sqlite)
+    - delete preset (confirmation modal)
+
+# Clock
+
+    - sound on finish and move

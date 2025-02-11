@@ -1,17 +1,23 @@
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { orderPresetsByDuration, parseTimeToPresetName } from "../utils/parsing"
+import {
+	parseDatabasePresets,
+	parsePresetToDatabasePreset,
+	parseTimeToPresetName,
+} from "../utils/parsing"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../utils/theme"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import IconButton from "../components/IconButton"
 import Modal from "react-native-modal"
-import presets from "../resources/presets.json"
+import useDatabase from "../hooks/useDatabase"
 import useLocalStorage from "../hooks/useLocalStorage"
 
 export default function Presets({ navigation }: PresetsProps) {
 	const { storeInLocalStorage } = useLocalStorage()
+	const { getAllPresets, postPreset } = useDatabase()
 
+	const [flatlistData, setFlatlistData] = useState<Preset[]>([])
 	const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false)
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
@@ -32,34 +38,50 @@ export default function Presets({ navigation }: PresetsProps) {
 			})
 	}
 
-	function handleSaveModal() {
-		// const presetName = parseTimeToPresetName(hours, minutes, seconds, timeIncrement)
-		// if (presetName === "") return
-		// const newPreset: Preset = {
-		// 	name: presetName,
-		// 	time: {
-		// 		hours: Number(hours),
-		// 		minutes: Number(minutes),
-		// 		seconds: Number(seconds),
-		// 	},
-		// 	timeIncrement: Number(timeIncrement),
-		// }
-		// save
+	async function handleSaveModal() {
+		const presetName = parseTimeToPresetName(hours, minutes, seconds, timeIncrement)
+		if (presetName === "") return
+
+		const newPreset: Preset = {
+			name: presetName,
+			time: {
+				hours: Number(hours),
+				minutes: Number(minutes),
+				seconds: Number(seconds),
+			},
+			timeIncrement: Number(timeIncrement),
+		}
+
+		await postPreset(parsePresetToDatabasePreset(newPreset))
+
+		const dbPresets = await getAllPresets()
+		setFlatlistData(parseDatabasePresets(dbPresets))
+
+		setIsTimeModalVisible(false)
 	}
+
+	useEffect(() => {
+		const getFlatlistData = async () => {
+			const dbPresets = await getAllPresets()
+			setFlatlistData(parseDatabasePresets(dbPresets))
+		}
+
+		getFlatlistData()
+	}, [])
 
 	return (
 		<View style={styles.container}>
-			{/* <View style={styles.actionsContainer}>
+			<View style={styles.actionsContainer}>
 				<IconButton
 					onPress={() => setIsTimeModalVisible(true)}
 					iconName="plus"
 					title="Add preset"
 				/>
-			</View> */}
+			</View>
 
-			<View>
+			<View style={styles.flatlistContainer}>
 				<FlatList
-					data={orderPresetsByDuration(presets)}
+					data={flatlistData}
 					keyExtractor={(item) => item.name}
 					renderItem={({ item }) => {
 						return (
@@ -232,5 +254,8 @@ const styles = StyleSheet.create({
 		fontWeight: "500",
 		marginLeft: theme.spacing.xxs,
 		paddingHorizontal: theme.spacing.xxs,
+	},
+	flatlistContainer: {
+		flex: 1,
 	},
 })
