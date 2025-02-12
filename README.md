@@ -12,4 +12,4 @@ Developed with React Native using Expo
 ![clk](https://github.com/user-attachments/assets/8f0ac0ff-7c0c-4e82-b8ef-718ce5b89ffa)
 
 ![home](https://github.com/user-attachments/assets/9f6f534e-a9a0-41ea-9d07-d0d2171a4808)
-![pres](https://github.com/user-attachments/assets/5b06d7d2-fa55-4037-9dca-f3fda69c0b27)
+![pres](https://github.com/user-attachments/assets/ba86e4c1-a4d8-416c-9872-0efd1fe5251a)
