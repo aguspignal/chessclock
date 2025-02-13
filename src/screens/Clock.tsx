@@ -162,15 +162,24 @@ export default function Clock({ navigation, route }: ClockProps) {
 				clockOrientation={clockOrientation}
 			/>
 
-			<View style={styles.actionsContainer}>
-				<IconButton onPress={() => navigation.goBack()} iconName="arrow-left" />
+			<View style={[styles.actionsContainer]}>
+				<IconButton
+					onPress={() => navigation.goBack()}
+					iconName="arrow-left"
+					iconSize={theme.fontSize.xl}
+				/>
 
 				<IconButton
 					onPress={handleStartPause}
 					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
+					iconSize={theme.fontSize.xl}
 				/>
 
-				<IconButton onPress={restartClock} iconName="restart" />
+				<IconButton
+					onPress={restartClock}
+					iconName="restart"
+					iconSize={theme.fontSize.xl}
+				/>
 			</View>
 
 			<PlayerClock
@@ -196,6 +205,5 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		paddingHorizontal: theme.spacing.xl,
-		paddingVertical: theme.spacing.xs,
 	},
 })

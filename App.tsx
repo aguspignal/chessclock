@@ -58,7 +58,7 @@ export default function App() {
 							headerStyle: { backgroundColor: theme.colors.backgroundDark },
 							headerTitleStyle: {
 								color: theme.colors.textLight,
-								fontSize: theme.fontSize.m,
+								fontSize: theme.fontSize.l,
 							},
 							headerTitleAlign: "center",
 							headerShadowVisible: false,

@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 	},
 	timer: {
 		color: theme.colors.textDark,
-		fontSize: 80,
+		fontSize: 84,
 		fontWeight: "600",
 	},
 })

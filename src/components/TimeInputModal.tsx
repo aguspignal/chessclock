@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	confirmAction: {
-		backgroundColor: theme.colors.green,
+		backgroundColor: theme.colors.grayLight,
 		borderRadius: theme.spacing.xxs,
 		paddingVertical: theme.spacing.xxs,
 	},

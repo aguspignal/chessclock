@@ -32,8 +32,8 @@ export default function ConfigBox({
 	centered = false,
 }: Props) {
 	return (
-		<View style={[styles.configContainer, centered ? { justifyContent: "center" } : ""]}>
-			<Text style={[styles.configText]}>{title}</Text>
+		<View style={[styles.container, centered ? { justifyContent: "center" } : ""]}>
+			<Text style={[styles.text]}>{title}</Text>
 
 			{isIcon ? (
 				<Icon
@@ -57,7 +57,7 @@ export default function ConfigBox({
 				/>
 			) : (
 				<View style={[centered ? { marginHorizontal: theme.spacing.xs } : ""]}>
-					<Text style={[styles.configText]}>{valueName}</Text>
+					<Text style={[styles.text]}>{valueName}</Text>
 				</View>
 			)}
 		</View>
@@ -65,14 +65,14 @@ export default function ConfigBox({
 }
 
 const styles = StyleSheet.create({
-	configContainer: {
+	container: {
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
 		paddingHorizontal: theme.spacing.s,
 		marginVertical: theme.spacing.s,
 	},
-	configText: {
+	text: {
 		color: theme.colors.textLight,
 		flex: 1,
 		fontSize: theme.fontSize.s,

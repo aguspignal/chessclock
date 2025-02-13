@@ -9,7 +9,7 @@ import TimeInputModal from "../components/TimeInputModal"
 
 export default function Home({ navigation, route }: HomeProps) {
 	const [defaultPreset, setDefaultPreset] = useState<Preset>(route.params.defaultPreset)
-	const [clockOrientation, setClockOrientation] = useState<ClockOrientation>("Vertical")
+	const [clockOrientation, setClockOrientation] = useState<ClockOrientation>("Horizontal")
 	const [sound, setSound] = useState<boolean>(true)
 	const [withDifferentTimes, setWithDifferentTimes] = useState<boolean>(false)
 
@@ -88,7 +88,7 @@ export default function Home({ navigation, route }: HomeProps) {
 		<View style={styles.container}>
 			<View>
 				<TouchableOpacity onPress={() => navigation.navigate("Presets")}>
-					<ConfigBox title="Choose preset time" valueName={defaultPreset.name} />
+					<ConfigBox title="Preset time" valueName={defaultPreset.name} />
 				</TouchableOpacity>
 
 				<ConfigBox

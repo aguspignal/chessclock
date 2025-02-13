@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "chessclock",
+    "name": "Chess Clock",
     "slug": "chessclock",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,16 +22,21 @@
       },
       "package": "com.aguspignal.chessclock"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "extra": {
       "eas": {
         "projectId": "e9889827-1da8-4e63-9899-7cede9eea061"
       }
     },
     "plugins": [
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableProguardInReleaseBuilds": true
+          }
+        }
+      ]
     ]
   }
 }
