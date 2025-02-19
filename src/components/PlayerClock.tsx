@@ -45,7 +45,7 @@ export default function PlayerClock({
 	return (
 		<TouchableOpacity
 			onPress={() => onMove(isTopPlayer)}
-			style={[styles.container, clockOrientationStyle]}
+			style={styles.container}
 			activeOpacity={0.9}
 		>
 			<View
@@ -57,11 +57,15 @@ export default function PlayerClock({
 						: {},
 				]}
 			>
-				<Text style={styles.extraInfoText}>Moves: {movesCount}</Text>
+				<Text style={[styles.extraInfoText, clockOrientationStyle]}>
+					Moves: {movesCount}
+				</Text>
 
-				<Text style={styles.timer}>{parseTimeFromSeconds(playerClock)}</Text>
+				<Text style={[styles.timer, clockOrientationStyle]}>
+					{parseTimeFromSeconds(playerClock)}
+				</Text>
 
-				<Text style={styles.extraInfoText}>
+				<Text style={[styles.extraInfoText, clockOrientationStyle]}>
 					{parseTimeWithExtra(timeInSeconds, timeIncrement)}
 				</Text>
 			</View>
