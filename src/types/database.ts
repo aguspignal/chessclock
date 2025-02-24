@@ -1,3 +1,5 @@
+import { SQLiteDatabase } from "expo-sqlite"
+
 export type DatabaseContextType = {
 	db: SQLiteDatabase | null
 }

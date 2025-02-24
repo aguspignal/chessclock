@@ -36,7 +36,8 @@
             "enableProguardInReleaseBuilds": true
           }
         }
-      ]
+      ],
+      "expo-audio"
     ]
   }
 }

@@ -1,4 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
+import { ClockOrientation, Preset, PresetTime } from "./utils"
 
 export type StackParamList = {
 	Home: {

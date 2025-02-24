@@ -1,5 +1,9 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
-import { parsePresetToDatabasePreset, parseTimeToPresetName } from "../utils/parsing"
+import {
+	orderPresetsByDuration,
+	parsePresetToDatabasePreset,
+	parseTimeToPresetName,
+} from "../utils/parsing"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
@@ -9,6 +13,7 @@ import useDatabase from "../hooks/useDatabase"
 import useLocalStorage from "../hooks/useLocalStorage"
 import TimeInputModal from "../components/TimeInputModal"
 import ConfirmationModal from "../components/ConfirmationModal"
+import { Preset } from "../types/utils"
 
 export default function Presets({ navigation }: PresetsProps) {
 	const { storeInLocalStorage } = useLocalStorage()
@@ -26,7 +31,7 @@ export default function Presets({ navigation }: PresetsProps) {
 
 	async function refreshFlatlist() {
 		const presets = await getAllPresets()
-		setFlatlistData(presets)
+		setFlatlistData(orderPresetsByDuration(presets))
 	}
 
 	async function handleSelectPreset(preset: Preset) {
@@ -82,11 +87,6 @@ export default function Presets({ navigation }: PresetsProps) {
 	}
 
 	useEffect(() => {
-		// const getFlatlistData = async () => {
-		// 	const presets = await getAllPresets()
-		// 	setFlatlistData(presets)
-		// }
-
 		refreshFlatlist()
 	}, [])
 

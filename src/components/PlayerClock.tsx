@@ -1,7 +1,8 @@
-import { parseTimeFromSeconds, parseTimeWithExtra } from "../utils/parsing"
+import { parseTimeFromSeconds } from "../utils/parsing"
 import { STATUS_BAR_HEIGHT } from "../utils/constants"
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
 import { theme } from "../resources/theme"
+import { ClockOrientation } from "../types/utils"
 
 type Props = {
 	isTopPlayer: boolean
@@ -21,16 +22,18 @@ export default function PlayerClock({
 	clockOrientation,
 	movesCount,
 	playerClock,
-	timeInSeconds,
-	timeIncrement,
 }: Props) {
-	const clockOrientationStyle = isTopPlayer
-		? clockOrientation === "Horizontal"
-			? { transform: [{ rotate: "-90deg" }] }
-			: { transform: [{ rotate: "-180deg" }] }
-		: clockOrientation === "Horizontal"
-		? { transform: [{ rotate: "-90deg" }] }
-		: {}
+	const verticalOrientationStyle: StyleProp<ViewStyle> =
+		isTopPlayer && clockOrientation === "Vertical"
+			? {
+					transform: [{ rotate: "180deg" }],
+					paddingBottom: STATUS_BAR_HEIGHT / 1.2,
+			  }
+			: {}
+
+	const horizontalOrientationTextStyle: StyleProp<ViewStyle> =
+		clockOrientation === "Horizontal" ? { transform: [{ rotate: "90deg" }] } : {}
+
 	const clockColorStyle: StyleProp<ViewStyle> =
 		playerClock === 0
 			? {}
@@ -45,29 +48,14 @@ export default function PlayerClock({
 	return (
 		<TouchableOpacity
 			onPress={() => onMove(isTopPlayer)}
-			style={styles.container}
+			style={[styles.container]}
 			activeOpacity={0.9}
 		>
-			<View
-				style={[
-					styles.clockContainer,
-					clockColorStyle,
-					isTopPlayer && clockOrientation === "Vertical"
-						? { paddingBottom: STATUS_BAR_HEIGHT }
-						: {},
-				]}
-			>
-				<Text style={[styles.extraInfoText, clockOrientationStyle]}>
-					Moves: {movesCount}
-				</Text>
-
-				<Text style={[styles.timer, clockOrientationStyle]}>
-					{parseTimeFromSeconds(playerClock)}
-				</Text>
-
-				<Text style={[styles.extraInfoText, clockOrientationStyle]}>
-					{parseTimeWithExtra(timeInSeconds, timeIncrement)}
-				</Text>
+			<View style={[styles.clockContainer, clockColorStyle, verticalOrientationStyle]}>
+				<View style={[horizontalOrientationTextStyle, { alignItems: "center" }]}>
+					<Text style={[styles.timer]}>{parseTimeFromSeconds(playerClock)}</Text>
+					<Text style={[styles.extraInfoText]}>Moves: {movesCount}</Text>
+				</View>
 			</View>
 		</TouchableOpacity>
 	)
@@ -79,18 +67,17 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	clockContainer: {
-		alignItems: "center",
 		flex: 1,
-		justifyContent: "space-between",
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	extraInfoText: {
-		color: theme.colors.textDark,
+		color: "#888888",
 		fontSize: theme.fontSize.s,
-		marginVertical: theme.spacing.xxs,
 	},
 	timer: {
 		color: theme.colors.textDark,
-		fontSize: 84,
+		fontSize: 88,
 		fontWeight: "600",
 	},
 })

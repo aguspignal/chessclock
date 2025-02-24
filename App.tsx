@@ -13,6 +13,7 @@ import Loading from "./src/screens/Loading"
 import presets from "./src/resources/presets.json"
 import Presets from "./src/screens/Presets"
 import useLocalStorage from "./src/hooks/useLocalStorage"
+import { Preset } from "./src/types/utils"
 
 const Stack = createNativeStackNavigator<StackParamList>()
 

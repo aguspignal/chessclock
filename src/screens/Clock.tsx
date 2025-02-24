@@ -4,9 +4,13 @@ import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
-import Sound from "react-native-sound"
+import { useAudioPlayer } from "expo-audio"
+
+const CLICK_SOUND_SOURCE = require("../../assets/audio/click.mp3")
 
 export default function Clock({ navigation, route }: ClockProps) {
+	const player = useAudioPlayer(CLICK_SOUND_SOURCE)
+
 	const time = route.params.time
 	const timeInSeconds = time.hours * 3600 + time.minutes * 60 + time.seconds
 
@@ -34,13 +38,6 @@ export default function Clock({ navigation, route }: ClockProps) {
 	const [bottomPlayerCount, setBottomPlayerCount] = useState<number>(0)
 	const [lastMoveWasTop, setLastMoveWasTop] = useState<boolean>(false)
 
-	const clickSound = new Sound("click.mp3", Sound.MAIN_BUNDLE, (err) => {
-		if (err) {
-			console.log(err)
-			return
-		}
-	})
-
 	function handleStartPause() {
 		if (isTopPlaying || isBottomPlaying) {
 			stopTopPlayerTimer()
@@ -63,13 +60,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 	}
 
 	function playMoveSound() {
-		if (route.params.isSoundEnabled) {
-			clickSound.play((success) => {
-				if (!success) {
-					console.log("playback failed due to audio decoding errors")
-				}
-			})
-		}
+		if (route.params.isSoundEnabled) player.play()
 	}
 
 	function handleMove(topPlayerMoved: boolean) {
@@ -173,6 +164,11 @@ export default function Clock({ navigation, route }: ClockProps) {
 					onPress={handleStartPause}
 					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
 					iconSize={theme.fontSize.xl}
+					style={
+						clockOrientation === "Horizontal"
+							? { transform: [{ rotate: "90deg" }] }
+							: {}
+					}
 				/>
 
 				<IconButton
@@ -204,6 +200,7 @@ const styles = StyleSheet.create({
 	actionsContainer: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		paddingHorizontal: theme.spacing.xl,
+		paddingHorizontal: theme.spacing.l,
+		paddingVertical: theme.spacing.xxs,
 	},
 })

@@ -1,6 +1,7 @@
 import { DatabasePreset } from "../types/database"
 import { StyleProp, Text, TextStyle, View } from "react-native"
 import { theme } from "../resources/theme"
+import { Preset } from "../types/utils"
 
 export function parseTimeFromSeconds(seconds: number) {
 	const hs = Math.floor(seconds / 3600)
@@ -80,7 +81,13 @@ export function parseSecondsToText(seconds: number) {
 }
 
 export function orderPresetsByDuration(presets: Preset[]): Preset[] {
-	return presets
+	return presets.sort(
+		(a, b) =>
+			a.time.hours - b.time.hours ||
+			a.time.minutes - b.time.minutes ||
+			a.time.seconds - b.time.seconds ||
+			a.timeIncrement - b.timeIncrement,
+	)
 }
 
 export function parseJSONPresetsToQueryValue(presets: Preset[]) {

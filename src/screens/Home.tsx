@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import React from "react"
 import TimeInputModal from "../components/TimeInputModal"
+import { ClockOrientation, Preset, PresetTime } from "../types/utils"
 
 export default function Home({ navigation, route }: HomeProps) {
 	const [defaultPreset, setDefaultPreset] = useState<Preset>(route.params.defaultPreset)
