@@ -4,13 +4,8 @@ import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
-import { useAudioPlayer } from "expo-audio"
-
-const CLICK_SOUND_SOURCE = require("../../assets/audio/click.mp3")
 
 export default function Clock({ navigation, route }: ClockProps) {
-	const player = useAudioPlayer(CLICK_SOUND_SOURCE)
-
 	const time = route.params.time
 	const timeInSeconds = time.hours * 3600 + time.minutes * 60 + time.seconds
 
@@ -59,9 +54,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 		setBottomPlayerCount(0)
 	}
 
-	function playMoveSound() {
-		if (route.params.isSoundEnabled) player.play()
-	}
+	function playMoveSound() {}
 
 	function handleMove(topPlayerMoved: boolean) {
 		if (topPlayerMoved && isTopPlaying) {

@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { NavigationContainer } from "@react-navigation/native"
 import { onSQLiteProviderInit, onSQLiteProviderError } from "./src/utils/databaseActions"
+import { Preset } from "./src/types/utils"
 import { SQLITE_FILE_NAME } from "./src/utils/constants"
 import { SQLiteProvider } from "expo-sqlite"
 import { StackParamList } from "./src/types/navigation"
@@ -13,7 +14,6 @@ import Loading from "./src/screens/Loading"
 import presets from "./src/resources/presets.json"
 import Presets from "./src/screens/Presets"
 import useLocalStorage from "./src/hooks/useLocalStorage"
-import { Preset } from "./src/types/utils"
 
 const Stack = createNativeStackNavigator<StackParamList>()
 

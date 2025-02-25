@@ -4,16 +4,16 @@ import {
 	parsePresetToDatabasePreset,
 	parseTimeToPresetName,
 } from "../utils/parsing"
+import { Preset } from "../types/utils"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
+import ConfirmationModal from "../components/ConfirmationModal"
 import IconButton from "../components/IconButton"
+import TimeInputModal from "../components/TimeInputModal"
 import useDatabase from "../hooks/useDatabase"
 import useLocalStorage from "../hooks/useLocalStorage"
-import TimeInputModal from "../components/TimeInputModal"
-import ConfirmationModal from "../components/ConfirmationModal"
-import { Preset } from "../types/utils"
 
 export default function Presets({ navigation }: PresetsProps) {
 	const { storeInLocalStorage } = useLocalStorage()

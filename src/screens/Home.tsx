@@ -1,3 +1,4 @@
+import { ClockOrientation, Preset, PresetTime } from "../types/utils"
 import { HomeProps } from "../types/navigation"
 import { parseHoursToText, parseMinutesToText, parseSecondsToText } from "../utils/parsing"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
@@ -6,7 +7,6 @@ import { useEffect, useState } from "react"
 import ConfigBox from "../components/ConfigBox"
 import React from "react"
 import TimeInputModal from "../components/TimeInputModal"
-import { ClockOrientation, Preset, PresetTime } from "../types/utils"
 
 export default function Home({ navigation, route }: HomeProps) {
 	const [defaultPreset, setDefaultPreset] = useState<Preset>(route.params.defaultPreset)

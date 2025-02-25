@@ -1,5 +1,5 @@
-import { SQLiteDatabase } from "expo-sqlite"
 import { parseJSONPresetsToQueryValue } from "./parsing"
+import { SQLiteDatabase } from "expo-sqlite"
 import presets from "../resources/presets.json"
 
 export async function onSQLiteProviderInit(db: SQLiteDatabase) {

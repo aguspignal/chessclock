@@ -1,7 +1,7 @@
-import { useSQLiteContext } from "expo-sqlite"
 import { DatabasePreset } from "../types/database"
 import { parseDatabasePresetsArray } from "../utils/parsing"
 import { Preset } from "../types/utils"
+import { useSQLiteContext } from "expo-sqlite"
 
 export default function useDatabase() {
 	const db = useSQLiteContext()

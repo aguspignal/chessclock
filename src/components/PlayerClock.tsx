@@ -1,8 +1,8 @@
+import { ClockOrientation } from "../types/utils"
 import { parseTimeFromSeconds } from "../utils/parsing"
 import { STATUS_BAR_HEIGHT } from "../utils/constants"
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
 import { theme } from "../resources/theme"
-import { ClockOrientation } from "../types/utils"
 
 type Props = {
 	isTopPlayer: boolean
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 	},
 	timer: {
 		color: theme.colors.textDark,
-		fontSize: 88,
+		fontSize: 84,
 		fontWeight: "600",
 	},
 })

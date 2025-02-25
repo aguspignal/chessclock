@@ -1,5 +1,5 @@
-import { LocalStorageData } from "../types/storage"
 import { LOCAL_STORAGE_KEY } from "../utils/constants"
+import { LocalStorageData } from "../types/storage"
 import AsyncStorage from "expo-sqlite/kv-store"
 
 export default function useLocalStorage() {
