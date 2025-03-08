@@ -5,7 +5,7 @@ import {
 	parseMinutesToText,
 	parseSecondsToText,
 } from "../utils/parsing"
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
 import { useState } from "react"
@@ -15,8 +15,8 @@ import React from "react"
 import TimeInputModal from "../components/TimeInputModal"
 
 export default function Home({ navigation }: HomeProps) {
-	const { time, setTime, setIncrement } = useTimeStore()
-	const { secondTime, setSecondTime, setSecondIncrement } = useSecondTimeStore()
+	const { time, setTime, setName, setIncrement } = useTimeStore()
+	const { secondTime, setSecondTime, setSecondName, setSecondIncrement } = useSecondTimeStore()
 	const {
 		orientation,
 		setOrientation,
@@ -30,13 +30,11 @@ export default function Home({ navigation }: HomeProps) {
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
-	const [incrementInput, setIncrementInput] = useState<string>("")
 
 	const [isSecondTimeModalVisible, setIsSecondTimeModalVisible] = useState<boolean>(false)
 	const [secondHours, setSecondHours] = useState<string>("")
 	const [secondMinutes, setSecondMinutes] = useState<string>("")
 	const [secondSeconds, setSecondSeconds] = useState<string>("")
-	const [secondIncrementInput, setSecondIncrementInput] = useState<string>("")
 
 	function handleSaveModal() {
 		setTime({
@@ -64,92 +62,52 @@ export default function Home({ navigation }: HomeProps) {
 		setIsSecondTimeModalVisible(false)
 	}
 
-	function handleIncrementInput(value: string, isSecond = false) {
-		if (Number(value) > 59) {
-			isSecond ? setSecondIncrementInput("59") : setIncrementInput("59")
-			isSecond ? setSecondIncrement(59) : setIncrement(59)
-		} else {
-			isSecond ? setSecondIncrementInput(value) : setIncrementInput(value)
-			isSecond
-				? setSecondIncrement(parseStringToNumber(value))
-				: setIncrement(parseStringToNumber(value))
-		}
-	}
-
 	return (
 		<View style={styles.container}>
-			<View>
-				<TouchableOpacity onPress={() => navigation.navigate("Presets")}>
-					<ConfigBox title="Preset time" valueName={time.name} />
-				</TouchableOpacity>
-
-				<ConfigBox
-					title="Clock orientation"
-					isDropdown
-					dropdownData={[
-						{ label: "Vertical", value: "Vertical" },
-						{ label: "Horizontal", value: "Horizontal" },
-					]}
-					onDropdownChange={setOrientation}
-					dropdownDefaultValue={orientation}
-				/>
-
-				<TouchableOpacity onPress={toggleSoundEnabled} activeOpacity={1}>
-					<ConfigBox
-						title="Sound"
-						valueName={soundEnabled ? "volume-high" : "volume-mute"}
-						isIcon
-					/>
-				</TouchableOpacity>
-
-				<TouchableOpacity onPress={toggleWithDifferentTimes} activeOpacity={1}>
-					<ConfigBox
-						title="Different times"
-						valueName="toggle"
-						isToggle
-						toggleValue={withDifferentTimes}
-						onToggleChange={toggleWithDifferentTimes}
-					/>
-				</TouchableOpacity>
-
-				<View style={styles.timeConfigContainer}>
-					<TouchableOpacity
-						onPress={() => setIsTimeModalVisible(true)}
-						style={styles.clockContainer}
-					>
-						<View style={styles.timeContainer}>
-							{parseHoursToText(time.time.hours)}
-							{parseMinutesToText(time.time.minutes)}
-							{parseSecondsToText(time.time.seconds)}
-						</View>
+			<ScrollView>
+				<View>
+					<TouchableOpacity onPress={() => navigation.navigate("Presets")}>
+						<ConfigBox title="Preset time" valueName={time.name} />
 					</TouchableOpacity>
 
-					<View style={styles.configContainer}>
-						<Text style={styles.configText}>Time increment</Text>
-						<View>
-							<TextInput
-								style={styles.timeIncrementInput}
-								onChangeText={(t) => handleIncrementInput(t)}
-								value={incrementInput}
-								maxLength={2}
-								placeholder="0"
-								placeholderTextColor={theme.colors.grayDark}
-								keyboardType="numeric"
-							/>
-						</View>
-					</View>
-				</View>
+					<ConfigBox
+						title="Clock orientation"
+						isDropdown
+						dropdownData={[
+							{ label: "Vertical", value: "Vertical" },
+							{ label: "Horizontal", value: "Horizontal" },
+						]}
+						onDropdownChange={setOrientation}
+						dropdownDefaultValue={orientation}
+					/>
 
-				{withDifferentTimes ? (
+					<TouchableOpacity onPress={toggleSoundEnabled} activeOpacity={1}>
+						<ConfigBox
+							title="Sound"
+							valueName={soundEnabled ? "volume-high" : "volume-mute"}
+							isIcon
+						/>
+					</TouchableOpacity>
+
+					<TouchableOpacity onPress={toggleWithDifferentTimes} activeOpacity={1}>
+						<ConfigBox
+							title="Different times"
+							valueName="toggle"
+							isToggle
+							toggleValue={withDifferentTimes}
+							onToggleChange={toggleWithDifferentTimes}
+						/>
+					</TouchableOpacity>
+
 					<View style={styles.timeConfigContainer}>
 						<TouchableOpacity
-							onPress={() => setIsSecondTimeModalVisible(true)}
+							onPress={() => setIsTimeModalVisible(true)}
 							style={styles.clockContainer}
 						>
 							<View style={styles.timeContainer}>
-								{parseHoursToText(secondTime.time.hours)}
-								{parseMinutesToText(secondTime.time.minutes)}
-								{parseSecondsToText(secondTime.time.seconds)}
+								{parseHoursToText(time.time.hours)}
+								{parseMinutesToText(time.time.minutes)}
+								{parseSecondsToText(time.time.seconds)}
 							</View>
 						</TouchableOpacity>
 
@@ -158,8 +116,13 @@ export default function Home({ navigation }: HomeProps) {
 							<View>
 								<TextInput
 									style={styles.timeIncrementInput}
-									onChangeText={(t) => handleIncrementInput(t, true)}
-									value={secondIncrementInput}
+									onChangeText={(t) => {
+										Number(t) > 59
+											? setIncrement(59)
+											: setIncrement(parseStringToNumber(t))
+										time.name !== "Custom" ? setName("Custom") : null
+									}}
+									value={time.timeIncrement.toString()}
 									maxLength={2}
 									placeholder="0"
 									placeholderTextColor={theme.colors.grayDark}
@@ -168,48 +131,85 @@ export default function Home({ navigation }: HomeProps) {
 							</View>
 						</View>
 					</View>
-				) : (
-					<></>
-				)}
-			</View>
 
-			<View style={styles.startBtnContainer}>
-				<TouchableOpacity
-					onPress={() => navigation.navigate("Clock")}
-					style={styles.startBtn}
-					activeOpacity={0.8}
-				>
-					<Text style={styles.startBtnText}>Start Game</Text>
-				</TouchableOpacity>
-			</View>
+					{withDifferentTimes ? (
+						<View style={styles.timeConfigContainer}>
+							<TouchableOpacity
+								onPress={() => setIsSecondTimeModalVisible(true)}
+								style={styles.clockContainer}
+							>
+								<View style={styles.timeContainer}>
+									{parseHoursToText(secondTime.time.hours)}
+									{parseMinutesToText(secondTime.time.minutes)}
+									{parseSecondsToText(secondTime.time.seconds)}
+								</View>
+							</TouchableOpacity>
 
-			<TimeInputModal
-				isVisible={isTimeModalVisible}
-				setIsVisible={setIsTimeModalVisible}
-				title="Adjust time"
-				saveActionTitle="Confirm"
-				onSave={handleSaveModal}
-				hours={hours}
-				minutes={minutes}
-				seconds={seconds}
-				setHours={setHours}
-				setMinutes={setMinutes}
-				setSeconds={setSeconds}
-			/>
+							<View style={styles.configContainer}>
+								<Text style={styles.configText}>Time increment</Text>
+								<View>
+									<TextInput
+										style={styles.timeIncrementInput}
+										onChangeText={(t) => {
+											Number(t) > 59
+												? setSecondIncrement(59)
+												: setSecondIncrement(parseStringToNumber(t))
+											secondTime.name !== "Custom"
+												? setSecondName("Custom")
+												: null
+										}}
+										value={secondTime.timeIncrement.toString()}
+										maxLength={2}
+										placeholder="0"
+										placeholderTextColor={theme.colors.grayDark}
+										keyboardType="numeric"
+									/>
+								</View>
+							</View>
+						</View>
+					) : (
+						<></>
+					)}
+				</View>
 
-			<TimeInputModal
-				isVisible={isSecondTimeModalVisible}
-				setIsVisible={setIsSecondTimeModalVisible}
-				title="Adjust time"
-				saveActionTitle="Confirm"
-				onSave={handleSaveSecondModal}
-				hours={secondHours}
-				minutes={secondMinutes}
-				seconds={secondSeconds}
-				setHours={setSecondHours}
-				setMinutes={setSecondMinutes}
-				setSeconds={setSecondSeconds}
-			/>
+				<View style={styles.startBtnContainer}>
+					<TouchableOpacity
+						onPress={() => navigation.navigate("Clock")}
+						style={styles.startBtn}
+						activeOpacity={0.8}
+					>
+						<Text style={styles.startBtnText}>Start Game</Text>
+					</TouchableOpacity>
+				</View>
+
+				<TimeInputModal
+					isVisible={isTimeModalVisible}
+					setIsVisible={setIsTimeModalVisible}
+					title="Adjust time"
+					saveActionTitle="Confirm"
+					onSave={handleSaveModal}
+					hours={hours}
+					minutes={minutes}
+					seconds={seconds}
+					setHours={setHours}
+					setMinutes={setMinutes}
+					setSeconds={setSeconds}
+				/>
+
+				<TimeInputModal
+					isVisible={isSecondTimeModalVisible}
+					setIsVisible={setIsSecondTimeModalVisible}
+					title="Adjust time"
+					saveActionTitle="Confirm"
+					onSave={handleSaveSecondModal}
+					hours={secondHours}
+					minutes={secondMinutes}
+					seconds={secondSeconds}
+					setHours={setSecondHours}
+					setMinutes={setSecondMinutes}
+					setSeconds={setSecondSeconds}
+				/>
+			</ScrollView>
 		</View>
 	)
 }

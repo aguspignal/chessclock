@@ -1,4 +1,4 @@
-# App
+# TODO
 
-    - implement zustand in components
     - modify presets ui
+    - new screenshots

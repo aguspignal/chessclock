@@ -1,6 +1,5 @@
 import { Audio } from "expo-av"
 import { ClockProps } from "../types/navigation"
-import { Sound } from "expo-av/build/Audio"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
@@ -32,7 +31,7 @@ export default function Clock({ navigation }: ClockProps) {
 	const [topPlayerCount, setTopPlayerCount] = useState<number>(0)
 	const [bottomPlayerCount, setBottomPlayerCount] = useState<number>(0)
 	const [lastMoveWasTop, setLastMoveWasTop] = useState<boolean>(false)
-	const [sound, setSound] = useState<Sound>()
+	const [sound, setSound] = useState<Audio.Sound>()
 
 	function handleStartPause() {
 		if (isTopPlaying || isBottomPlaying) {
@@ -63,14 +62,15 @@ export default function Clock({ navigation }: ClockProps) {
 
 	function handleMove(topPlayerMoved: boolean) {
 		if (topPlayerMoved && isTopPlaying) {
+			playMoveSound()
 			stopTopPlayerTimer()
 			startBottomPlayerTimer()
 
 			setTopPlayerClock((prev) => prev + timeIncrement)
 			setTopPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(true)
-			playMoveSound()
 		} else if (!topPlayerMoved && isBottomPlaying) {
+			playMoveSound()
 			stopBottomPlayerTimer()
 			startTopPlayerTimer()
 
@@ -79,10 +79,8 @@ export default function Clock({ navigation }: ClockProps) {
 			)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
-			playMoveSound()
 		} else if (!isTopPlaying && !isBottomPlaying) {
 			topPlayerMoved ? startTopPlayerTimer() : startBottomPlayerTimer()
-			playMoveSound()
 		}
 	}
 

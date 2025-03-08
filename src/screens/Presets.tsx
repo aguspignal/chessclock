@@ -9,7 +9,7 @@ import { Preset } from "../types/utils"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
-import { useTimeStore } from "../stores/useTimeStore"
+import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
 import ConfigBox from "../components/ConfigBox"
 import ConfirmationModal from "../components/ConfirmationModal"
 import IconButton from "../components/IconButton"
@@ -19,6 +19,7 @@ import useDatabase from "../hooks/useDatabase"
 export default function Presets({ navigation }: PresetsProps) {
 	const { getAllPresets, postPreset, deletePreset } = useDatabase()
 	const { setTime } = useTimeStore()
+	const { setSecondTime } = useSecondTimeStore()
 
 	const [isEditing, setIsEditing] = useState<boolean>(false)
 	const [flatlistData, setFlatlistData] = useState<Preset[]>([])
@@ -31,8 +32,9 @@ export default function Presets({ navigation }: PresetsProps) {
 	const [seconds, setSeconds] = useState<string>("")
 	const [timeIncrement, setTimeIncrement] = useState<string>("")
 
-	async function handleSelectPreset(preset: Preset) {
+	function handleSelectPreset(preset: Preset) {
 		setTime(preset)
+		setSecondTime(preset)
 		navigation.popToTop()
 	}
 
