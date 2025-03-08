@@ -2,50 +2,43 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
 import {
 	orderPresetsByDuration,
 	parsePresetToDatabasePreset,
+	parseStringToNumber,
 	parseTimeToPresetName,
 } from "../utils/parsing"
 import { Preset } from "../types/utils"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
+import { useTimeStore } from "../stores/useTimeStore"
 import ConfigBox from "../components/ConfigBox"
 import ConfirmationModal from "../components/ConfirmationModal"
 import IconButton from "../components/IconButton"
 import TimeInputModal from "../components/TimeInputModal"
 import useDatabase from "../hooks/useDatabase"
-import useLocalStorage from "../hooks/useLocalStorage"
 
 export default function Presets({ navigation }: PresetsProps) {
-	const { storeInLocalStorage } = useLocalStorage()
 	const { getAllPresets, postPreset, deletePreset } = useDatabase()
+	const { setTime } = useTimeStore()
 
-	const [flatlistData, setFlatlistData] = useState<Preset[]>([])
-	const [timeModalVisible, setTimeModalVisible] = useState<boolean>(false)
-	const [confirmationModalVisible, setConfirmationModalVisible] = useState<boolean>(false)
-	const [selectedItem, setSelectedItem] = useState<Preset | null>(null)
 	const [isEditing, setIsEditing] = useState<boolean>(false)
+	const [flatlistData, setFlatlistData] = useState<Preset[]>([])
+	const [selectedItem, setSelectedItem] = useState<Preset | null>(null)
+	const [confirmationModalVisible, setConfirmationModalVisible] = useState<boolean>(false)
+
+	const [timeModalVisible, setTimeModalVisible] = useState<boolean>(false)
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
 	const [timeIncrement, setTimeIncrement] = useState<string>("")
 
+	async function handleSelectPreset(preset: Preset) {
+		setTime(preset)
+		navigation.popToTop()
+	}
+
 	async function refreshFlatlist() {
 		const presets = await getAllPresets()
 		setFlatlistData(orderPresetsByDuration(presets))
-	}
-
-	async function handleSelectPreset(preset: Preset) {
-		storeInLocalStorage({ preset })
-			.then(() => {
-				navigation.reset({
-					index: 0,
-					routes: [{ name: "Home", params: { defaultPreset: preset } }],
-				})
-			})
-			.catch((e) => {
-				console.log(e)
-				navigation.popToTop()
-			})
 	}
 
 	async function handleSaveTimeModal() {
@@ -55,15 +48,14 @@ export default function Presets({ navigation }: PresetsProps) {
 		const newPreset: Preset = {
 			name: presetName,
 			time: {
-				hours: Number(hours),
-				minutes: Number(minutes),
-				seconds: Number(seconds),
+				hours: parseStringToNumber(hours),
+				minutes: parseStringToNumber(minutes),
+				seconds: parseStringToNumber(seconds),
 			},
-			timeIncrement: Number(timeIncrement),
+			timeIncrement: parseStringToNumber(timeIncrement),
 		}
 
 		await postPreset(parsePresetToDatabasePreset(newPreset))
-
 		refreshFlatlist()
 		setTimeModalVisible(false)
 	}
@@ -81,7 +73,6 @@ export default function Presets({ navigation }: PresetsProps) {
 		if (!selectedItem) return
 
 		await deletePreset(selectedItem)
-
 		refreshFlatlist()
 		setConfirmationModalVisible(false)
 	}
@@ -117,9 +108,7 @@ export default function Presets({ navigation }: PresetsProps) {
 						return (
 							<TouchableOpacity
 								onPress={() => handlePressItem(item)}
-								onLongPress={() => console.log("hello")}
 								style={styles.flatlistItemContainer}
-								delayLongPress={500}
 								activeOpacity={0.75}
 							>
 								<ConfigBox

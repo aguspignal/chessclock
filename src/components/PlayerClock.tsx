@@ -1,30 +1,28 @@
-import { ClockOrientation } from "../types/utils"
 import { parseTimeFromSeconds } from "../utils/parsing"
 import { STATUS_BAR_HEIGHT } from "../utils/constants"
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
 import { theme } from "../resources/theme"
+import { useConfigStore } from "../stores/useConfigStore"
 
 type Props = {
 	isTopPlayer: boolean
 	isPlaying: boolean
 	onMove: (topPlayerMoved: boolean) => void
-	clockOrientation: ClockOrientation
 	movesCount: number
 	playerClock: number
-	timeInSeconds: number
-	timeIncrement: number
 }
 
 export default function PlayerClock({
 	isTopPlayer,
 	isPlaying,
 	onMove,
-	clockOrientation,
 	movesCount,
 	playerClock,
 }: Props) {
+	const { orientation } = useConfigStore()
+
 	const verticalOrientationStyle: StyleProp<ViewStyle> =
-		isTopPlayer && clockOrientation === "Vertical"
+		isTopPlayer && orientation === "Vertical"
 			? {
 					transform: [{ rotate: "180deg" }],
 					paddingBottom: STATUS_BAR_HEIGHT / 1.2,
@@ -32,7 +30,7 @@ export default function PlayerClock({
 			: {}
 
 	const horizontalOrientationTextStyle: StyleProp<ViewStyle> =
-		clockOrientation === "Horizontal" ? { transform: [{ rotate: "90deg" }] } : {}
+		orientation === "Horizontal" ? { transform: [{ rotate: "90deg" }] } : {}
 
 	const clockColorStyle: StyleProp<ViewStyle> =
 		playerClock === 0

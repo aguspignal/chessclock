@@ -1,7 +1,7 @@
+import { DatabasePreset } from "../types/database"
 import { Preset } from "../types/utils"
 import { StyleProp, Text, TextStyle, View } from "react-native"
 import { theme } from "../resources/theme"
-import { DatabasePreset } from "../types/database"
 
 export function parseTimeFromSeconds(seconds: number) {
 	const hs = Math.floor(seconds / 3600)
@@ -134,4 +134,12 @@ export function parsePresetToDatabasePreset(preset: Preset) {
 		timeIncrement: preset.timeIncrement,
 	}
 	return dbPreset
+}
+
+export function parseStringToNumber(value: string) {
+	return value.length === 0 || isNaN(Number(value)) ? 0 : Number(value)
+}
+
+export function getTimeInSecondsFromPreset(preset: Preset) {
+	return preset.time.hours * 3600 + preset.time.minutes * 60 + preset.time.seconds
 }

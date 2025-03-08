@@ -1,30 +1,28 @@
+import { Audio } from "expo-av"
 import { ClockProps } from "../types/navigation"
+import { Sound } from "expo-av/build/Audio"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
+import { useConfigStore } from "../stores/useConfigStore"
 import { useEffect, useState } from "react"
+import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
-import { Audio } from "expo-av"
-import { Sound } from "expo-av/build/Audio"
 
-export default function Clock({ navigation, route }: ClockProps) {
-	const time = route.params.time
-	const timeInSeconds = time.hours * 3600 + time.minutes * 60 + time.seconds
-
-	const secondTime = route.params.secondTime
-	const secondTimeInSeconds =
-		secondTime === null
-			? null
-			: secondTime.hours * 3600 + secondTime.minutes * 60 + secondTime.seconds
-
-	const timeIncrement = route.params.timeIncrement
-	const secondTimeIncrement = route.params.secondTimeIncrement
-
-	const clockOrientation = route.params.clockOrientation
+export default function Clock({ navigation }: ClockProps) {
+	const {
+		time: { timeIncrement },
+		timeInSeconds,
+	} = useTimeStore()
+	const {
+		secondTime: { timeIncrement: secondTimeIncrement },
+		secondTimeInSeconds,
+	} = useSecondTimeStore()
+	const { orientation, soundEnabled, withDifferentTimes } = useConfigStore()
 
 	const [topPlayerClock, setTopPlayerClock] = useState(timeInSeconds)
 	const [bottomPlayerClock, setBottomPlayerClock] = useState(
-		secondTimeInSeconds ? secondTimeInSeconds : timeInSeconds,
+		withDifferentTimes ? secondTimeInSeconds : timeInSeconds,
 	)
 
 	const [isTopPlaying, setIsTopPlaying] = useState(false)
@@ -51,7 +49,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 		setIsBottomPlaying(false)
 
 		setTopPlayerClock(timeInSeconds)
-		setBottomPlayerClock(secondTimeInSeconds ? secondTimeInSeconds : timeInSeconds)
+		setBottomPlayerClock(withDifferentTimes ? secondTimeInSeconds : timeInSeconds)
 
 		setTopPlayerCount(0)
 		setBottomPlayerCount(0)
@@ -60,7 +58,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 	async function playMoveSound() {
 		const { sound } = await Audio.Sound.createAsync(require("../../assets/click.mp3"))
 		setSound(sound)
-		await sound.playAsync()
+		if (soundEnabled) await sound.playAsync()
 	}
 
 	function handleMove(topPlayerMoved: boolean) {
@@ -77,7 +75,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 			startTopPlayerTimer()
 
 			setBottomPlayerClock((prev) =>
-				secondTimeIncrement ? prev + secondTimeIncrement : prev + timeIncrement,
+				withDifferentTimes ? prev + secondTimeIncrement : prev + timeIncrement,
 			)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
@@ -156,9 +154,6 @@ export default function Clock({ navigation, route }: ClockProps) {
 				onMove={handleMove}
 				playerClock={topPlayerClock}
 				movesCount={topPlayerCount}
-				timeInSeconds={timeInSeconds}
-				timeIncrement={timeIncrement}
-				clockOrientation={clockOrientation}
 			/>
 
 			<View style={[styles.actionsContainer]}>
@@ -172,11 +167,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 					onPress={handleStartPause}
 					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
 					iconSize={theme.fontSize.xl}
-					style={
-						clockOrientation === "Horizontal"
-							? { transform: [{ rotate: "90deg" }] }
-							: {}
-					}
+					style={orientation === "Horizontal" ? { transform: [{ rotate: "90deg" }] } : {}}
 				/>
 
 				<IconButton
@@ -192,9 +183,6 @@ export default function Clock({ navigation, route }: ClockProps) {
 				onMove={handleMove}
 				playerClock={bottomPlayerClock}
 				movesCount={bottomPlayerCount}
-				timeInSeconds={secondTimeInSeconds ? secondTimeInSeconds : timeInSeconds}
-				timeIncrement={secondTimeIncrement ? secondTimeIncrement : timeIncrement}
-				clockOrientation={clockOrientation}
 			/>
 		</View>
 	)

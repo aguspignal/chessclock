@@ -6,7 +6,6 @@ import { SQLiteProvider } from "expo-sqlite"
 import { StackParamList } from "./src/types/navigation"
 import { StatusBar } from "expo-status-bar"
 import { theme } from "./src/resources/theme"
-import { useTimeStore } from "./src/stores/useTimeStore"
 import Clock from "./src/screens/Clock"
 import Home from "./src/screens/Home"
 import Presets from "./src/screens/Presets"
@@ -14,8 +13,6 @@ import Presets from "./src/screens/Presets"
 const Stack = createNativeStackNavigator<StackParamList>()
 
 export default function App() {
-	const { time } = useTimeStore()
-
 	return (
 		<SQLiteProvider
 			databaseName={SQLITE_FILE_NAME}
@@ -28,7 +25,6 @@ export default function App() {
 					<Stack.Screen
 						name="Home"
 						component={Home}
-						initialParams={{ defaultPreset: time }}
 						options={{
 							headerTitle: "Chess Clock",
 							headerStyle: { backgroundColor: theme.colors.backgroundDark },
