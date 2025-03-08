@@ -1,46 +1,20 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { NavigationContainer } from "@react-navigation/native"
 import { onSQLiteProviderError, onSQLiteProviderInit } from "./src/utils/databaseActions"
-import { Preset } from "./src/types/utils"
 import { SQLITE_FILE_NAME } from "./src/utils/constants"
 import { SQLiteProvider } from "expo-sqlite"
 import { StackParamList } from "./src/types/navigation"
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet } from "react-native"
 import { theme } from "./src/resources/theme"
-import { useEffect, useState } from "react"
+import { useTimeStore } from "./src/stores/useTimeStore"
 import Clock from "./src/screens/Clock"
-import defaultpresets from "./src/resources/defaultpresets.json"
 import Home from "./src/screens/Home"
-import Loading from "./src/screens/Loading"
 import Presets from "./src/screens/Presets"
-import useLocalStorage from "./src/hooks/useLocalStorage"
 
 const Stack = createNativeStackNavigator<StackParamList>()
 
 export default function App() {
-	const { getFromLocalStorage } = useLocalStorage()
-
-	const [isLoading, setIsLoading] = useState<boolean>(true)
-	const [initialPreset, setInitialPreset] = useState<Preset>(defaultpresets[0])
-
-	useEffect(() => {
-		const getPresetFromLocalStorage = async () => {
-			const localStorageData = await getFromLocalStorage()
-
-			if (localStorageData?.preset !== undefined) {
-				setInitialPreset(localStorageData.preset)
-			}
-
-			setIsLoading(false)
-		}
-
-		getPresetFromLocalStorage()
-	}, [])
-
-	if (isLoading) {
-		return <Loading />
-	}
+	const { time } = useTimeStore()
 
 	return (
 		<SQLiteProvider
@@ -54,7 +28,7 @@ export default function App() {
 					<Stack.Screen
 						name="Home"
 						component={Home}
-						initialParams={{ defaultPreset: initialPreset }}
+						initialParams={{ defaultPreset: time }}
 						options={{
 							headerTitle: "Chess Clock",
 							headerStyle: { backgroundColor: theme.colors.backgroundDark },
@@ -86,12 +60,3 @@ export default function App() {
 		</SQLiteProvider>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-})

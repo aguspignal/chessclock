@@ -1,5 +1,5 @@
 import { LOCAL_STORAGE_KEY } from "../utils/constants"
-import { LocalStorageData } from "../types/storage"
+import { LocalStorageData } from "../types/database"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 // import AsyncStorage from "expo-sqlite/kv-store"
 
