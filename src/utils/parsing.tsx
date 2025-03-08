@@ -1,7 +1,7 @@
-import { DatabasePreset } from "../types/database"
 import { Preset } from "../types/utils"
 import { StyleProp, Text, TextStyle, View } from "react-native"
 import { theme } from "../resources/theme"
+import { DatabasePreset } from "../types/database"
 
 export function parseTimeFromSeconds(seconds: number) {
 	const hs = Math.floor(seconds / 3600)

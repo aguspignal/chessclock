@@ -1,6 +1,6 @@
 import { parseJSONPresetsToQueryValue } from "./parsing"
 import { SQLiteDatabase } from "expo-sqlite"
-import presets from "../resources/presets.json"
+import presets from "../resources/defaultpresets.json"
 
 export async function onSQLiteProviderInit(db: SQLiteDatabase) {
 	const DATABASE_VERSION = 1

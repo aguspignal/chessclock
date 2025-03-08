@@ -4,6 +4,8 @@ import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
+import { Audio } from "expo-av"
+import { Sound } from "expo-av/build/Audio"
 
 export default function Clock({ navigation, route }: ClockProps) {
 	const time = route.params.time
@@ -32,6 +34,7 @@ export default function Clock({ navigation, route }: ClockProps) {
 	const [topPlayerCount, setTopPlayerCount] = useState<number>(0)
 	const [bottomPlayerCount, setBottomPlayerCount] = useState<number>(0)
 	const [lastMoveWasTop, setLastMoveWasTop] = useState<boolean>(false)
+	const [sound, setSound] = useState<Sound>()
 
 	function handleStartPause() {
 		if (isTopPlaying || isBottomPlaying) {
@@ -54,7 +57,11 @@ export default function Clock({ navigation, route }: ClockProps) {
 		setBottomPlayerCount(0)
 	}
 
-	function playMoveSound() {}
+	async function playMoveSound() {
+		const { sound } = await Audio.Sound.createAsync(require("../../assets/click.mp3"))
+		setSound(sound)
+		await sound.playAsync()
+	}
 
 	function handleMove(topPlayerMoved: boolean) {
 		if (topPlayerMoved && isTopPlaying) {
@@ -132,6 +139,14 @@ export default function Clock({ navigation, route }: ClockProps) {
 	useEffect(() => {
 		return () => clearInterval(intervalId)
 	}, [intervalId])
+
+	useEffect(() => {
+		return sound
+			? () => {
+					sound.unloadAsync()
+			  }
+			: undefined
+	}, [sound])
 
 	return (
 		<View style={styles.container}>
