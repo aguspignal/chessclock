@@ -3,6 +3,7 @@ import { STATUS_BAR_HEIGHT } from "../utils/constants"
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
+import { useTranslation } from "react-i18next"
 
 type Props = {
 	isTopPlayer: boolean
@@ -19,6 +20,7 @@ export default function PlayerClock({
 	movesCount,
 	playerClock,
 }: Props) {
+	const { t } = useTranslation()
 	const { orientation } = useConfigStore()
 
 	const verticalOrientationStyle: StyleProp<ViewStyle> =
@@ -52,7 +54,9 @@ export default function PlayerClock({
 			<View style={[styles.clockContainer, clockColorStyle, verticalOrientationStyle]}>
 				<View style={[horizontalOrientationTextStyle, { alignItems: "center" }]}>
 					<Text style={[styles.timer]}>{parseTimeFromSeconds(playerClock)}</Text>
-					<Text style={[styles.extraInfoText]}>Moves: {movesCount}</Text>
+					<Text style={[styles.extraInfoText]}>
+						{t("moves")}: {movesCount}
+					</Text>
 				</View>
 			</View>
 		</TouchableOpacity>

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { theme } from "../resources/theme"
 import Modal from "react-native-modal"
+import { useTranslation } from "react-i18next"
 
 type Props = {
 	isVisible: boolean
@@ -35,6 +36,8 @@ export default function TimeInputModal({
 	increment,
 	setIncrement = () => {},
 }: Props) {
+	const { t } = useTranslation()
+
 	return (
 		<Modal
 			isVisible={isVisible}
@@ -89,7 +92,7 @@ export default function TimeInputModal({
 
 				{withIncrementInput ? (
 					<View style={styles.configContainer}>
-						<Text style={styles.text}>Time increment</Text>
+						<Text style={styles.text}>{t("increment")}</Text>
 						<View>
 							<TextInput
 								style={styles.timeIncrementInput}
@@ -113,7 +116,7 @@ export default function TimeInputModal({
 						onPress={() => setIsVisible(false)}
 						style={styles.actionContainer}
 					>
-						<Text style={styles.text}>Cancel</Text>
+						<Text style={styles.text}>{t("actions.cancel")}</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity

@@ -1,4 +1,4 @@
 # TODO
 
-    - modify presets ui
-    - new screenshots
+    - choose language welcome screen
+    - (?) modify presets ui

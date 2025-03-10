@@ -1,0 +1,29 @@
+{
+    "app-title": "Reloj de Ajedrez",
+    "configs": {
+        "presets": "Tiempo preestablecido",
+        "presets-many": "Tiempos preestablecidos",
+        "orientation": {
+            "title": "Orientacion del reloj",
+            "vertical": "Vertical",
+            "horizontal": "Horizontal"
+        },
+        "sound": "Sonido",
+        "different-times": "Tiempos diferentes",
+        "language": "Idioma"
+    },
+    "actions": {
+        "cancel": "Cancelar",
+        "confirm": "Confirmar",
+        "delete": "Eliminar",
+        "start": "Comenzar"
+    },
+    "increment": "Incremento",
+    "custom-preset": "Personalizado",
+    "confirm-preset-deletion": "¿Estas seguro que quieres eliminarlo?",
+    "adjust-time-title": "Ajustar tiempo",
+    "add-preset": "Añadir tiempo",
+    "new-preset-title": "Crea un nuevo tiempo",
+    "moves": "Movimientos",
+    "settings": "Ajustes"
+}

@@ -15,8 +15,10 @@ import ConfirmationModal from "../components/ConfirmationModal"
 import IconButton from "../components/IconButton"
 import TimeInputModal from "../components/TimeInputModal"
 import useDatabase from "../hooks/useDatabase"
+import { useTranslation } from "react-i18next"
 
 export default function Presets({ navigation }: PresetsProps) {
+	const { t } = useTranslation()
 	const { getAllPresets, postPreset, deletePreset } = useDatabase()
 	const { setTime } = useTimeStore()
 	const { setSecondTime } = useSecondTimeStore()
@@ -92,7 +94,7 @@ export default function Presets({ navigation }: PresetsProps) {
 					<IconButton
 						onPress={() => setTimeModalVisible(true)}
 						iconName="plus"
-						title="Add preset"
+						title={t("add-preset")}
 					/>
 				)}
 
@@ -127,8 +129,8 @@ export default function Presets({ navigation }: PresetsProps) {
 			<TimeInputModal
 				isVisible={timeModalVisible}
 				setIsVisible={setTimeModalVisible}
-				title="Create new preset time"
-				saveActionTitle="Confirm"
+				title={t("new-preset-title")}
+				saveActionTitle={t("actions.confirm")}
 				onSave={handleSaveTimeModal}
 				hours={hours}
 				setHours={setHours}
@@ -144,8 +146,8 @@ export default function Presets({ navigation }: PresetsProps) {
 			<ConfirmationModal
 				isVisible={confirmationModalVisible}
 				setIsVisible={setConfirmationModalVisible}
-				title="Are you sure you want to delete this preset?"
-				saveActionTitle="Delete"
+				title={t("confirm-preset-deletion")}
+				saveActionTitle={t("actions.delete")}
 				onSave={handleConfirmDeletion}
 			/>
 		</View>

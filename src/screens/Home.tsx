@@ -10,11 +10,13 @@ import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
 import { useState } from "react"
 import { useTimeStore, useSecondTimeStore } from "../stores/useTimeStore"
+import { useTranslation } from "react-i18next"
 import ConfigBox from "../components/ConfigBox"
 import React from "react"
 import TimeInputModal from "../components/TimeInputModal"
 
 export default function Home({ navigation }: HomeProps) {
+	const { t } = useTranslation()
 	const { time, setTime, setName, setIncrement } = useTimeStore()
 	const { secondTime, setSecondTime, setSecondName, setSecondIncrement } = useSecondTimeStore()
 	const {
@@ -67,15 +69,15 @@ export default function Home({ navigation }: HomeProps) {
 			<ScrollView>
 				<View>
 					<TouchableOpacity onPress={() => navigation.navigate("Presets")}>
-						<ConfigBox title="Preset time" valueName={time.name} />
+						<ConfigBox title={t("configs.presets")} valueName={time.name} />
 					</TouchableOpacity>
 
 					<ConfigBox
-						title="Clock orientation"
+						title={t("configs.orientation.title")}
 						isDropdown
 						dropdownData={[
-							{ label: "Vertical", value: "Vertical" },
-							{ label: "Horizontal", value: "Horizontal" },
+							{ label: t("configs.orientation.vertical"), value: "Vertical" },
+							{ label: t("configs.orientation.horizontal"), value: "Horizontal" },
 						]}
 						onDropdownChange={setOrientation}
 						dropdownDefaultValue={orientation}
@@ -83,7 +85,7 @@ export default function Home({ navigation }: HomeProps) {
 
 					<TouchableOpacity onPress={toggleSoundEnabled} activeOpacity={1}>
 						<ConfigBox
-							title="Sound"
+							title={t("configs.sound")}
 							valueName={soundEnabled ? "volume-high" : "volume-mute"}
 							isIcon
 						/>
@@ -91,7 +93,7 @@ export default function Home({ navigation }: HomeProps) {
 
 					<TouchableOpacity onPress={toggleWithDifferentTimes} activeOpacity={1}>
 						<ConfigBox
-							title="Different times"
+							title={t("configs.different-times")}
 							valueName="toggle"
 							isToggle
 							toggleValue={withDifferentTimes}
@@ -112,7 +114,7 @@ export default function Home({ navigation }: HomeProps) {
 						</TouchableOpacity>
 
 						<View style={styles.configContainer}>
-							<Text style={styles.configText}>Time increment</Text>
+							<Text style={styles.configText}>{t("increment")}</Text>
 							<View>
 								<TextInput
 									style={styles.timeIncrementInput}
@@ -146,7 +148,7 @@ export default function Home({ navigation }: HomeProps) {
 							</TouchableOpacity>
 
 							<View style={styles.configContainer}>
-								<Text style={styles.configText}>Time increment</Text>
+								<Text style={styles.configText}>{t("increment")}</Text>
 								<View>
 									<TextInput
 										style={styles.timeIncrementInput}
@@ -178,15 +180,15 @@ export default function Home({ navigation }: HomeProps) {
 						style={styles.startBtn}
 						activeOpacity={0.8}
 					>
-						<Text style={styles.startBtnText}>Start Game</Text>
+						<Text style={styles.startBtnText}>{t("actions.start")}</Text>
 					</TouchableOpacity>
 				</View>
 
 				<TimeInputModal
 					isVisible={isTimeModalVisible}
 					setIsVisible={setIsTimeModalVisible}
-					title="Adjust time"
-					saveActionTitle="Confirm"
+					title={t("adjust-time-title")}
+					saveActionTitle={t("actions.confirm")}
 					onSave={handleSaveModal}
 					hours={hours}
 					minutes={minutes}
@@ -199,8 +201,8 @@ export default function Home({ navigation }: HomeProps) {
 				<TimeInputModal
 					isVisible={isSecondTimeModalVisible}
 					setIsVisible={setIsSecondTimeModalVisible}
-					title="Adjust time"
-					saveActionTitle="Confirm"
+					title={t("adjust-time-title")}
+					saveActionTitle={t("actions.confirm")}
 					onSave={handleSaveSecondModal}
 					hours={secondHours}
 					minutes={secondMinutes}
