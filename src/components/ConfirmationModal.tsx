@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { theme } from "../resources/theme"
 import Modal from "react-native-modal"
+import { useTranslation } from "react-i18next"
 
 type Props = {
 	isVisible: boolean
@@ -17,6 +18,8 @@ export default function ConfirmationModal({
 	saveActionTitle = "Save",
 	onSave,
 }: Props) {
+	const { t } = useTranslation()
+
 	return (
 		<Modal
 			isVisible={isVisible}
@@ -31,7 +34,7 @@ export default function ConfirmationModal({
 						onPress={() => setIsVisible(false)}
 						style={styles.actionContainer}
 					>
-						<Text style={styles.text}>Cancel</Text>
+						<Text style={styles.text}>{t("actions.cancel")}</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity

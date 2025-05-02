@@ -14,7 +14,7 @@ type Props = {
 	isDropdown?: boolean
 	onDropdownChange?: React.Dispatch<React.SetStateAction<any>>
 	dropdownData?: { label: string; value: string }[]
-	dropdownDefaultValue?: string
+	dropdownDefaultValue?: string | null
 	centered?: boolean
 }
 
@@ -50,14 +50,14 @@ export default function ConfigBox({
 					selectedTextStyle={styles.dropdownText}
 					labelField="label"
 					valueField="value"
-					value={dropdownDefaultValue}
+					value={dropdownDefaultValue ?? ""}
 					data={dropdownData}
 					onChange={(i) => onDropdownChange(i.value)}
 					renderRightIcon={() => <></>}
 				/>
 			) : (
 				<View style={[centered ? { marginHorizontal: theme.spacing.xs } : ""]}>
-					<Text style={[styles.text]}>{valueName}</Text>
+					<Text style={[styles.text, { fontWeight: "400" }]}>{valueName}</Text>
 				</View>
 			)}
 		</View>
