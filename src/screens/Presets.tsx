@@ -10,12 +10,12 @@ import { PresetsProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
+import { useTranslation } from "react-i18next"
 import ConfigBox from "../components/ConfigBox"
 import ConfirmationModal from "../components/ConfirmationModal"
 import IconButton from "../components/IconButton"
 import TimeInputModal from "../components/TimeInputModal"
 import useDatabase from "../hooks/useDatabase"
-import { useTranslation } from "react-i18next"
 
 export default function Presets({ navigation }: PresetsProps) {
 	const { t } = useTranslation()

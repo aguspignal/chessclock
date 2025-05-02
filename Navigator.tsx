@@ -1,9 +1,6 @@
-import {
-	createNativeStackNavigator,
-	NativeStackNavigationProp,
-} from "@react-navigation/native-stack"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { Pressable, Text } from "react-native"
 import { StackParamList } from "./src/types/navigation"
-import { Text, TouchableOpacity } from "react-native"
 import { theme } from "./src/resources/theme"
 import { useTranslation } from "react-i18next"
 import Clock from "./src/screens/Clock"
@@ -22,10 +19,18 @@ export default function Navigator() {
 				component={Home}
 				options={({ navigation }) => ({
 					headerTitle: () => <HomeHeaderTitle />,
+					headerRight: () => (
+						<Pressable onPressIn={() => navigation.navigate("Settings")}>
+							<Icon
+								name="cog"
+								size={theme.fontSize.l}
+								color={theme.colors.textLight}
+							/>
+						</Pressable>
+					),
 					headerStyle: { backgroundColor: theme.colors.backgroundDark },
-					headerTitleAlign: "center",
-					headerRight: () => <HomeHeaderRight nav={navigation} />,
 					headerShadowVisible: false,
+					headerTitleAlign: "center",
 				})}
 			/>
 			<Stack.Screen
@@ -65,18 +70,6 @@ function HomeHeaderTitle() {
 		>
 			{t("app-title")}
 		</Text>
-	)
-}
-
-function HomeHeaderRight({
-	nav,
-}: {
-	nav: NativeStackNavigationProp<StackParamList, "Home", undefined>
-}) {
-	return (
-		<TouchableOpacity onPress={() => nav.navigate("Settings")}>
-			<Icon name="cog" size={theme.fontSize.l} color={theme.colors.textLight} />
-		</TouchableOpacity>
 	)
 }
 

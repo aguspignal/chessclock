@@ -2,7 +2,7 @@
     "app-title": "Chess Clock",
     "configs": {
         "presets": "Preset time",
-        "presets-many": "Tiempos preestablecidos",
+        "presets-many": "Preset times",
         "orientation": {
             "title": "Clock orientation",
             "vertical": "Vertical",
