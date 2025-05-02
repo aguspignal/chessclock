@@ -6,7 +6,8 @@
         "orientation": {
             "title": "Clock orientation",
             "vertical": "Vertical",
-            "horizontal": "Horizontal"
+            "horizontal": "Horizontal",
+            "orientation": "Orientation"
         },
         "sound": "Sound",
         "different-times": "Different times",

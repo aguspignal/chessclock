@@ -1,12 +1,14 @@
-import { Audio } from "expo-av"
 import { ClockProps } from "../types/navigation"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
+import { useAudioPlayer } from "expo-audio"
 import { useConfigStore } from "../stores/useConfigStore"
 import { useEffect, useState } from "react"
 import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
+
+const clickSource = require("../../assets/click.mp3")
 
 export default function Clock({ navigation }: ClockProps) {
 	const {
@@ -18,6 +20,7 @@ export default function Clock({ navigation }: ClockProps) {
 		secondTimeInSeconds,
 	} = useSecondTimeStore()
 	const { orientation, soundEnabled, withDifferentTimes } = useConfigStore()
+	const audioPlayer = useAudioPlayer(clickSource)
 
 	const [topPlayerClock, setTopPlayerClock] = useState(timeInSeconds)
 	const [bottomPlayerClock, setBottomPlayerClock] = useState(
@@ -31,7 +34,6 @@ export default function Clock({ navigation }: ClockProps) {
 	const [topPlayerCount, setTopPlayerCount] = useState<number>(0)
 	const [bottomPlayerCount, setBottomPlayerCount] = useState<number>(0)
 	const [lastMoveWasTop, setLastMoveWasTop] = useState<boolean>(false)
-	const [sound, setSound] = useState<Audio.Sound>()
 
 	function handleStartPause() {
 		if (isTopPlaying || isBottomPlaying) {
@@ -55,9 +57,7 @@ export default function Clock({ navigation }: ClockProps) {
 	}
 
 	async function playMoveSound() {
-		const { sound } = await Audio.Sound.createAsync(require("../../assets/click.mp3"))
-		setSound(sound)
-		if (soundEnabled) await sound.playAsync()
+		if (soundEnabled) audioPlayer.play()
 	}
 
 	function handleMove(topPlayerMoved: boolean) {
@@ -136,14 +136,6 @@ export default function Clock({ navigation }: ClockProps) {
 		return () => clearInterval(intervalId)
 	}, [intervalId])
 
-	useEffect(() => {
-		return sound
-			? () => {
-					sound.unloadAsync()
-			  }
-			: undefined
-	}, [sound])
-
 	return (
 		<View style={styles.container}>
 			<PlayerClock
@@ -158,20 +150,20 @@ export default function Clock({ navigation }: ClockProps) {
 				<IconButton
 					onPress={() => navigation.goBack()}
 					iconName="arrow-left"
-					iconSize={theme.fontSize.xl}
+					iconSize={theme.fontSize.h2}
 				/>
 
 				<IconButton
 					onPress={handleStartPause}
 					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
-					iconSize={theme.fontSize.xl}
+					iconSize={theme.fontSize.h2}
 					style={orientation === "Horizontal" ? { transform: [{ rotate: "90deg" }] } : {}}
 				/>
 
 				<IconButton
 					onPress={restartClock}
 					iconName="restart"
-					iconSize={theme.fontSize.xl}
+					iconSize={theme.fontSize.h2}
 				/>
 			</View>
 

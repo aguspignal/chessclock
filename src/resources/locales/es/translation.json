@@ -6,7 +6,8 @@
         "orientation": {
             "title": "Orientacion del reloj",
             "vertical": "Vertical",
-            "horizontal": "Horizontal"
+            "horizontal": "Horizontal",
+            "orientation": "Orientacion"
         },
         "sound": "Sonido",
         "different-times": "Tiempos diferentes",

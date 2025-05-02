@@ -1,4 +1,5 @@
-# TODO
+# To fix
 
-    - choose language welcome screen
-    - (?) modify presets ui
+    - Time increment input kinda buggy
+    - adjust time modal ui (also presets)
+    - sound

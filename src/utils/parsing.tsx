@@ -45,7 +45,7 @@ export function parseTimeToPresetName(hs: string, min: string, sec: string, inc:
 export function parseHoursToText(hours: number) {
 	if (hours === 0) return <></>
 
-	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.xl, fontWeight: "500" }
+	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.h3, fontWeight: "500" }
 
 	return (
 		<View style={{ flexDirection: "row" }}>
@@ -58,7 +58,7 @@ export function parseHoursToText(hours: number) {
 export function parseMinutesToText(minutes: number) {
 	const text = minutes === 0 ? "00" : minutes < 10 ? `0${minutes}` : `${minutes}`
 
-	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.xl, fontWeight: "500" }
+	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.h3, fontWeight: "500" }
 
 	return (
 		<View style={{ flexDirection: "row" }}>
@@ -71,7 +71,7 @@ export function parseMinutesToText(minutes: number) {
 export function parseSecondsToText(seconds: number) {
 	const text = seconds === 0 ? "00" : seconds < 10 ? `0${seconds}` : `${seconds}`
 
-	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.xl, fontWeight: "500" }
+	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.h3, fontWeight: "500" }
 
 	return (
 		<View style={{ flexDirection: "row" }}>
