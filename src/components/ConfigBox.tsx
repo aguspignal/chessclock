@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		alignItems: "center",
 		paddingHorizontal: theme.spacing.s,
-		marginVertical: theme.spacing.s,
+		marginVertical: theme.spacing.xs,
 	},
 	text: {
 		color: theme.colors.textLight,

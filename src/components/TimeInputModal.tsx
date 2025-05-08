@@ -55,6 +55,7 @@ export default function TimeInputModal({
 							value={hours}
 							maxLength={2}
 							placeholder="00"
+							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
 						/>
 					</View>
@@ -70,6 +71,7 @@ export default function TimeInputModal({
 							value={minutes}
 							maxLength={2}
 							placeholder="00"
+							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
 						/>
 					</View>
@@ -85,6 +87,7 @@ export default function TimeInputModal({
 							value={seconds}
 							maxLength={2}
 							placeholder="00"
+							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
 						/>
 					</View>
