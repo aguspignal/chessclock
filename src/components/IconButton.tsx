@@ -15,7 +15,7 @@ type Props = {
 export default function IconButton({
 	onPress,
 	iconName = "check",
-	iconSize = theme.fontSize.l,
+	iconSize = theme.fontSize.h3,
 	iconColor = theme.colors.textLight,
 	title = "",
 	style,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	title: {
-		fontSize: theme.fontSize.m,
+		fontSize: theme.fontSize.l,
 		color: theme.colors.textLight,
 		paddingHorizontal: theme.spacing.xxs,
 	},

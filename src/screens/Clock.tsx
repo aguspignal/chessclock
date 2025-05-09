@@ -57,7 +57,10 @@ export default function Clock({ navigation }: ClockProps) {
 	}
 
 	async function playMoveSound() {
-		if (soundEnabled) audioPlayer.play()
+		if (soundEnabled) {
+			audioPlayer.play()
+			audioPlayer.replace(clickSource)
+		}
 	}
 
 	function handleMove(topPlayerMoved: boolean) {

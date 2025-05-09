@@ -79,7 +79,7 @@ export default function Home({ navigation }: HomeProps) {
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
 			<KeyboardAvoidingView
-				behavior={undefined}
+				behavior="padding"
 				keyboardVerticalOffset={headerHeight}
 				style={styles.keyboardviewContainer}
 			>
