@@ -53,7 +53,9 @@ export default function PlayerClock({
 		>
 			<View style={[styles.clockContainer, clockColorStyle, verticalOrientationStyle]}>
 				<View style={[horizontalOrientationTextStyle, { alignItems: "center" }]}>
-					<Text style={[styles.timer]}>{parseTimeFromSeconds(playerClock)}</Text>
+					<Text style={[styles.timer, playerClock < 3600 ? { fontSize: 80 } : {}]}>
+						{parseTimeFromSeconds(playerClock)}
+					</Text>
 					<Text style={[styles.extraInfoText]}>
 						{t("moves")}: {movesCount}
 					</Text>
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
 	},
 	timer: {
 		color: theme.colors.textDark,
-		fontSize: 84,
+		fontSize: 64,
 		fontWeight: "600",
 	},
 })

@@ -55,6 +55,7 @@ export default function TimeInputModal({
 							value={hours}
 							maxLength={2}
 							placeholder="00"
+							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
 						/>
 					</View>
@@ -70,6 +71,7 @@ export default function TimeInputModal({
 							value={minutes}
 							maxLength={2}
 							placeholder="00"
+							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
 						/>
 					</View>
@@ -85,6 +87,7 @@ export default function TimeInputModal({
 							value={seconds}
 							maxLength={2}
 							placeholder="00"
+							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
 						/>
 					</View>
@@ -136,10 +139,11 @@ export default function TimeInputModal({
 const styles = StyleSheet.create({
 	container: {
 		alignItems: "center",
+		justifyContent: "center",
 		backgroundColor: theme.colors.backgroundDark,
 		borderRadius: 16,
-		justifyContent: "center",
-		padding: theme.spacing.l,
+		padding: theme.spacing.m,
+		marginHorizontal: theme.spacing.s,
 	},
 	text: {
 		color: theme.colors.textLight,
@@ -150,35 +154,34 @@ const styles = StyleSheet.create({
 	inputsContainer: {
 		alignItems: "center",
 		flexDirection: "row",
-		marginVertical: theme.spacing.m,
+		marginTop: theme.spacing.m,
 	},
 	inputContainer: {
 		backgroundColor: theme.colors.grayLight,
 		borderRadius: 8,
-		paddingVertical: theme.spacing.xxs,
+		// paddingVertical: theme.spacing.xxs,
 	},
 	input: {
-		fontSize: theme.fontSize.xl,
+		fontSize: theme.fontSize.h3,
 		fontWeight: "500",
-		paddingHorizontal: theme.spacing.s,
+		paddingHorizontal: theme.spacing.xs,
 	},
 	colon: {
 		color: theme.colors.grayLight,
-		fontSize: theme.fontSize.xl,
-		fontWeight: "500",
+		fontSize: theme.fontSize.xxl,
+		fontWeight: "600",
 		marginHorizontal: 4,
 	},
 	configContainer: {
-		alignItems: "center",
 		flexDirection: "row",
+		alignItems: "center",
 		justifyContent: "center",
-		marginBottom: theme.spacing.l,
 	},
 	timeIncrementInput: {
 		borderBottomColor: theme.colors.textLight,
 		borderBottomWidth: 2,
 		color: theme.colors.textLight,
-		fontSize: theme.fontSize.l,
+		fontSize: theme.fontSize.xl,
 		fontWeight: "500",
 		marginLeft: theme.spacing.xxs,
 		paddingHorizontal: theme.spacing.xxs,
@@ -187,6 +190,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		flexDirection: "row",
 		justifyContent: "center",
+		marginTop: theme.spacing.s,
 	},
 	actionContainer: {
 		flex: 1,

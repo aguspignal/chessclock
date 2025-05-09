@@ -9,7 +9,7 @@ import ConfigBox from "../components/ConfigBox"
 export default function Settings() {
 	const { t, i18n } = useTranslation()
 	const { language, setLanguage } = useConfigStore()
-	const [selectedLng, setSelectedLng] = useState<AppLanguage | null>(language)
+	const [selectedLng, setSelectedLng] = useState<AppLanguage | null>(language ?? AppLanguage.en)
 
 	useEffect(() => {
 		if (selectedLng) {

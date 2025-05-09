@@ -40,7 +40,7 @@ export default function ConfigBox({
 					//@ts-ignore
 					name={valueName}
 					color={theme.colors.textLight}
-					size={theme.fontSize.m}
+					size={theme.fontSize.xxl}
 				/>
 			) : isToggle ? (
 				<Switch value={toggleValue} onValueChange={() => onToggleChange(!toggleValue)} />
@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		alignItems: "center",
 		paddingHorizontal: theme.spacing.s,
-		marginVertical: theme.spacing.s,
+		marginVertical: theme.spacing.xs,
 	},
 	text: {
 		color: theme.colors.textLight,
 		flex: 1,
-		fontSize: theme.fontSize.s,
+		fontSize: theme.fontSize.m,
 		fontWeight: "500",
 	},
 	dropdown: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 	},
 	dropdownText: {
 		color: theme.colors.textLight,
-		fontSize: theme.fontSize.s,
+		fontSize: theme.fontSize.m,
 		textAlign: "right",
 	},
 })

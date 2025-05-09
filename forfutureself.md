@@ -1,4 +1,3 @@
-# TODO
+# To fix
 
-    - choose language welcome screen
-    - (?) modify presets ui
+# To implement
