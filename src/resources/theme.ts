@@ -7,7 +7,6 @@ const pallete = {
 	gray1: "#DADADA",
 	green: "#AACC00",
 	yellow: "#FFDD00",
-	orange: "#E36414",
 	red: "#F50F0F",
 }
 
@@ -24,7 +23,6 @@ export const theme = {
 
 		green: pallete.green,
 		yellow: pallete.yellow,
-		orange: pallete.orange,
 		red: pallete.red,
 	},
 
