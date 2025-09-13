@@ -1,0 +1,30 @@
+{
+    "app-title": "Шахматен часовник",
+    "configs": {
+        "presets": "Предварително зададено време",
+        "presets-many": "Предварително зададени времена",
+        "orientation": {
+            "title": "Ориентация на часовника",
+            "vertical": "Вертикално",
+            "horizontal": "Хоризонтално",
+            "orientation": "Ориентация"
+        },
+        "sound": "Звук",
+        "different-times": "Различни времена",
+        "language": "Език"
+    },
+    "actions": {
+        "cancel": "Отказ",
+        "confirm": "Потвърди",
+        "delete": "Изтрий",
+        "start": "Старт"
+    },
+    "increment": "Прибавка",
+    "custom-preset": "Персонализирано",
+    "confirm-preset-deletion": "Сигурни ли сте, че искате да го изтриете?",
+    "adjust-time-title": "Настрой време",
+    "add-preset": "Добави време",
+    "new-preset-title": "Създай ново време",
+    "moves": "Ходове",
+    "settings": "Настройки"
+}

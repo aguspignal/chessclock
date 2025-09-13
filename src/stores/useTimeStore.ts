@@ -1,13 +1,13 @@
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
-import { getTimeInSecondsFromPreset } from "../utils/parsing"
+import { getTimeInMillisecondsFromPreset } from "../utils/parsing"
 import { Preset } from "../types/utils"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import defaultpresets from "../resources/defaultpresets.json"
 
 type State = {
 	time: Preset
-	timeInSeconds: number
+	timeInMilliseconds: number
 	setTime: (p: Preset) => void
 	setName: (n: string) => void
 	setIncrement: (inc: number) => void
@@ -17,10 +17,10 @@ export const useTimeStore = create<State>()(
 	persist(
 		(set) => ({
 			time: defaultpresets[0],
-			timeInSeconds: getTimeInSecondsFromPreset(defaultpresets[0]),
+			timeInMilliseconds: getTimeInMillisecondsFromPreset(defaultpresets[0]),
 			setTime: (p) => {
 				set({ time: p })
-				set({ timeInSeconds: getTimeInSecondsFromPreset(p) })
+				set({ timeInMilliseconds: getTimeInMillisecondsFromPreset(p) })
 			},
 			setName: (n) =>
 				set((state) => ({
@@ -57,7 +57,7 @@ export const useTimeStore = create<State>()(
 
 type SecondState = {
 	secondTime: Preset
-	secondTimeInSeconds: number
+	secondTimeInMilliseconds: number
 	setSecondTime: (t: Preset) => void
 	setSecondName: (n: string) => void
 	setSecondIncrement: (inc: number) => void
@@ -65,10 +65,10 @@ type SecondState = {
 
 export const useSecondTimeStore = create<SecondState>()((set) => ({
 	secondTime: defaultpresets[0],
-	secondTimeInSeconds: getTimeInSecondsFromPreset(defaultpresets[0]),
+	secondTimeInMilliseconds: getTimeInMillisecondsFromPreset(defaultpresets[0]),
 	setSecondTime: (t) => {
 		set({ secondTime: t })
-		set({ secondTimeInSeconds: getTimeInSecondsFromPreset(t) })
+		set({ secondTimeInMilliseconds: getTimeInMillisecondsFromPreset(t) })
 	},
 	setSecondName: (n) =>
 		set((state) => ({

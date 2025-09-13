@@ -27,7 +27,14 @@
     "plugins": [
       "expo-sqlite",
       "expo-audio",
-      "expo-font"
+      "expo-font",[
+      "expo-build-properties",
+      {
+        "android": {
+          "enableMinifyInReleaseBuilds": true
+        }
+      }
+			]
     ]
   }
 }

@@ -3,16 +3,20 @@ import { Preset } from "../types/utils"
 import { StyleProp, Text, TextStyle, View } from "react-native"
 import { theme } from "../resources/theme"
 
-export function parseTimeFromSeconds(seconds: number) {
-	const hs = Math.floor(seconds / 3600)
-	const min = Math.floor((seconds - hs * 3600) / 60)
-	const sec = seconds - min * 60 - hs * 3600
+export function parseTimeFromMilliseconds(ms: number) {
+	const hours = Math.floor(ms / 3600000)
+	const minutes = Math.floor((ms % 3600000) / 60000)
+	const seconds = Math.floor((ms % 60000) / 1000)
 
-	const hsString = String(hs).padStart(2, "0") + ":"
-	const minString = String(min).padStart(2, "0") + ":"
-	const secString = String(sec).padStart(2, "0")
+	const hoursString = String(hours).padStart(2, "0") + ":"
+	const minutesString = String(minutes).padStart(2, "0") + ":"
+	const secondsString = String(seconds).padStart(2, "0")
 
-	return `${hs > 0 ? hsString : ""}${minString + secString}`
+	return `${hours > 0 ? hoursString : ""}${minutesString + secondsString}`
+}
+
+export function parseTimeToMilisecondsString(ms: number) {
+	return String(Math.floor((ms % 1000) / 10)).padStart(2, "0")
 }
 
 export function parseTimeWithExtra(seconds: number, extra: number) {
@@ -140,6 +144,6 @@ export function parseStringToNumber(value: string) {
 	return value.length === 0 || isNaN(Number(value)) ? 0 : Number(value)
 }
 
-export function getTimeInSecondsFromPreset(preset: Preset) {
-	return preset.time.hours * 3600 + preset.time.minutes * 60 + preset.time.seconds
+export function getTimeInMillisecondsFromPreset(preset: Preset) {
+	return (preset.time.hours * 3600 + preset.time.minutes * 60 + preset.time.seconds) * 1000
 }

@@ -1,0 +1,30 @@
+{
+    "app-title": "Schachuhr",
+    "configs": {
+        "presets": "Voreingestellte Zeit",
+        "presets-many": "Voreingestellte Zeiten",
+        "orientation": {
+            "title": "Ausrichtung der Uhr",
+            "vertical": "Vertikal",
+            "horizontal": "Horizontal",
+            "orientation": "Ausrichtung"
+        },
+        "sound": "Ton",
+        "different-times": "Unterschiedliche Zeiten",
+        "language": "Sprache"
+    },
+    "actions": {
+        "cancel": "Abbrechen",
+        "confirm": "Bestätigen",
+        "delete": "Löschen",
+        "start": "Starten"
+    },
+    "increment": "Inkrement",
+    "custom-preset": "Benutzerdefiniert",
+    "confirm-preset-deletion": "Sind Sie sicher, dass Sie es löschen möchten?",
+    "adjust-time-title": "Zeit anpassen",
+    "add-preset": "Zeit hinzufügen",
+    "new-preset-title": "Neue Zeit erstellen",
+    "moves": "Züge",
+    "settings": "Einstellungen"
+}

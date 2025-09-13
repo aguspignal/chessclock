@@ -19,12 +19,13 @@ export const useConfigStore = create<State>()(
 	persist(
 		(set) => ({
 			language: null,
-			setLanguage: (lng) => set({ language: lng }),
-			orientation: "Horizontal",
-			setOrientation: (o) => set({ orientation: o }),
+			orientation: "Vertical",
 			soundEnabled: true,
-			toggleSoundEnabled: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
 			withDifferentTimes: false,
+
+			setLanguage: (lng) => set({ language: lng }),
+			setOrientation: (o) => set({ orientation: o }),
+			toggleSoundEnabled: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
 			toggleWithDifferentTimes: () =>
 				set((state) => ({ withDifferentTimes: !state.withDifferentTimes })),
 		}),

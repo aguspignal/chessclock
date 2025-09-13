@@ -1,4 +1,4 @@
-import { AppLanguage } from "../types/languages"
+import { AppLanguage, LANGUAGES_CODES, LANGUAGES_CODES_NAMES } from "../types/languages"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
@@ -25,10 +25,10 @@ export default function Settings() {
 			<ConfigBox
 				title={t("configs.language")}
 				isDropdown
-				dropdownData={[
-					{ label: "English", value: AppLanguage.en },
-					{ label: "Español", value: AppLanguage.es },
-				]}
+				dropdownData={LANGUAGES_CODES.map((lc) => ({
+					label: LANGUAGES_CODES_NAMES.get(lc) || lc,
+					value: lc,
+				}))}
 				onDropdownChange={setSelectedLng}
 				dropdownDefaultValue={selectedLng}
 			/>
