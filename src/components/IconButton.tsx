@@ -1,6 +1,6 @@
 import { ColorValue, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity } from "react-native"
 import { theme } from "../resources/theme"
-import Icon from "@react-native-vector-icons/material-design-icons"
+import Icon from "@expo/vector-icons/MaterialCommunityIcons"
 import React from "react"
 
 type Props = {

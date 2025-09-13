@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { theme } from "../resources/theme"
-import Modal from "react-native-modal"
 import { useTranslation } from "react-i18next"
+import Modal from "react-native-modal"
 
 type Props = {
 	isVisible: boolean

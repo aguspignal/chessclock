@@ -1,10 +1,10 @@
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
 import {
 	orderPresetsByDuration,
 	parsePresetToDatabasePreset,
 	parseStringToNumber,
 	parseTimeToPresetName,
 } from "../utils/parsing"
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
 import { Preset } from "../types/utils"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../resources/theme"

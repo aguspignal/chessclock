@@ -1,7 +1,7 @@
 const pallete = {
-	black0: "#242424",
-	black1: "#343434",
-	white0: "#FDFDFD",
+	black0: "#121212",
+	black1: "#232323",
+	white0: "#FDFCFC",
 	white1: "#FEFEFE",
 	gray0: "#B0B0B0",
 	gray1: "#DADADA",
