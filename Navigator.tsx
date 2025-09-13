@@ -10,7 +10,7 @@ import { theme } from "./src/resources/theme"
 import { useTranslation } from "react-i18next"
 import Clock from "./src/screens/Clock"
 import Home from "./src/screens/Home"
-import Icon from "@react-native-vector-icons/material-design-icons"
+import Icon from "@expo/vector-icons/MaterialCommunityIcons"
 import Presets from "./src/screens/Presets"
 import Settings from "./src/screens/Settings"
 
