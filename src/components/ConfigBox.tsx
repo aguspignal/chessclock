@@ -1,7 +1,7 @@
 import { Dropdown } from "react-native-element-dropdown"
 import { StyleSheet, Switch, Text, View } from "react-native"
 import { theme } from "../resources/theme"
-import Icon from "@react-native-vector-icons/material-design-icons"
+import Icon from "@expo/vector-icons/MaterialCommunityIcons"
 import React from "react"
 
 type Props = {
@@ -37,8 +37,7 @@ export default function ConfigBox({
 
 			{isIcon ? (
 				<Icon
-					//@ts-ignore
-					name={valueName}
+					name={valueName as React.ComponentProps<typeof Icon>["name"]}
 					color={theme.colors.textLight}
 					size={theme.fontSize.xxl}
 				/>

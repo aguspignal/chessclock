@@ -1,4 +1,3 @@
-import { HomeProps } from "../types/navigation"
 import {
 	parseHoursToText,
 	parseStringToNumber,
@@ -14,15 +13,16 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native"
+import { HomeProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
+import { useHeaderHeight } from "@react-navigation/elements"
 import { useState } from "react"
 import { useTimeStore, useSecondTimeStore } from "../stores/useTimeStore"
 import { useTranslation } from "react-i18next"
 import ConfigBox from "../components/ConfigBox"
 import React from "react"
 import TimeInputModal from "../components/TimeInputModal"
-import { useHeaderHeight } from "@react-navigation/elements"
 
 export default function Home({ navigation }: HomeProps) {
 	const { t } = useTranslation()

@@ -6,12 +6,10 @@ export default function Loading() {
 	return (
 		<>
 			<StatusBar style="light" />
+
 			<View style={styles.container}>
 				<ActivityIndicator color={theme.colors.textLight} />
 			</View>
-			{/* <View style={styles.container}>
-				<Text style={styles.title}>Chess clock</Text>
-			</View> */}
 		</>
 	)
 }
