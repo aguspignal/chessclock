@@ -1,0 +1,30 @@
+{
+    "app-title": "Шаховски сат",
+    "configs": {
+        "presets": "Предефинисано време",
+        "presets-many": "Предефинисана времена",
+        "orientation": {
+            "title": "Оријентација сата",
+            "vertical": "Вертикално",
+            "horizontal": "Хоризонтално",
+            "orientation": "Оријентација"
+        },
+        "sound": "Звук",
+        "different-times": "Различита времена",
+        "language": "Језик"
+    },
+    "actions": {
+        "cancel": "Откажи",
+        "confirm": "Потврди",
+        "delete": "Избриши",
+        "start": "Почни"
+    },
+    "increment": "Инкремент",
+    "custom-preset": "Прилагођено",
+    "confirm-preset-deletion": "Да ли сте сигурни да желите да обришете?",
+    "adjust-time-title": "Подеси време",
+    "add-preset": "Додај време",
+    "new-preset-title": "Креирај ново време",
+    "moves": "Потези",
+    "settings": "Подешавања"
+}

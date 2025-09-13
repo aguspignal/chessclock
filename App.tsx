@@ -1,5 +1,6 @@
 import "./i18n"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
+import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import { NavigationContainer } from "@react-navigation/native"
 import { onSQLiteProviderError, onSQLiteProviderInit } from "./src/utils/databaseActions"
 import { SQLITE_FILE_NAME } from "./src/utils/constants"
@@ -9,15 +10,17 @@ import Main from "./Main"
 export default function App() {
 	return (
 		<GestureHandlerRootView>
-			<SQLiteProvider
-				databaseName={SQLITE_FILE_NAME}
-				onInit={onSQLiteProviderInit}
-				onError={onSQLiteProviderError}
-			>
-				<NavigationContainer>
-					<Main />
-				</NavigationContainer>
-			</SQLiteProvider>
+			<SafeAreaProvider style={{ marginBottom: initialWindowMetrics?.insets.bottom }}>
+				<SQLiteProvider
+					databaseName={SQLITE_FILE_NAME}
+					onInit={onSQLiteProviderInit}
+					onError={onSQLiteProviderError}
+				>
+					<NavigationContainer>
+						<Main />
+					</NavigationContainer>
+				</SQLiteProvider>
+			</SafeAreaProvider>
 		</GestureHandlerRootView>
 	)
 }

@@ -3,33 +3,36 @@ import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useAudioPlayer } from "expo-audio"
 import { useConfigStore } from "../stores/useConfigStore"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
 
-const clickSource = require("../../assets/click.mp3")
+const audioSource = require("../../assets/click.mp3")
 
 export default function Clock({ navigation }: ClockProps) {
 	const {
 		time: { timeIncrement },
-		timeInSeconds,
+		timeInMilliseconds,
 	} = useTimeStore()
 	const {
 		secondTime: { timeIncrement: secondTimeIncrement },
-		secondTimeInSeconds,
+		secondTimeInMilliseconds,
 	} = useSecondTimeStore()
 	const { orientation, soundEnabled, withDifferentTimes } = useConfigStore()
-	const audioPlayer = useAudioPlayer(clickSource)
+	const audioPlayer = useAudioPlayer(audioSource)
 
-	const [topPlayerClock, setTopPlayerClock] = useState(timeInSeconds)
+	const intervalId = useRef<NodeJS.Timeout | undefined>(undefined)
+	const lastUpdateTime = useRef<number>(0)
+	const UPDATE_INTERVAL = 10
+
+	const [topPlayerClock, setTopPlayerClock] = useState(timeInMilliseconds)
 	const [bottomPlayerClock, setBottomPlayerClock] = useState(
-		withDifferentTimes ? secondTimeInSeconds : timeInSeconds,
+		withDifferentTimes ? secondTimeInMilliseconds : timeInMilliseconds,
 	)
 
 	const [isTopPlaying, setIsTopPlaying] = useState(false)
 	const [isBottomPlaying, setIsBottomPlaying] = useState(false)
-	const [intervalId, setIntervalId] = useState<NodeJS.Timeout>()
 
 	const [topPlayerCount, setTopPlayerCount] = useState<number>(0)
 	const [bottomPlayerCount, setBottomPlayerCount] = useState<number>(0)
@@ -37,20 +40,26 @@ export default function Clock({ navigation }: ClockProps) {
 
 	function handleStartPause() {
 		if (isTopPlaying || isBottomPlaying) {
-			stopTopPlayerTimer()
-			stopBottomPlayerTimer()
+			stopAllTimers()
 		} else {
 			lastMoveWasTop ? startBottomPlayerTimer() : startTopPlayerTimer()
 		}
 	}
 
+	function stopAllTimers() {
+		if (intervalId.current) {
+			clearInterval(intervalId.current)
+			intervalId.current = undefined
+		}
+	}
+
 	function restartClock() {
-		clearInterval(intervalId)
+		stopAllTimers()
 		setIsTopPlaying(false)
 		setIsBottomPlaying(false)
 
-		setTopPlayerClock(timeInSeconds)
-		setBottomPlayerClock(withDifferentTimes ? secondTimeInSeconds : timeInSeconds)
+		setTopPlayerClock(timeInMilliseconds)
+		setBottomPlayerClock(withDifferentTimes ? secondTimeInMilliseconds : timeInMilliseconds)
 
 		setTopPlayerCount(0)
 		setBottomPlayerCount(0)
@@ -58,86 +67,97 @@ export default function Clock({ navigation }: ClockProps) {
 
 	async function playMoveSound() {
 		if (soundEnabled) {
+			audioPlayer.seekTo(0)
 			audioPlayer.play()
-			audioPlayer.replace(clickSource)
+			// audioPlayer.replace(audioSource)
 		}
 	}
 
 	function handleMove(topPlayerMoved: boolean) {
 		if (topPlayerMoved && isTopPlaying) {
 			playMoveSound()
-			stopTopPlayerTimer()
-			startBottomPlayerTimer()
+			stopAllTimers()
 
 			setTopPlayerClock((prev) => prev + timeIncrement)
 			setTopPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(true)
+
+			startBottomPlayerTimer()
 		} else if (!topPlayerMoved && isBottomPlaying) {
 			playMoveSound()
-			stopBottomPlayerTimer()
-			startTopPlayerTimer()
+			stopAllTimers()
 
 			setBottomPlayerClock((prev) =>
 				withDifferentTimes ? prev + secondTimeIncrement : prev + timeIncrement,
 			)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
+
+			startTopPlayerTimer()
 		} else if (!isTopPlaying && !isBottomPlaying) {
 			topPlayerMoved ? startTopPlayerTimer() : startBottomPlayerTimer()
 		}
 	}
 
 	function startTopPlayerTimer() {
-		if (isTopPlaying || topPlayerClock === 0) return
+		if (isTopPlaying || topPlayerClock <= 0) return
 
+		stopAllTimers()
 		setIsTopPlaying(true)
-		setTopPlayerClock((prev) => prev - 1)
+		setIsBottomPlaying(false)
+		lastUpdateTime.current = Date.now()
 
 		const id = setInterval(() => {
+			const now = Date.now()
+			const deltaTime = now - lastUpdateTime.current
+			lastUpdateTime.current = now
+
 			setTopPlayerClock((prev) => {
-				if (prev <= 1) {
-					clearInterval(id)
+				const newTime = Math.max(0, prev - deltaTime)
+
+				if (newTime <= 0) {
+					stopAllTimers()
 					setIsTopPlaying(false)
 					return 0
 				}
-				return prev - 1
+				return newTime
 			})
-		}, 1000)
-		setIntervalId(id)
-	}
+		}, UPDATE_INTERVAL)
 
-	function stopTopPlayerTimer() {
-		clearInterval(intervalId)
-		setIsTopPlaying(false)
+		intervalId.current = id
 	}
 
 	function startBottomPlayerTimer() {
-		if (isBottomPlaying || bottomPlayerClock === 0) return
-		setIsBottomPlaying(true)
+		if (isBottomPlaying || bottomPlayerClock <= 0) return
 
-		setBottomPlayerClock((prev) => prev - 1)
+		stopAllTimers()
+		setIsBottomPlaying(true)
+		setIsTopPlaying(false)
+		lastUpdateTime.current = Date.now()
 
 		const id = setInterval(() => {
+			const now = Date.now()
+			const deltaTime = now - lastUpdateTime.current
+			lastUpdateTime.current = now
+
 			setBottomPlayerClock((prev) => {
-				if (prev <= 1) {
-					clearInterval(id)
+				const newTime = Math.max(0, prev - deltaTime)
+
+				if (newTime <= 0) {
+					stopAllTimers()
 					setIsBottomPlaying(false)
 					return 0
 				}
-				return prev - 1
+				return newTime
 			})
-		}, 1000)
-		setIntervalId(id)
-	}
+		}, UPDATE_INTERVAL)
 
-	function stopBottomPlayerTimer() {
-		clearInterval(intervalId)
-		setIsBottomPlaying(false)
+		intervalId.current = id
 	}
 
 	useEffect(() => {
-		return () => clearInterval(intervalId)
-	}, [intervalId])
+		return () => stopAllTimers()
+	}, [])
 
 	return (
 		<View style={styles.container}>
@@ -160,7 +180,7 @@ export default function Clock({ navigation }: ClockProps) {
 					onPress={handleStartPause}
 					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
 					iconSize={theme.fontSize.h2}
-					style={orientation === "Horizontal" ? { transform: [{ rotate: "90deg" }] } : {}}
+					style={orientation === "Horizontal" ? styles.rotate90deg : null}
 				/>
 
 				<IconButton
@@ -191,5 +211,8 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		paddingHorizontal: theme.spacing.l,
 		paddingVertical: theme.spacing.xxs,
+	},
+	rotate90deg: {
+		transform: [{ rotate: "90deg" }],
 	},
 })

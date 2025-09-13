@@ -1,0 +1,30 @@
+{
+    "app-title": "Horloge d’échecs",
+    "configs": {
+        "presets": "Temps prédéfini",
+        "presets-many": "Temps prédéfinis",
+        "orientation": {
+            "title": "Orientation de l’horloge",
+            "vertical": "Verticale",
+            "horizontal": "Horizontale",
+            "orientation": "Orientation"
+        },
+        "sound": "Son",
+        "different-times": "Temps différents",
+        "language": "Langue"
+    },
+    "actions": {
+        "cancel": "Annuler",
+        "confirm": "Confirmer",
+        "delete": "Supprimer",
+        "start": "Démarrer"
+    },
+    "increment": "Incrément",
+    "custom-preset": "Personnalisé",
+    "confirm-preset-deletion": "Êtes-vous sûr de vouloir le supprimer ?",
+    "adjust-time-title": "Ajuster le temps",
+    "add-preset": "Ajouter un temps",
+    "new-preset-title": "Créer un nouveau temps",
+    "moves": "Coups",
+    "settings": "Paramètres"
+}

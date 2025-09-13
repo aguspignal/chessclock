@@ -1,0 +1,30 @@
+{
+    "app-title": "Orologio degli scacchi",
+    "configs": {
+        "presets": "Tempo preimpostato",
+        "presets-many": "Tempi preimpostati",
+        "orientation": {
+            "title": "Orientamento dell’orologio",
+            "vertical": "Verticale",
+            "horizontal": "Orizzontale",
+            "orientation": "Orientamento"
+        },
+        "sound": "Suono",
+        "different-times": "Tempi diversi",
+        "language": "Lingua"
+    },
+    "actions": {
+        "cancel": "Annulla",
+        "confirm": "Conferma",
+        "delete": "Elimina",
+        "start": "Avvia"
+    },
+    "increment": "Incremento",
+    "custom-preset": "Personalizzato",
+    "confirm-preset-deletion": "Sei sicuro di volerlo eliminare?",
+    "adjust-time-title": "Regola tempo",
+    "add-preset": "Aggiungi tempo",
+    "new-preset-title": "Crea un nuovo tempo",
+    "moves": "Mosse",
+    "settings": "Impostazioni"
+}

@@ -1,8 +1,9 @@
 # To fix
 
-    - audio
-    - change dropdown library to rn-popup-menu
-
 # To implement
 
+    - on playerclock smaller miliseconds
+
 # To test
+
+    - audio
