@@ -1,4 +1,4 @@
-import { parseTimeFromMilliseconds } from "../utils/parsing"
+import { parseTimeFromMilliseconds, parseTimeToMilisecondsString } from "../utils/parsing"
 import { STATUS_BAR_HEIGHT } from "../utils/constants"
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
 import { theme } from "../resources/theme"
@@ -50,6 +50,12 @@ export default function PlayerClock({
 				<View style={[horizontalOrientationTextStyle, styles.alignCenter]}>
 					<Text style={[styles.timer, playerClock < 3600000 ? styles.biggerText : null]}>
 						{parseTimeFromMilliseconds(playerClock)}
+						<Text style={styles.miliseconds}>{`.${parseTimeToMilisecondsString(
+							playerClock,
+						)}`}</Text>
+						{/* {`${parseTimeFromMilliseconds(playerClock)}.${parseTimeToMilisecondsString(
+							playerClock,
+						)}`} */}
 					</Text>
 
 					<Text style={[styles.extraInfoText]}>
@@ -100,10 +106,13 @@ const styles = StyleSheet.create({
 	},
 	timer: {
 		color: theme.colors.textDark,
-		fontSize: 64,
+		fontSize: theme.fontSize.h3 * 2,
 		fontWeight: "600",
 	},
+	miliseconds: {
+		fontSize: theme.fontSize.h3,
+	},
 	biggerText: {
-		fontSize: 80,
+		fontSize: theme.fontSize.h2 * 2,
 	},
 })

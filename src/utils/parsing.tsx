@@ -7,14 +7,16 @@ export function parseTimeFromMilliseconds(ms: number) {
 	const hours = Math.floor(ms / 3600000)
 	const minutes = Math.floor((ms % 3600000) / 60000)
 	const seconds = Math.floor((ms % 60000) / 1000)
-	const centiseconds = Math.floor((ms % 1000) / 10)
 
 	const hoursString = String(hours).padStart(2, "0") + ":"
 	const minutesString = String(minutes).padStart(2, "0") + ":"
 	const secondsString = String(seconds).padStart(2, "0")
-	const centisecondsString = "." + String(centiseconds).padStart(2, "0")
 
-	return `${hours > 0 ? hoursString : ""}${minutesString + secondsString + centisecondsString}`
+	return `${hours > 0 ? hoursString : ""}${minutesString + secondsString}`
+}
+
+export function parseTimeToMilisecondsString(ms: number) {
+	return String(Math.floor((ms % 1000) / 10)).padStart(2, "0")
 }
 
 export function parseTimeWithExtra(seconds: number, extra: number) {
