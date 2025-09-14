@@ -13,7 +13,7 @@ export default function Settings() {
 
 	useEffect(() => {
 		if (selectedLng) {
-			i18n.changeLanguage(selectedLng, (err) => {
+			i18n.changeLanguage(selectedLng.replace("-", "_"), (err) => {
 				if (err) console.log(err)
 			})
 			setLanguage(selectedLng)
