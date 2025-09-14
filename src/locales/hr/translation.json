@@ -1,0 +1,30 @@
+{
+    "app-title": "Šahovski sat",
+    "configs": {
+        "presets": "Unaprijed postavljeno vrijeme",
+        "presets-many": "Unaprijed postavljena vremena",
+        "orientation": {
+            "title": "Orijentacija sata",
+            "vertical": "Vertikalno",
+            "horizontal": "Horizontalno",
+            "orientation": "Orijentacija"
+        },
+        "sound": "Zvuk",
+        "different-times": "Različita vremena",
+        "language": "Jezik"
+    },
+    "actions": {
+        "cancel": "Otkaži",
+        "confirm": "Potvrdi",
+        "delete": "Izbriši",
+        "start": "Započni igru"
+    },
+    "increment": "Povećanje vremena",
+    "custom-preset": "Prilagođeno",
+    "confirm-preset-deletion": "Jeste li sigurni da želite izbrisati ovu unaprijed postavljenu vrijednost",
+    "adjust-time-title": "Prilagodba vremena",
+    "add-preset": "Dodaj unaprijed postavljeno vrijeme",
+    "new-preset-title": "Stvori novo unaprijed postavljeno vrijeme",
+    "moves": "Potezi",
+    "settings": "Postavke"
+}

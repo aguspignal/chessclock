@@ -1,0 +1,30 @@
+{
+    "app-title": "Zegar szachowy",
+    "configs": {
+        "presets": "Czas wstępnie ustawiony",
+        "presets-many": "Czasy wstępnie ustawione",
+        "orientation": {
+            "title": "Orientacja zegara",
+            "vertical": "Pionowa",
+            "horizontal": "Pozioma",
+            "orientation": "Orientacja"
+        },
+        "sound": "Dźwięk",
+        "different-times": "Różne czasy",
+        "language": "Język"
+    },
+    "actions": {
+        "cancel": "Anuluj",
+        "confirm": "Potwierdź",
+        "delete": "Usuń",
+        "start": "Rozpocznij grę"
+    },
+    "increment": "Przyrost czasu",
+    "custom-preset": "Niestandardowy",
+    "confirm-preset-deletion": "Czy na pewno chcesz usunąć ten preset",
+    "adjust-time-title": "Dostosuj czas",
+    "add-preset": "Dodaj preset",
+    "new-preset-title": "Utwórz nowy czas preset",
+    "moves": "Ruchy",
+    "settings": "Ustawienia"
+}

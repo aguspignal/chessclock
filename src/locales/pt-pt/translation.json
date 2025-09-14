@@ -1,0 +1,30 @@
+{
+    "app-title": "Relógio de Xadrez",
+    "configs": {
+        "presets": "Tempo predefinido",
+        "presets-many": "Tempos predefinidos",
+        "orientation": {
+            "title": "Orientação do relógio",
+            "vertical": "Vertical",
+            "horizontal": "Horizontal",
+            "orientation": "Orientação"
+        },
+        "sound": "Som",
+        "different-times": "Tempos diferentes",
+        "language": "Idioma"
+    },
+    "actions": {
+        "cancel": "Cancelar",
+        "confirm": "Confirmar",
+        "delete": "Eliminar",
+        "start": "Iniciar jogo"
+    },
+    "increment": "Incremento de tempo",
+    "custom-preset": "Personalizado",
+    "confirm-preset-deletion": "Tem a certeza de que pretende eliminar este preset",
+    "adjust-time-title": "Ajustar tempo",
+    "add-preset": "Adicionar preset",
+    "new-preset-title": "Criar novo tempo predefinido",
+    "moves": "Jogadas",
+    "settings": "Definições"
+}

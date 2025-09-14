@@ -1,0 +1,30 @@
+{
+    "app-title": "Chess Clock",
+    "configs": {
+        "presets": "Preset time",
+        "presets-many": "Preset times",
+        "orientation": {
+            "title": "Clock orientation",
+            "vertical": "Vertical",
+            "horizontal": "Horizontal",
+            "orientation": "Orientation"
+        },
+        "sound": "Sound",
+        "different-times": "Different times",
+        "language": "Language"
+    },
+    "actions": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "start": "Start game"
+    },
+    "increment": "Time increment",
+    "custom-preset": "Custom",
+    "confirm-preset-deletion": "Are you sure you want to delete this preset",
+    "adjust-time-title": "Adjust time",
+    "add-preset": "Add preset",
+    "new-preset-title": "Create new preset time",
+    "moves": "Moves",
+    "settings": "Settings"
+}

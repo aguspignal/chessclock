@@ -1,0 +1,30 @@
+{
+    "app-title": "國際象棋計時器",
+    "configs": {
+        "presets": "預設時間",
+        "presets-many": "多個預設時間",
+        "orientation": {
+            "title": "時鐘方向",
+            "vertical": "垂直",
+            "horizontal": "水平",
+            "orientation": "方向"
+        },
+        "sound": "聲音",
+        "different-times": "不同時間",
+        "language": "語言"
+    },
+    "actions": {
+        "cancel": "取消",
+        "confirm": "確認",
+        "delete": "刪除",
+        "start": "開始遊戲"
+    },
+    "increment": "時間增量",
+    "custom-preset": "自訂",
+    "confirm-preset-deletion": "您確定要刪除此預設嗎",
+    "adjust-time-title": "調整時間",
+    "add-preset": "新增預設",
+    "new-preset-title": "建立新的預設時間",
+    "moves": "步數",
+    "settings": "設定"
+}

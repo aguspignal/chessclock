@@ -1,0 +1,30 @@
+{
+    "app-title": "チェスクロック",
+    "configs": {
+        "presets": "プリセット時間",
+        "presets-many": "プリセット時間一覧",
+        "orientation": {
+            "title": "時計の向き",
+            "vertical": "縦",
+            "horizontal": "横",
+            "orientation": "向き"
+        },
+        "sound": "音",
+        "different-times": "異なる時間",
+        "language": "言語"
+    },
+    "actions": {
+        "cancel": "キャンセル",
+        "confirm": "確認",
+        "delete": "削除",
+        "start": "ゲーム開始"
+    },
+    "increment": "時間増分",
+    "custom-preset": "カスタム",
+    "confirm-preset-deletion": "このプリセットを削除してもよろしいですか",
+    "adjust-time-title": "時間を調整",
+    "add-preset": "プリセットを追加",
+    "new-preset-title": "新しいプリセット時間を作成",
+    "moves": "手数",
+    "settings": "設定"
+}

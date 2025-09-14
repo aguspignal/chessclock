@@ -1,0 +1,30 @@
+{
+    "app-title": "Schaakklok",
+    "configs": {
+        "presets": "Vooringestelde tijd",
+        "presets-many": "Vooringestelde tijden",
+        "orientation": {
+            "title": "Klokoriëntatie",
+            "vertical": "Verticaal",
+            "horizontal": "Horizontaal",
+            "orientation": "Oriëntatie"
+        },
+        "sound": "Geluid",
+        "different-times": "Verschillende tijden",
+        "language": "Taal"
+    },
+    "actions": {
+        "cancel": "Annuleren",
+        "confirm": "Bevestigen",
+        "delete": "Verwijderen",
+        "start": "Start spel"
+    },
+    "increment": "Tijdtoename",
+    "custom-preset": "Aangepast",
+    "confirm-preset-deletion": "Weet je zeker dat je deze voorinstelling wilt verwijderen",
+    "adjust-time-title": "Tijd aanpassen",
+    "add-preset": "Voorinstelling toevoegen",
+    "new-preset-title": "Nieuwe vooringestelde tijd maken",
+    "moves": "Zetten",
+    "settings": "Instellingen"
+}

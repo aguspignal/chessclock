@@ -1,0 +1,30 @@
+{
+    "app-title": "Шахові годинники",
+    "configs": {
+        "presets": "Попередньо встановлений час",
+        "presets-many": "Попередньо встановлені часи",
+        "orientation": {
+            "title": "Орієнтація годинника",
+            "vertical": "Вертикально",
+            "horizontal": "Горизонтально",
+            "orientation": "Орієнтація"
+        },
+        "sound": "Звук",
+        "different-times": "Різні часи",
+        "language": "Мова"
+    },
+    "actions": {
+        "cancel": "Скасувати",
+        "confirm": "Підтвердити",
+        "delete": "Видалити",
+        "start": "Почати гру"
+    },
+    "increment": "Приріст часу",
+    "custom-preset": "Налаштований",
+    "confirm-preset-deletion": "Ви впевнені, що хочете видалити цей пресет",
+    "adjust-time-title": "Налаштувати час",
+    "add-preset": "Додати пресет",
+    "new-preset-title": "Створити новий пресет часу",
+    "moves": "Ходи",
+    "settings": "Налаштування"
+}

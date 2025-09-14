@@ -1,0 +1,30 @@
+{
+    "app-title": "দাবার ঘড়ি",
+    "configs": {
+        "presets": "পূর্বনির্ধারিত সময়",
+        "presets-many": "পূর্বনির্ধারিত সময়সমূহ",
+        "orientation": {
+            "title": "ঘড়ির দিকনির্দেশ",
+            "vertical": "উল্লম্ব",
+            "horizontal": "আনুভূমিক",
+            "orientation": "দিকনির্দেশ"
+        },
+        "sound": "শব্দ",
+        "different-times": "ভিন্ন সময়",
+        "language": "ভাষা"
+    },
+    "actions": {
+        "cancel": "বাতিল",
+        "confirm": "নিশ্চিত করুন",
+        "delete": "মুছে ফেলুন",
+        "start": "খেলা শুরু করুন"
+    },
+    "increment": "সময়ের বৃদ্ধি",
+    "custom-preset": "কাস্টম",
+    "confirm-preset-deletion": "আপনি কি নিশ্চিত যে আপনি এই পূর্বনির্ধারিত সময় মুছে ফেলতে চান",
+    "adjust-time-title": "সময় সামঞ্জস্য করুন",
+    "add-preset": "পূর্বনির্ধারিত সময় যোগ করুন",
+    "new-preset-title": "নতুন পূর্বনির্ধারিত সময় তৈরি করুন",
+    "moves": "চালসমূহ",
+    "settings": "সেটিংস"
+}

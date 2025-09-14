@@ -1,0 +1,30 @@
+{
+    "app-title": "Skakur",
+    "configs": {
+        "presets": "Forudindstillet tid",
+        "presets-many": "Forudindstillede tider",
+        "orientation": {
+            "title": "Urets retning",
+            "vertical": "Vertikal",
+            "horizontal": "Horisontal",
+            "orientation": "Retning"
+        },
+        "sound": "Lyd",
+        "different-times": "Forskellige tider",
+        "language": "Sprog"
+    },
+    "actions": {
+        "cancel": "Annuller",
+        "confirm": "Bekræft",
+        "delete": "Slet",
+        "start": "Start spil"
+    },
+    "increment": "Tidsforøgelse",
+    "custom-preset": "Tilpasset",
+    "confirm-preset-deletion": "Er du sikker på, at du vil slette denne forudindstilling",
+    "adjust-time-title": "Juster tid",
+    "add-preset": "Tilføj forudindstilling",
+    "new-preset-title": "Opret ny forudindstillet tid",
+    "moves": "Træk",
+    "settings": "Indstillinger"
+}

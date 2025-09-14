@@ -1,0 +1,30 @@
+{
+    "app-title": "Ceas de șah",
+    "configs": {
+        "presets": "Timp presetat",
+        "presets-many": "Timpuri presetate",
+        "orientation": {
+            "title": "Orientarea ceasului",
+            "vertical": "Vertical",
+            "horizontal": "Orizontal",
+            "orientation": "Orientare"
+        },
+        "sound": "Sunet",
+        "different-times": "Timpuri diferite",
+        "language": "Limba"
+    },
+    "actions": {
+        "cancel": "Anulează",
+        "confirm": "Confirmă",
+        "delete": "Șterge",
+        "start": "Pornește jocul"
+    },
+    "increment": "Increment de timp",
+    "custom-preset": "Personalizat",
+    "confirm-preset-deletion": "Ești sigur că vrei să ștergi acest preset",
+    "adjust-time-title": "Ajustează timpul",
+    "add-preset": "Adaugă preset",
+    "new-preset-title": "Creează un nou timp presetat",
+    "moves": "Mutări",
+    "settings": "Setări"
+}

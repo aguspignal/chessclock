@@ -1,0 +1,30 @@
+{
+    "app-title": "Satranç Saati",
+    "configs": {
+        "presets": "Önceden ayarlanmış zaman",
+        "presets-many": "Önceden ayarlanmış zamanlar",
+        "orientation": {
+            "title": "Saat yönü",
+            "vertical": "Dikey",
+            "horizontal": "Yatay",
+            "orientation": "Yön"
+        },
+        "sound": "Ses",
+        "different-times": "Farklı zamanlar",
+        "language": "Dil"
+    },
+    "actions": {
+        "cancel": "İptal",
+        "confirm": "Onayla",
+        "delete": "Sil",
+        "start": "Oyunu başlat"
+    },
+    "increment": "Zaman artışı",
+    "custom-preset": "Özel",
+    "confirm-preset-deletion": "Bu ön ayarı silmek istediğinizden emin misiniz",
+    "adjust-time-title": "Zamanı ayarla",
+    "add-preset": "Ön ayar ekle",
+    "new-preset-title": "Yeni ön ayar oluştur",
+    "moves": "Hamleler",
+    "settings": "Ayarlar"
+}

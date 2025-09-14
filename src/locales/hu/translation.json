@@ -1,0 +1,30 @@
+{
+    "app-title": "Sakkóra",
+    "configs": {
+        "presets": "Előre beállított idő",
+        "presets-many": "Előre beállított idők",
+        "orientation": {
+            "title": "Óra tájolása",
+            "vertical": "Függőleges",
+            "horizontal": "Vízszintes",
+            "orientation": "Tájolás"
+        },
+        "sound": "Hang",
+        "different-times": "Különböző idők",
+        "language": "Nyelv"
+    },
+    "actions": {
+        "cancel": "Mégse",
+        "confirm": "Megerősítés",
+        "delete": "Törlés",
+        "start": "Játék indítása"
+    },
+    "increment": "Időnövelés",
+    "custom-preset": "Egyedi",
+    "confirm-preset-deletion": "Biztosan törölni szeretné ezt az előre beállított értéket",
+    "adjust-time-title": "Idő beállítása",
+    "add-preset": "Előre beállított idő hozzáadása",
+    "new-preset-title": "Új előre beállított idő létrehozása",
+    "moves": "Lépések",
+    "settings": "Beállítások"
+}

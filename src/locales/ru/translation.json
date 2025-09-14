@@ -1,0 +1,30 @@
+{
+    "app-title": "Шахматные часы",
+    "configs": {
+        "presets": "Предустановленное время",
+        "presets-many": "Предустановленные времена",
+        "orientation": {
+            "title": "Ориентация часов",
+            "vertical": "Вертикально",
+            "horizontal": "Горизонтально",
+            "orientation": "Ориентация"
+        },
+        "sound": "Звук",
+        "different-times": "Разное время",
+        "language": "Язык"
+    },
+    "actions": {
+        "cancel": "Отмена",
+        "confirm": "Подтвердить",
+        "delete": "Удалить",
+        "start": "Начать игру"
+    },
+    "increment": "Прибавление времени",
+    "custom-preset": "Пользовательский",
+    "confirm-preset-deletion": "Вы уверены, что хотите удалить этот пресет",
+    "adjust-time-title": "Настроить время",
+    "add-preset": "Добавить пресет",
+    "new-preset-title": "Создать новый пресет времени",
+    "moves": "Ходы",
+    "settings": "Настройки"
+}
