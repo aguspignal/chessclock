@@ -4,7 +4,7 @@
         "presets": "Tempo preimpostato",
         "presets-many": "Tempi preimpostati",
         "orientation": {
-            "title": "Orientamento dell’orologio",
+            "title": "Orientamento dell'orologio",
             "vertical": "Verticale",
             "horizontal": "Orizzontale",
             "orientation": "Orientamento"

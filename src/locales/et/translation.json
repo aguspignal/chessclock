@@ -1,0 +1,30 @@
+{
+    "app-title": "Male kell",
+    "configs": {
+        "presets": "Eelseatud aeg",
+        "presets-many": "Eelseatud ajad",
+        "orientation": {
+            "title": "Kella orientatsioon",
+            "vertical": "Vertikaalne",
+            "horizontal": "Horisontaalne",
+            "orientation": "Orientatsioon"
+        },
+        "sound": "Heli",
+        "different-times": "Erinevad ajad",
+        "language": "Keel"
+    },
+    "actions": {
+        "cancel": "Tühista",
+        "confirm": "Kinnita",
+        "delete": "Kustuta",
+        "start": "Alusta mängu"
+    },
+    "increment": "Aja lisamine",
+    "custom-preset": "Kohandatud",
+    "confirm-preset-deletion": "Kas olete kindel, et soovite selle eelseade kustutada",
+    "adjust-time-title": "Aja reguleerimine",
+    "add-preset": "Lisa eelseade",
+    "new-preset-title": "Loo uus eelseatud aeg",
+    "moves": "Liinid",
+    "settings": "Seaded"
+}

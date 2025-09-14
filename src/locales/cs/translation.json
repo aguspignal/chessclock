@@ -1,0 +1,30 @@
+{
+    "app-title": "Šachové hodiny",
+    "configs": {
+        "presets": "Přednastavený čas",
+        "presets-many": "Přednastavené časy",
+        "orientation": {
+            "title": "Orientace hodin",
+            "vertical": "Svisle",
+            "horizontal": "Vodorovně",
+            "orientation": "Orientace"
+        },
+        "sound": "Zvuk",
+        "different-times": "Různé časy",
+        "language": "Jazyk"
+    },
+    "actions": {
+        "cancel": "Zrušit",
+        "confirm": "Potvrdit",
+        "delete": "Smazat",
+        "start": "Spustit hru"
+    },
+    "increment": "Přírůstek času",
+    "custom-preset": "Vlastní",
+    "confirm-preset-deletion": "Opravdu chcete tuto přednastavenou hodnotu smazat",
+    "adjust-time-title": "Upravit čas",
+    "add-preset": "Přidat přednastavený čas",
+    "new-preset-title": "Vytvořit nový přednastavený čas",
+    "moves": "Tahy",
+    "settings": "Nastavení"
+}

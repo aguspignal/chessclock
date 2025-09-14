@@ -12,11 +12,11 @@ const audioSource = require("../../assets/click.mp3")
 
 export default function Clock({ navigation }: ClockProps) {
 	const {
-		time: { timeIncrement },
+		time: { timeIncrementMs },
 		timeInMilliseconds,
 	} = useTimeStore()
 	const {
-		secondTime: { timeIncrement: secondTimeIncrement },
+		secondTime: { timeIncrementMs: secondTimeIncrement },
 		secondTimeInMilliseconds,
 	} = useSecondTimeStore()
 	const { orientation, soundEnabled, withDifferentTimes } = useConfigStore()
@@ -78,7 +78,7 @@ export default function Clock({ navigation }: ClockProps) {
 			playMoveSound()
 			stopAllTimers()
 
-			setTopPlayerClock((prev) => prev + timeIncrement)
+			setTopPlayerClock((prev) => prev + timeIncrementMs)
 			setTopPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(true)
 
@@ -88,7 +88,7 @@ export default function Clock({ navigation }: ClockProps) {
 			stopAllTimers()
 
 			setBottomPlayerClock((prev) =>
-				withDifferentTimes ? prev + secondTimeIncrement : prev + timeIncrement,
+				withDifferentTimes ? prev + secondTimeIncrement : prev + timeIncrementMs,
 			)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)

@@ -1,0 +1,30 @@
+{
+    "app-title": "国际象棋时钟",
+    "configs": {
+        "presets": "预设时间",
+        "presets-many": "多个预设时间",
+        "orientation": {
+            "title": "时钟方向",
+            "vertical": "竖直",
+            "horizontal": "水平",
+            "orientation": "方向"
+        },
+        "sound": "声音",
+        "different-times": "不同时间",
+        "language": "语言"
+    },
+    "actions": {
+        "cancel": "取消",
+        "confirm": "确认",
+        "delete": "删除",
+        "start": "开始游戏"
+    },
+    "increment": "时间增量",
+    "custom-preset": "自定义",
+    "confirm-preset-deletion": "您确定要删除此预设吗",
+    "adjust-time-title": "调整时间",
+    "add-preset": "添加预设",
+    "new-preset-title": "创建新的预设时间",
+    "moves": "步数",
+    "settings": "设置"
+}

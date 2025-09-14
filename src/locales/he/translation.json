@@ -1,0 +1,30 @@
+{
+    "app-title": "שעון שחמט",
+    "configs": {
+        "presets": "זמן מוגדר מראש",
+        "presets-many": "זמנים מוגדרים מראש",
+        "orientation": {
+            "title": "כיוון השעון",
+            "vertical": "אנכי",
+            "horizontal": "אופקי",
+            "orientation": "כיוון"
+        },
+        "sound": "צליל",
+        "different-times": "זמנים שונים",
+        "language": "שפה"
+    },
+    "actions": {
+        "cancel": "בטל",
+        "confirm": "אישור",
+        "delete": "מחק",
+        "start": "התחל משחק"
+    },
+    "increment": "תוספת זמן",
+    "custom-preset": "מותאם אישית",
+    "confirm-preset-deletion": "האם אתה בטוח שברצונך למחוק את ההגדרה המוגדרת מראש הזו",
+    "adjust-time-title": "כיוון זמן",
+    "add-preset": "הוסף הגדרה",
+    "new-preset-title": "צור הגדרה חדשה",
+    "moves": "מהלכים",
+    "settings": "הגדרות"
+}

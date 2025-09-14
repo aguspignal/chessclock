@@ -1,4 +1,4 @@
-import { AppLanguage, LANGUAGES_CODES, LANGUAGES_CODES_NAMES } from "../types/languages"
+import { AppLanguage, LANGUAGES_CODES, LANGUAGES_MAP } from "../types/languages"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
@@ -13,7 +13,7 @@ export default function Settings() {
 
 	useEffect(() => {
 		if (selectedLng) {
-			i18n.changeLanguage(selectedLng, (err) => {
+			i18n.changeLanguage(selectedLng.replace("-", "_"), (err) => {
 				if (err) console.log(err)
 			})
 			setLanguage(selectedLng)
@@ -25,9 +25,9 @@ export default function Settings() {
 			<ConfigBox
 				title={t("configs.language")}
 				isDropdown
-				dropdownData={LANGUAGES_CODES.map((lc) => ({
-					label: LANGUAGES_CODES_NAMES.get(lc) || lc,
-					value: lc,
+				dropdownData={LANGUAGES_CODES.map((langCode) => ({
+					label: LANGUAGES_MAP[langCode].name,
+					value: langCode,
 				}))}
 				onDropdownChange={setSelectedLng}
 				dropdownDefaultValue={selectedLng}

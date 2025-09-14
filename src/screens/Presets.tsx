@@ -56,7 +56,7 @@ export default function Presets({ navigation }: PresetsProps) {
 				minutes: parseStringToNumber(minutes),
 				seconds: parseStringToNumber(seconds),
 			},
-			timeIncrement: parseStringToNumber(timeIncrement),
+			timeIncrementMs: parseStringToNumber(timeIncrement) * 1000,
 		}
 
 		await postPreset(parsePresetToDatabasePreset(newPreset))
@@ -108,21 +108,19 @@ export default function Presets({ navigation }: PresetsProps) {
 				<FlatList
 					data={flatlistData}
 					keyExtractor={(item) => item.name}
-					renderItem={({ item }) => {
-						return (
-							<TouchableOpacity
-								onPress={() => handlePressItem(item)}
-								style={styles.flatlistItemContainer}
-								activeOpacity={0.75}
-							>
-								<ConfigBox
-									title={item.name}
-									isIcon
-									valueName={isEditing ? "delete" : "chevron-right"}
-								/>
-							</TouchableOpacity>
-						)
-					}}
+					renderItem={({ item }) => (
+						<TouchableOpacity
+							onPress={() => handlePressItem(item)}
+							style={styles.flatlistItemContainer}
+							activeOpacity={0.75}
+						>
+							<ConfigBox
+								title={item.name}
+								isIcon
+								valueName={isEditing ? "delete" : "chevron-right"}
+							/>
+						</TouchableOpacity>
+					)}
 				/>
 			</View>
 

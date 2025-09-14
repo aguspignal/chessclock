@@ -1,0 +1,30 @@
+{
+    "app-title": "Jam Catur",
+    "configs": {
+        "presets": "Waktu preset",
+        "presets-many": "Waktu preset",
+        "orientation": {
+            "title": "Orientasi jam",
+            "vertical": "Vertikal",
+            "horizontal": "Horizontal",
+            "orientation": "Orientasi"
+        },
+        "sound": "Suara",
+        "different-times": "Waktu berbeda",
+        "language": "Bahasa"
+    },
+    "actions": {
+        "cancel": "Batal",
+        "confirm": "Konfirmasi",
+        "delete": "Hapus",
+        "start": "Mulai permainan"
+    },
+    "increment": "Penambahan waktu",
+    "custom-preset": "Kustom",
+    "confirm-preset-deletion": "Apakah Anda yakin ingin menghapus preset ini",
+    "adjust-time-title": "Sesuaikan waktu",
+    "add-preset": "Tambahkan preset",
+    "new-preset-title": "Buat waktu preset baru",
+    "moves": "Langkah",
+    "settings": "Pengaturan"
+}

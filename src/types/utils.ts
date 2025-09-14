@@ -1,7 +1,7 @@
 export type Preset = {
 	name: string
 	time: PresetTime
-	timeIncrement: number
+	timeIncrementMs: number
 }
 
 export type PresetTime = {

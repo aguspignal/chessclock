@@ -1,0 +1,30 @@
+{
+    "app-title": "Oras ng Chess",
+    "configs": {
+        "presets": "Itinakdang oras",
+        "presets-many": "Mga itinakdang oras",
+        "orientation": {
+            "title": "Oryentasyon ng orasan",
+            "vertical": "Pataas-pababa",
+            "horizontal": "Pahalang",
+            "orientation": "Oryentasyon"
+        },
+        "sound": "Tinig",
+        "different-times": "Iba't ibang oras",
+        "language": "Wika"
+    },
+    "actions": {
+        "cancel": "Kanselahin",
+        "confirm": "Kumpirmahin",
+        "delete": "Tanggalin",
+        "start": "Simulan ang laro"
+    },
+    "increment": "Dagdag oras",
+    "custom-preset": "Pasadya",
+    "confirm-preset-deletion": "Sigurado ka bang gusto mong tanggalin ang preset na ito",
+    "adjust-time-title": "Ayusin ang oras",
+    "add-preset": "Magdagdag ng preset",
+    "new-preset-title": "Gumawa ng bagong preset na oras",
+    "moves": "Mga galaw",
+    "settings": "Mga setting"
+}

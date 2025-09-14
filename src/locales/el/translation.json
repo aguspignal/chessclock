@@ -1,0 +1,30 @@
+{
+    "app-title": "Ρολόι Σκακιού",
+    "configs": {
+        "presets": "Προεπιλεγμένος χρόνος",
+        "presets-many": "Προεπιλεγμένοι χρόνοι",
+        "orientation": {
+            "title": "Κατεύθυνση ρολογιού",
+            "vertical": "Κάθετη",
+            "horizontal": "Οριζόντια",
+            "orientation": "Κατεύθυνση"
+        },
+        "sound": "Ήχος",
+        "different-times": "Διαφορετικοί χρόνοι",
+        "language": "Γλώσσα"
+    },
+    "actions": {
+        "cancel": "Ακύρωση",
+        "confirm": "Επιβεβαίωση",
+        "delete": "Διαγραφή",
+        "start": "Έναρξη παιχνιδιού"
+    },
+    "increment": "Αύξηση χρόνου",
+    "custom-preset": "Προσαρμοσμένο",
+    "confirm-preset-deletion": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την προεπιλογή",
+    "adjust-time-title": "Ρύθμιση χρόνου",
+    "add-preset": "Προσθήκη προεπιλογής",
+    "new-preset-title": "Δημιουργία νέου προεπιλεγμένου χρόνου",
+    "moves": "Κινήσεις",
+    "settings": "Ρυθμίσεις"
+}

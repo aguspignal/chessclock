@@ -1,0 +1,30 @@
+{
+    "app-title": "ساعة الشطرنج",
+    "configs": {
+        "presets": "وقت محدد مسبقًا",
+        "presets-many": "أوقات محددة مسبقًا",
+        "orientation": {
+            "title": "اتجاه الساعة",
+            "vertical": "عمودي",
+            "horizontal": "أفقي",
+            "orientation": "الاتجاه"
+        },
+        "sound": "الصوت",
+        "different-times": "أوقات مختلفة",
+        "language": "اللغة"
+    },
+    "actions": {
+        "cancel": "إلغاء",
+        "confirm": "تأكيد",
+        "delete": "حذف",
+        "start": "بدء اللعبة"
+    },
+    "increment": "زيادة الوقت",
+    "custom-preset": "مخصص",
+    "confirm-preset-deletion": "هل أنت متأكد أنك تريد حذف هذا الوقت المحدد",
+    "adjust-time-title": "ضبط الوقت",
+    "add-preset": "إضافة وقت محدد",
+    "new-preset-title": "إنشاء وقت محدد جديد",
+    "moves": "الحركات",
+    "settings": "الإعدادات"
+}

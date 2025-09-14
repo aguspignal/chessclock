@@ -17,14 +17,14 @@
         "cancel": "Cancelar",
         "confirm": "Confirmar",
         "delete": "Excluir",
-        "start": "Iniciar"
+        "start": "Iniciar jogo"
     },
-    "increment": "Incremento",
+    "increment": "Incremento de tempo",
     "custom-preset": "Personalizado",
-    "confirm-preset-deletion": "Você tem certeza que deseja excluí-lo?",
+    "confirm-preset-deletion": "Tem certeza de que deseja excluir este preset",
     "adjust-time-title": "Ajustar tempo",
-    "add-preset": "Adicionar tempo",
-    "new-preset-title": "Criar um novo tempo",
+    "add-preset": "Adicionar preset",
+    "new-preset-title": "Criar novo tempo predefinido",
     "moves": "Movimentos",
     "settings": "Configurações"
 }

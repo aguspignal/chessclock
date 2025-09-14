@@ -1,25 +1,84 @@
+import {
+	translationAR,
+	translationBG,
+	translationBN,
+	translationCS,
+	translationDA,
+	translationDE,
+	translationEL,
+	translationEN,
+	translationEN_GB,
+	translationES,
+	translationET,
+	translationFR,
+	translationHE,
+	translationHI,
+	translationHR,
+	translationHU,
+	translationHY,
+	translationID,
+	translationIT,
+	translationJA,
+	translationKO,
+	translationNL,
+	translationPL,
+	translationPT_BR,
+	translationPT_PT,
+	translationRO,
+	translationRU,
+	translationSQ,
+	translationSR,
+	translationTH,
+	translationTL,
+	translationTR,
+	translationUK,
+	translationVI,
+	translationZH,
+	translationZH_TW,
+} from "./src/locales"
 import { initReactI18next } from "react-i18next"
 import i18next from "i18next"
-import translationBG from "./src/locales/bg/translation.json"
-import translationDE from "./src/locales/de/translation.json"
-import translationEN from "./src/locales/en/translation.json"
-import translationES from "./src/locales/es/translation.json"
-import translationFR from "./src/locales/fr/translation.json"
-import translationIT from "./src/locales/it/translation.json"
-import translationPT from "./src/locales/pt/translation.json"
-import translationSR from "./src/locales/sr/translation.json"
 
 i18next.use(initReactI18next).init({
 	resources: {
+		ar: { translation: translationAR },
 		bg: { translation: translationBG },
+		bn: { translation: translationBN },
+		cs: { translation: translationCS },
+		da: { translation: translationDA },
 		de: { translation: translationDE },
+		el: { translation: translationEL },
 		en: { translation: translationEN },
+		en_GB: { translation: translationEN_GB },
 		es: { translation: translationES },
+		et: { translation: translationET },
 		fr: { translation: translationFR },
+		he: { translation: translationHE },
+		hi: { translation: translationHI },
+		hr: { translation: translationHR },
+		hu: { translation: translationHU },
+		hy: { translation: translationHY },
+		id: { translation: translationID },
 		it: { translation: translationIT },
-		pt: { translation: translationPT },
+		ja: { translation: translationJA },
+		ko: { translation: translationKO },
+		nl: { translation: translationNL },
+		pl: { translation: translationPL },
+		pt_BR: { translation: translationPT_BR },
+		pt_PT: { translation: translationPT_PT },
+		ro: { translation: translationRO },
+		ru: { translation: translationRU },
+		sq: { translation: translationSQ },
 		sr: { translation: translationSR },
+		th: { translation: translationTH },
+		tl: { translation: translationTL },
+		tr: { translation: translationTR },
+		uk: { translation: translationUK },
+		vi: { translation: translationVI },
+		zh: { translation: translationZH },
+		zh_TW: { translation: translationZH_TW },
 	},
+
 	fallbackLng: "en",
 	debug: true,
 	interpolation: {

@@ -39,7 +39,7 @@ export default function Home({ navigation }: HomeProps) {
 	} = useConfigStore()
 
 	const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false)
-	const [incrementInput, setIncrementInput] = useState<string>(time.timeIncrement.toString())
+	const [incrementInput, setIncrementInput] = useState<string>(time.timeIncrementMs?.toString())
 	const [hours, setHours] = useState<string>("")
 	const [minutes, setMinutes] = useState<string>("")
 	const [seconds, setSeconds] = useState<string>("")
@@ -58,7 +58,7 @@ export default function Home({ navigation }: HomeProps) {
 				minutes: parseStringToNumber(minutes),
 				seconds: parseStringToNumber(seconds),
 			},
-			timeIncrement: time.timeIncrement,
+			timeIncrementMs: time.timeIncrementMs,
 		})
 		setIsTimeModalVisible(false)
 	}
@@ -71,7 +71,7 @@ export default function Home({ navigation }: HomeProps) {
 				minutes: parseStringToNumber(secondMinutes),
 				seconds: parseStringToNumber(secondSeconds),
 			},
-			timeIncrement: time.timeIncrement,
+			timeIncrementMs: time.timeIncrementMs,
 		})
 		setIsSecondTimeModalVisible(false)
 	}
@@ -139,11 +139,15 @@ export default function Home({ navigation }: HomeProps) {
 											? setIncrementInput("59")
 											: setIncrementInput(t)
 										Number(t) > 59
-											? setIncrement(59)
-											: setIncrement(parseStringToNumber(t))
+											? setIncrement(59000)
+											: setIncrement(parseStringToNumber(t) * 1000)
 										time.name !== "Custom" ? setName("Custom") : null
 									}}
-									value={incrementInput}
+									value={
+										time.name === "Custom"
+											? incrementInput
+											: (time.timeIncrementMs / 1000).toString()
+									}
 									maxLength={2}
 									placeholder="0"
 									placeholderTextColor={theme.colors.grayDark}
@@ -176,13 +180,17 @@ export default function Home({ navigation }: HomeProps) {
 												? setSecondIncrementInput("59")
 												: setSecondIncrementInput(t)
 											Number(t) > 59
-												? setSecondIncrement(59)
-												: setSecondIncrement(parseStringToNumber(t))
+												? setSecondIncrement(59000)
+												: setSecondIncrement(parseStringToNumber(t) * 1000)
 											secondTime.name !== "Custom"
 												? setSecondName("Custom")
 												: null
 										}}
-										value={secondIncrementInput}
+										value={
+											secondTime.name === "Custom"
+												? secondIncrementInput
+												: (secondTime.timeIncrementMs / 1000).toString()
+										}
 										maxLength={2}
 										placeholder="0"
 										placeholderTextColor={theme.colors.grayDark}

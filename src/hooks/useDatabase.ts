@@ -13,13 +13,13 @@ export default function useDatabase() {
 
 	async function postPreset(preset: DatabasePreset): Promise<void> {
 		db.runAsync(
-			"INSERT INTO Presets (name, hours, minutes, seconds, timeIncrement) VALUES ($n, $h, $m, $s, $ti)",
+			"INSERT INTO Presets (name, hours, minutes, seconds, timeIncrementMs) VALUES ($n, $h, $m, $s, $ti)",
 			{
 				$n: preset.name,
 				$h: preset.hours,
 				$m: preset.minutes,
 				$s: preset.seconds,
-				$ti: preset.timeIncrement,
+				$ti: preset.timeIncrementMs,
 			},
 		).catch((e) => console.log(e))
 	}

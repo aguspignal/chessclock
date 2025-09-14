@@ -1,0 +1,30 @@
+{
+    "app-title": "체스 시계",
+    "configs": {
+        "presets": "미리 설정된 시간",
+        "presets-many": "미리 설정된 시간들",
+        "orientation": {
+            "title": "시계 방향",
+            "vertical": "세로",
+            "horizontal": "가로",
+            "orientation": "방향"
+        },
+        "sound": "소리",
+        "different-times": "다른 시간",
+        "language": "언어"
+    },
+    "actions": {
+        "cancel": "취소",
+        "confirm": "확인",
+        "delete": "삭제",
+        "start": "게임 시작"
+    },
+    "increment": "시간 증가",
+    "custom-preset": "사용자 정의",
+    "confirm-preset-deletion": "이 프리셋을 삭제하시겠습니까",
+    "adjust-time-title": "시간 조정",
+    "add-preset": "프리셋 추가",
+    "new-preset-title": "새 프리셋 시간 만들기",
+    "moves": "수",
+    "settings": "설정"
+}

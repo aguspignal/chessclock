@@ -1,0 +1,30 @@
+{
+    "app-title": "นาฬิกาหมากรุก",
+    "configs": {
+        "presets": "เวลาที่ตั้งไว้ล่วงหน้า",
+        "presets-many": "เวลาที่ตั้งไว้หลายค่า",
+        "orientation": {
+            "title": "การวางแนวของนาฬิกา",
+            "vertical": "แนวตั้ง",
+            "horizontal": "แนวนอน",
+            "orientation": "การวางแนว"
+        },
+        "sound": "เสียง",
+        "different-times": "เวลาที่ต่างกัน",
+        "language": "ภาษา"
+    },
+    "actions": {
+        "cancel": "ยกเลิก",
+        "confirm": "ยืนยัน",
+        "delete": "ลบ",
+        "start": "เริ่มเกม"
+    },
+    "increment": "การเพิ่มเวลา",
+    "custom-preset": "กำหนดเอง",
+    "confirm-preset-deletion": "คุณแน่ใจหรือว่าต้องการลบการตั้งค่านี้",
+    "adjust-time-title": "ปรับเวลา",
+    "add-preset": "เพิ่มการตั้งค่า",
+    "new-preset-title": "สร้างเวลาที่ตั้งค่าใหม่",
+    "moves": "การเดิน",
+    "settings": "การตั้งค่า"
+}
