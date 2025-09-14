@@ -50,12 +50,10 @@ export default function PlayerClock({
 				<View style={[horizontalOrientationTextStyle, styles.alignCenter]}>
 					<Text style={[styles.timer, playerClock < 3600000 ? styles.biggerText : null]}>
 						{parseTimeFromMilliseconds(playerClock)}
+
 						<Text style={styles.miliseconds}>{`.${parseTimeToMilisecondsString(
 							playerClock,
 						)}`}</Text>
-						{/* {`${parseTimeFromMilliseconds(playerClock)}.${parseTimeToMilisecondsString(
-							playerClock,
-						)}`} */}
 					</Text>
 
 					<Text style={[styles.extraInfoText]}>

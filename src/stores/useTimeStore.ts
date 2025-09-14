@@ -31,7 +31,7 @@ export const useTimeStore = create<State>()(
 							minutes: state.time.time.minutes,
 							seconds: state.time.time.seconds,
 						},
-						timeIncrement: state.time.timeIncrement,
+						timeIncrementMs: state.time.timeIncrementMs,
 					},
 				})),
 			setIncrement: (inc) => {
@@ -43,7 +43,7 @@ export const useTimeStore = create<State>()(
 							minutes: state.time.time.minutes,
 							seconds: state.time.time.seconds,
 						},
-						timeIncrement: inc,
+						timeIncrementMs: inc,
 					},
 				}))
 			},
@@ -79,7 +79,7 @@ export const useSecondTimeStore = create<SecondState>()((set) => ({
 					minutes: state.secondTime.time.minutes,
 					seconds: state.secondTime.time.seconds,
 				},
-				timeIncrement: state.secondTime.timeIncrement,
+				timeIncrementMs: state.secondTime.timeIncrementMs,
 			},
 		})),
 	setSecondIncrement: (inc) => {
@@ -91,7 +91,7 @@ export const useSecondTimeStore = create<SecondState>()((set) => ({
 					minutes: state.secondTime.time.minutes,
 					seconds: state.secondTime.time.seconds,
 				},
-				timeIncrement: inc,
+				timeIncrementMs: inc,
 			},
 		}))
 	},

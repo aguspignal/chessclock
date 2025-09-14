@@ -90,14 +90,14 @@ export function orderPresetsByDuration(presets: Preset[]): Preset[] {
 			a.time.hours - b.time.hours ||
 			a.time.minutes - b.time.minutes ||
 			a.time.seconds - b.time.seconds ||
-			a.timeIncrement - b.timeIncrement,
+			a.timeIncrementMs - b.timeIncrementMs,
 	)
 }
 
 export function parseJSONPresetsToQueryValue(presets: Preset[]) {
 	return presets.map(
 		(p) =>
-			`('${p.name}', ${p.time.hours}, ${p.time.minutes}, ${p.time.seconds}, ${p.timeIncrement})`,
+			`('${p.name}', ${p.time.hours}, ${p.time.minutes}, ${p.time.seconds}, ${p.timeIncrementMs})`,
 	)
 }
 
@@ -110,7 +110,7 @@ export function parseDatabasePresetsArray(dbPresets: DatabasePreset[]) {
 				minutes: p.minutes,
 				seconds: p.seconds,
 			},
-			timeIncrement: p.timeIncrement,
+			timeIncrementMs: p.timeIncrementMs,
 		}
 		return preset
 	})
@@ -124,7 +124,7 @@ export function parseDatabasePreset(dbPreset: DatabasePreset) {
 			minutes: dbPreset.minutes,
 			seconds: dbPreset.seconds,
 		},
-		timeIncrement: dbPreset.timeIncrement,
+		timeIncrementMs: dbPreset.timeIncrementMs,
 	}
 	return preset
 }
@@ -135,7 +135,7 @@ export function parsePresetToDatabasePreset(preset: Preset) {
 		hours: preset.time.hours,
 		minutes: preset.time.minutes,
 		seconds: preset.time.seconds,
-		timeIncrement: preset.timeIncrement,
+		timeIncrementMs: preset.timeIncrementMs,
 	}
 	return dbPreset
 }

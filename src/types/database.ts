@@ -9,5 +9,5 @@ export type DatabasePreset = {
 	hours: number
 	minutes: number
 	seconds: number
-	timeIncrement: number
+	timeIncrementMs: number
 }

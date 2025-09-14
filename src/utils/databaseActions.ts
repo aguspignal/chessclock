@@ -20,12 +20,13 @@ export async function onSQLiteProviderInit(db: SQLiteDatabase) {
 				(id INTEGER PRIMARY KEY NOT NULL, 
 				name TEXT NOT NULL, 
 				hours INTEGER NOT NULL, 
-				minutes INTEGER NOT NULL, seconds INTEGER NOT NULL, 
-				timeIncrement INTEGER NOT NULL);
+				minutes INTEGER NOT NULL, 
+				seconds INTEGER NOT NULL, 
+				timeIncrementMs INTEGER NOT NULL);
 		`)
 		await db.execAsync(`
 			INSERT INTO Presets 
-				(name, hours, minutes, seconds, timeIncrement) 
+				(name, hours, minutes, seconds, timeIncrementMs) 
 			VALUES
 				${parseJSONPresetsToQueryValue(presets)}
 		`)
