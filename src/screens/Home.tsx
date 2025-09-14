@@ -186,7 +186,11 @@ export default function Home({ navigation }: HomeProps) {
 												? setSecondName("Custom")
 												: null
 										}}
-										value={secondIncrementInput}
+										value={
+											secondTime.name === "Custom"
+												? secondIncrementInput
+												: (secondTime.timeIncrementMs / 1000).toString()
+										}
 										maxLength={2}
 										placeholder="0"
 										placeholderTextColor={theme.colors.grayDark}
