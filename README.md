@@ -1,6 +1,6 @@
 # Chess Clock
 
-Developed with Expo React Native
+### Developed with Expo React Native
 
 ![en_home1](https://github.com/user-attachments/assets/abe4d8b2-2e81-4598-a347-18342824c575)
 ![en_clock1](https://github.com/user-attachments/assets/1fea8250-8def-4951-b1e2-938c4b4a528e)
