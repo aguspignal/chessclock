@@ -13,7 +13,7 @@ export default function Main() {
 		console.log(locales)
 
 		if (language) {
-			i18next.changeLanguage(language, (err) => {
+			i18next.changeLanguage(language.replace("-", "_"), (err) => {
 				if (err) return console.log("Something went wrong loading language", err)
 			})
 		} else {

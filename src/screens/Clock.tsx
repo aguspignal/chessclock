@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react"
 import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
+import { useKeepAwake } from "expo-keep-awake"
 
 const audioSource = require("../../assets/click.mp3")
 
@@ -21,6 +22,7 @@ export default function Clock({ navigation }: ClockProps) {
 	} = useSecondTimeStore()
 	const { orientation, soundEnabled, withDifferentTimes } = useConfigStore()
 	const audioPlayer = useAudioPlayer(audioSource)
+	useKeepAwake()
 
 	const intervalId = useRef<NodeJS.Timeout | undefined>(undefined)
 	const lastUpdateTime = useRef<number>(0)
@@ -59,7 +61,9 @@ export default function Clock({ navigation }: ClockProps) {
 		setIsBottomPlaying(false)
 
 		setTopPlayerClock(timeInMilliseconds)
-		setBottomPlayerClock(withDifferentTimes ? secondTimeInMilliseconds : timeInMilliseconds)
+		setBottomPlayerClock(
+			withDifferentTimes ? secondTimeInMilliseconds : timeInMilliseconds,
+		)
 
 		setTopPlayerCount(0)
 		setBottomPlayerCount(0)
@@ -88,7 +92,9 @@ export default function Clock({ navigation }: ClockProps) {
 			stopAllTimers()
 
 			setBottomPlayerClock((prev) =>
-				withDifferentTimes ? prev + secondTimeIncrement : prev + timeIncrementMs,
+				withDifferentTimes
+					? prev + secondTimeIncrement
+					: prev + timeIncrementMs,
 			)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
@@ -178,9 +184,13 @@ export default function Clock({ navigation }: ClockProps) {
 
 				<IconButton
 					onPress={handleStartPause}
-					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
+					iconName={
+						isTopPlaying || isBottomPlaying ? "pause" : "play"
+					}
 					iconSize={theme.fontSize.h2}
-					style={orientation === "Horizontal" ? styles.rotate90deg : null}
+					style={
+						orientation === "Horizontal" ? styles.rotate90deg : null
+					}
 				/>
 
 				<IconButton
