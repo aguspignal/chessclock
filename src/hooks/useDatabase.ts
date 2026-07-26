@@ -1,4 +1,4 @@
-import { DatabasePreset } from "../types/database"
+import { DatabasePreset, NewDatabasePreset } from "../types/database"
 import { parseDatabasePresetsArray } from "../utils/parsing"
 import { Preset } from "../types/utils"
 import { useSQLiteContext } from "expo-sqlite"
@@ -11,9 +11,11 @@ export default function useDatabase() {
 		return parseDatabasePresetsArray(presets)
 	}
 
-	async function postPreset(preset: DatabasePreset): Promise<void> {
-		db.runAsync(
-			"INSERT INTO Presets (name, hours, minutes, seconds, timeIncrementMs) VALUES ($n, $h, $m, $s, $ti)",
+	// Saving a duration that already exists is not an error: the unique index
+	// turns the insert into a no-op and the existing row stays as it is.
+	async function postPreset(preset: NewDatabasePreset): Promise<void> {
+		await db.runAsync(
+			"INSERT OR IGNORE INTO Presets (name, hours, minutes, seconds, timeIncrementMs) VALUES ($n, $h, $m, $s, $ti)",
 			{
 				$n: preset.name,
 				$h: preset.hours,
@@ -21,11 +23,11 @@ export default function useDatabase() {
 				$s: preset.seconds,
 				$ti: preset.timeIncrementMs,
 			},
-		).catch((e) => console.log(e))
+		)
 	}
 
-	async function deletePreset(preset: Preset): Promise<void> {
-		db.runAsync("DELETE FROM Presets WHERE name = ?", preset.name).catch((e) => console.log(e))
+	async function deletePreset(id: number): Promise<void> {
+		await db.runAsync("DELETE FROM Presets WHERE id = ?", id)
 	}
 
 	return {

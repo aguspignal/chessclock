@@ -1,4 +1,7 @@
 export type Preset = {
+	// Only set on presets read from the database — the stores and the bundled
+	// defaults have none.
+	id?: number
 	name: string
 	time: PresetTime
 	timeIncrementMs: number

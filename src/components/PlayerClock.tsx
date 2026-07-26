@@ -4,9 +4,11 @@ import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
 import { useTranslation } from "react-i18next"
+import Icon from "@expo/vector-icons/MaterialCommunityIcons"
 
 type Props = {
 	isTopPlayer: boolean
+	isGameOver: boolean
 	isPlaying: boolean
 	onMove: (topPlayerMoved: boolean) => void
 	movesCount: number
@@ -15,6 +17,7 @@ type Props = {
 
 export default function PlayerClock({
 	isTopPlayer,
+	isGameOver,
 	isPlaying,
 	onMove,
 	movesCount,
@@ -40,14 +43,22 @@ export default function PlayerClock({
 			? styles.yellowBg
 			: styles.greenBg
 
+	const hasWon = isGameOver && playerClock > 0
+
 	return (
 		<TouchableOpacity
 			onPress={() => onMove(isTopPlayer)}
 			style={[styles.container]}
-			activeOpacity={0.9}
+			activeOpacity={isGameOver ? 1 : 0.9}
 		>
 			<View style={[styles.clockContainer, clockColorStyle, verticalOrientationStyle]}>
 				<View style={[horizontalOrientationTextStyle, styles.alignCenter]}>
+					<Icon
+						name="crown"
+						size={theme.fontSize.h3}
+						color={hasWon ? theme.colors.textDark : "transparent"}
+					/>
+
 					<Text style={[styles.timer, playerClock < 3600000 ? styles.biggerText : null]}>
 						{parseTimeFromMilliseconds(playerClock)}
 

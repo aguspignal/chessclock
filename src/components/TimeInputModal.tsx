@@ -57,6 +57,7 @@ export default function TimeInputModal({
 							placeholder="00"
 							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
+							selectTextOnFocus
 						/>
 					</View>
 
@@ -73,6 +74,7 @@ export default function TimeInputModal({
 							placeholder="00"
 							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
+							selectTextOnFocus
 						/>
 					</View>
 
@@ -89,6 +91,7 @@ export default function TimeInputModal({
 							placeholder="00"
 							placeholderTextColor={theme.colors.textDark}
 							keyboardType="numeric"
+							selectTextOnFocus
 						/>
 					</View>
 				</View>
@@ -107,6 +110,7 @@ export default function TimeInputModal({
 								placeholder="0"
 								placeholderTextColor={theme.colors.grayDark}
 								keyboardType="numeric"
+								selectTextOnFocus
 							/>
 						</View>
 					</View>

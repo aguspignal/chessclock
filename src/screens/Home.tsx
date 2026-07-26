@@ -1,8 +1,10 @@
 import {
+	isEmptyTime,
 	parseHoursToText,
-	parseStringToNumber,
 	parseMinutesToText,
+	parseNumberToTimeInput,
 	parseSecondsToText,
+	parseStringToNumber,
 } from "../utils/parsing"
 import {
 	KeyboardAvoidingView,
@@ -27,8 +29,14 @@ import TimeInputModal from "../components/TimeInputModal"
 export default function Home({ navigation }: HomeProps) {
 	const { t } = useTranslation()
 	const headerHeight = useHeaderHeight()
-	const { time, setTime, setName, setIncrement } = useTimeStore()
-	const { secondTime, setSecondTime, setSecondName, setSecondIncrement } = useSecondTimeStore()
+	const { time, timeInMilliseconds, setTime, setName, setIncrement } = useTimeStore()
+	const {
+		secondTime,
+		secondTimeInMilliseconds,
+		setSecondTime,
+		setSecondName,
+		setSecondIncrement,
+	} = useSecondTimeStore()
 	const {
 		orientation,
 		setOrientation,
@@ -50,28 +58,55 @@ export default function Home({ navigation }: HomeProps) {
 	const [secondMinutes, setSecondMinutes] = useState<string>("")
 	const [secondSeconds, setSecondSeconds] = useState<string>("")
 
+	// A clock that starts at zero has nothing to play — this also covers times
+	// persisted as 00:00:00 by an earlier version.
+	const isStartDisabled =
+		timeInMilliseconds === 0 || (withDifferentTimes && secondTimeInMilliseconds === 0)
+
+	// Seeding the inputs from the current time keeps a blank confirm from meaning
+	// 00:00:00, and clears whatever was typed the last time the modal was open.
+	function handleOpenTimeModal() {
+		setHours(parseNumberToTimeInput(time.time.hours))
+		setMinutes(parseNumberToTimeInput(time.time.minutes))
+		setSeconds(parseNumberToTimeInput(time.time.seconds))
+		setIsTimeModalVisible(true)
+	}
+
+	function handleOpenSecondTimeModal() {
+		setSecondHours(parseNumberToTimeInput(secondTime.time.hours))
+		setSecondMinutes(parseNumberToTimeInput(secondTime.time.minutes))
+		setSecondSeconds(parseNumberToTimeInput(secondTime.time.seconds))
+		setIsSecondTimeModalVisible(true)
+	}
+
 	function handleSaveModal() {
+		const newTime = {
+			hours: parseStringToNumber(hours),
+			minutes: parseStringToNumber(minutes),
+			seconds: parseStringToNumber(seconds),
+		}
+		if (isEmptyTime(newTime)) return
+
 		setTime({
 			name: "Custom",
-			time: {
-				hours: parseStringToNumber(hours),
-				minutes: parseStringToNumber(minutes),
-				seconds: parseStringToNumber(seconds),
-			},
+			time: newTime,
 			timeIncrementMs: time.timeIncrementMs,
 		})
 		setIsTimeModalVisible(false)
 	}
 
 	function handleSaveSecondModal() {
+		const newSecondTime = {
+			hours: parseStringToNumber(secondHours),
+			minutes: parseStringToNumber(secondMinutes),
+			seconds: parseStringToNumber(secondSeconds),
+		}
+		if (isEmptyTime(newSecondTime)) return
+
 		setSecondTime({
 			name: "Custom",
-			time: {
-				hours: parseStringToNumber(secondHours),
-				minutes: parseStringToNumber(secondMinutes),
-				seconds: parseStringToNumber(secondSeconds),
-			},
-			timeIncrementMs: time.timeIncrementMs,
+			time: newSecondTime,
+			timeIncrementMs: secondTime.timeIncrementMs,
 		})
 		setIsSecondTimeModalVisible(false)
 	}
@@ -84,9 +119,35 @@ export default function Home({ navigation }: HomeProps) {
 				style={styles.keyboardviewContainer}
 			>
 				<View>
-					<TouchableOpacity onPress={() => navigation.navigate("Presets")}>
-						<ConfigBox title={t("configs.presets")} valueName={time.name} />
-					</TouchableOpacity>
+					{withDifferentTimes ? (
+						<>
+							<TouchableOpacity
+								onPress={() =>
+									navigation.navigate("Presets", { target: "primary" })
+								}
+							>
+								<ConfigBox
+									title={`${t("configs.presets")} 1`}
+									valueName={time.name}
+								/>
+							</TouchableOpacity>
+
+							<TouchableOpacity
+								onPress={() => navigation.navigate("Presets", { target: "second" })}
+							>
+								<ConfigBox
+									title={`${t("configs.presets")} 2`}
+									valueName={secondTime.name}
+								/>
+							</TouchableOpacity>
+						</>
+					) : (
+						<TouchableOpacity
+							onPress={() => navigation.navigate("Presets", { target: "both" })}
+						>
+							<ConfigBox title={t("configs.presets")} valueName={time.name} />
+						</TouchableOpacity>
+					)}
 
 					<ConfigBox
 						title={t("configs.orientation.orientation")}
@@ -119,7 +180,7 @@ export default function Home({ navigation }: HomeProps) {
 
 					<View style={styles.timeConfigContainer}>
 						<TouchableOpacity
-							onPress={() => setIsTimeModalVisible(true)}
+							onPress={handleOpenTimeModal}
 							style={styles.clockContainer}
 						>
 							<View style={styles.timeContainer}>
@@ -160,7 +221,7 @@ export default function Home({ navigation }: HomeProps) {
 					{withDifferentTimes ? (
 						<View style={styles.timeConfigContainer}>
 							<TouchableOpacity
-								onPress={() => setIsSecondTimeModalVisible(true)}
+								onPress={handleOpenSecondTimeModal}
 								style={styles.clockContainer}
 							>
 								<View style={styles.timeContainer}>
@@ -207,7 +268,8 @@ export default function Home({ navigation }: HomeProps) {
 				<View style={styles.startBtnContainer}>
 					<TouchableOpacity
 						onPress={() => navigation.navigate("Clock")}
-						style={styles.startBtn}
+						disabled={isStartDisabled}
+						style={[styles.startBtn, isStartDisabled ? styles.startBtnDisabled : null]}
 						activeOpacity={0.8}
 					>
 						<Text style={styles.startBtnText}>{t("actions.start")}</Text>
@@ -281,6 +343,9 @@ const styles = StyleSheet.create({
 		marginVertical: theme.spacing.xxl,
 		paddingHorizontal: theme.spacing.m,
 		paddingVertical: theme.spacing.s,
+	},
+	startBtnDisabled: {
+		opacity: 0.4,
 	},
 	startBtnText: {
 		fontSize: theme.fontSize.xl,

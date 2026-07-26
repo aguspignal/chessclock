@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react"
 import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
 import IconButton from "../components/IconButton"
 import PlayerClock from "../components/PlayerClock"
+import { useKeepAwake } from "expo-keep-awake"
 
 const audioSource = require("../../assets/click.mp3")
 
@@ -21,6 +22,7 @@ export default function Clock({ navigation }: ClockProps) {
 	} = useSecondTimeStore()
 	const { orientation, soundEnabled, withDifferentTimes } = useConfigStore()
 	const audioPlayer = useAudioPlayer(audioSource)
+	useKeepAwake()
 
 	const intervalId = useRef<NodeJS.Timeout | undefined>(undefined)
 	const lastUpdateTime = useRef<number>(0)
@@ -38,12 +40,40 @@ export default function Clock({ navigation }: ClockProps) {
 	const [bottomPlayerCount, setBottomPlayerCount] = useState<number>(0)
 	const [lastMoveWasTop, setLastMoveWasTop] = useState<boolean>(false)
 
+	// Which side was running when the clock was paused; null whenever it isn't paused.
+	const [pausedPlayerIsTop, setPausedPlayerIsTop] = useState<boolean | null>(
+		null,
+	)
+
+	// Derived, never stored: a fallen flag ends the game until the clock is restarted.
+	const isGameOver = topPlayerClock <= 0 || bottomPlayerClock <= 0
+	const isPaused = pausedPlayerIsTop !== null
+
 	function handleStartPause() {
+		if (isGameOver) return
+
 		if (isTopPlaying || isBottomPlaying) {
-			stopAllTimers()
+			pauseClock()
 		} else {
-			lastMoveWasTop ? startBottomPlayerTimer() : startTopPlayerTimer()
+			resumeClock()
 		}
+	}
+
+	function pauseClock() {
+		stopAllTimers()
+		setPausedPlayerIsTop(isTopPlaying)
+		setIsTopPlaying(false)
+		setIsBottomPlaying(false)
+	}
+
+	function resumeClock() {
+		if (pausedPlayerIsTop === null) {
+			// Nothing to resume — this is the opening move of the game.
+			lastMoveWasTop ? startBottomPlayerTimer() : startTopPlayerTimer()
+			return
+		}
+
+		pausedPlayerIsTop ? startTopPlayerTimer() : startBottomPlayerTimer()
 	}
 
 	function stopAllTimers() {
@@ -57,9 +87,12 @@ export default function Clock({ navigation }: ClockProps) {
 		stopAllTimers()
 		setIsTopPlaying(false)
 		setIsBottomPlaying(false)
+		setPausedPlayerIsTop(null)
 
 		setTopPlayerClock(timeInMilliseconds)
-		setBottomPlayerClock(withDifferentTimes ? secondTimeInMilliseconds : timeInMilliseconds)
+		setBottomPlayerClock(
+			withDifferentTimes ? secondTimeInMilliseconds : timeInMilliseconds,
+		)
 
 		setTopPlayerCount(0)
 		setBottomPlayerCount(0)
@@ -74,6 +107,15 @@ export default function Clock({ navigation }: ClockProps) {
 	}
 
 	function handleMove(topPlayerMoved: boolean) {
+		if (isGameOver) return
+
+		// While paused a tap resumes the side that was running — it never hands
+		// the turn to whichever half happened to be tapped.
+		if (isPaused) {
+			resumeClock()
+			return
+		}
+
 		if (topPlayerMoved && isTopPlaying) {
 			playMoveSound()
 			stopAllTimers()
@@ -88,7 +130,9 @@ export default function Clock({ navigation }: ClockProps) {
 			stopAllTimers()
 
 			setBottomPlayerClock((prev) =>
-				withDifferentTimes ? prev + secondTimeIncrement : prev + timeIncrementMs,
+				withDifferentTimes
+					? prev + secondTimeIncrement
+					: prev + timeIncrementMs,
 			)
 			setBottomPlayerCount((prev) => prev + 1)
 			setLastMoveWasTop(false)
@@ -100,11 +144,12 @@ export default function Clock({ navigation }: ClockProps) {
 	}
 
 	function startTopPlayerTimer() {
-		if (isTopPlaying || topPlayerClock <= 0) return
+		if (isGameOver || isTopPlaying) return
 
 		stopAllTimers()
 		setIsTopPlaying(true)
 		setIsBottomPlaying(false)
+		setPausedPlayerIsTop(null)
 		lastUpdateTime.current = Date.now()
 
 		const id = setInterval(() => {
@@ -112,27 +157,20 @@ export default function Clock({ navigation }: ClockProps) {
 			const deltaTime = now - lastUpdateTime.current
 			lastUpdateTime.current = now
 
-			setTopPlayerClock((prev) => {
-				const newTime = Math.max(0, prev - deltaTime)
-
-				if (newTime <= 0) {
-					stopAllTimers()
-					setIsTopPlaying(false)
-					return 0
-				}
-				return newTime
-			})
+			// Keep the updater pure — reaching 0 is handled by the game-over effect.
+			setTopPlayerClock((prev) => Math.max(0, prev - deltaTime))
 		}, UPDATE_INTERVAL)
 
 		intervalId.current = id
 	}
 
 	function startBottomPlayerTimer() {
-		if (isBottomPlaying || bottomPlayerClock <= 0) return
+		if (isGameOver || isBottomPlaying) return
 
 		stopAllTimers()
 		setIsBottomPlaying(true)
 		setIsTopPlaying(false)
+		setPausedPlayerIsTop(null)
 		lastUpdateTime.current = Date.now()
 
 		const id = setInterval(() => {
@@ -140,20 +178,20 @@ export default function Clock({ navigation }: ClockProps) {
 			const deltaTime = now - lastUpdateTime.current
 			lastUpdateTime.current = now
 
-			setBottomPlayerClock((prev) => {
-				const newTime = Math.max(0, prev - deltaTime)
-
-				if (newTime <= 0) {
-					stopAllTimers()
-					setIsBottomPlaying(false)
-					return 0
-				}
-				return newTime
-			})
+			// Keep the updater pure — reaching 0 is handled by the game-over effect.
+			setBottomPlayerClock((prev) => Math.max(0, prev - deltaTime))
 		}, UPDATE_INTERVAL)
 
 		intervalId.current = id
 	}
+
+	useEffect(() => {
+		if (!isGameOver) return
+
+		stopAllTimers()
+		setIsTopPlaying(false)
+		setIsBottomPlaying(false)
+	}, [isGameOver])
 
 	useEffect(() => {
 		return () => stopAllTimers()
@@ -163,6 +201,7 @@ export default function Clock({ navigation }: ClockProps) {
 		<View style={styles.container}>
 			<PlayerClock
 				isTopPlayer
+				isGameOver={isGameOver}
 				isPlaying={isTopPlaying}
 				onMove={handleMove}
 				playerClock={topPlayerClock}
@@ -178,9 +217,18 @@ export default function Clock({ navigation }: ClockProps) {
 
 				<IconButton
 					onPress={handleStartPause}
-					iconName={isTopPlaying || isBottomPlaying ? "pause" : "play"}
+					iconName={
+						isTopPlaying || isBottomPlaying ? "pause" : "play"
+					}
 					iconSize={theme.fontSize.h2}
-					style={orientation === "Horizontal" ? styles.rotate90deg : null}
+					iconColor={
+						isGameOver
+							? theme.colors.grayDark
+							: theme.colors.textLight
+					}
+					style={
+						orientation === "Horizontal" ? styles.rotate90deg : null
+					}
 				/>
 
 				<IconButton
@@ -192,6 +240,7 @@ export default function Clock({ navigation }: ClockProps) {
 
 			<PlayerClock
 				isTopPlayer={false}
+				isGameOver={isGameOver}
 				isPlaying={isBottomPlaying}
 				onMove={handleMove}
 				playerClock={bottomPlayerClock}

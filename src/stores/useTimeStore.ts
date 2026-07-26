@@ -63,36 +63,44 @@ type SecondState = {
 	setSecondIncrement: (inc: number) => void
 }
 
-export const useSecondTimeStore = create<SecondState>()((set) => ({
-	secondTime: defaultpresets[0],
-	secondTimeInMilliseconds: getTimeInMillisecondsFromPreset(defaultpresets[0]),
-	setSecondTime: (t) => {
-		set({ secondTime: t })
-		set({ secondTimeInMilliseconds: getTimeInMillisecondsFromPreset(t) })
-	},
-	setSecondName: (n) =>
-		set((state) => ({
-			secondTime: {
-				name: n,
-				time: {
-					hours: state.secondTime.time.hours,
-					minutes: state.secondTime.time.minutes,
-					seconds: state.secondTime.time.seconds,
-				},
-				timeIncrementMs: state.secondTime.timeIncrementMs,
+export const useSecondTimeStore = create<SecondState>()(
+	persist(
+		(set) => ({
+			secondTime: defaultpresets[0],
+			secondTimeInMilliseconds: getTimeInMillisecondsFromPreset(defaultpresets[0]),
+			setSecondTime: (t) => {
+				set({ secondTime: t })
+				set({ secondTimeInMilliseconds: getTimeInMillisecondsFromPreset(t) })
 			},
-		})),
-	setSecondIncrement: (inc) => {
-		set((state) => ({
-			secondTime: {
-				name: state.secondTime.name,
-				time: {
-					hours: state.secondTime.time.hours,
-					minutes: state.secondTime.time.minutes,
-					seconds: state.secondTime.time.seconds,
-				},
-				timeIncrementMs: inc,
+			setSecondName: (n) =>
+				set((state) => ({
+					secondTime: {
+						name: n,
+						time: {
+							hours: state.secondTime.time.hours,
+							minutes: state.secondTime.time.minutes,
+							seconds: state.secondTime.time.seconds,
+						},
+						timeIncrementMs: state.secondTime.timeIncrementMs,
+					},
+				})),
+			setSecondIncrement: (inc) => {
+				set((state) => ({
+					secondTime: {
+						name: state.secondTime.name,
+						time: {
+							hours: state.secondTime.time.hours,
+							minutes: state.secondTime.time.minutes,
+							seconds: state.secondTime.time.seconds,
+						},
+						timeIncrementMs: inc,
+					},
+				}))
 			},
-		}))
-	},
-}))
+		}),
+		{
+			name: "second-time-store",
+			storage: createJSONStorage(() => AsyncStorage),
+		},
+	),
+)

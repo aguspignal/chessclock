@@ -17,11 +17,13 @@ import IconButton from "../components/IconButton"
 import TimeInputModal from "../components/TimeInputModal"
 import useDatabase from "../hooks/useDatabase"
 
-export default function Presets({ navigation }: PresetsProps) {
+export default function Presets({ navigation, route }: PresetsProps) {
 	const { t } = useTranslation()
 	const { getAllPresets, postPreset, deletePreset } = useDatabase()
 	const { setTime } = useTimeStore()
 	const { setSecondTime } = useSecondTimeStore()
+
+	const target = route.params?.target ?? "both"
 
 	const [isEditing, setIsEditing] = useState<boolean>(false)
 	const [flatlistData, setFlatlistData] = useState<Preset[]>([])
@@ -35,14 +37,18 @@ export default function Presets({ navigation }: PresetsProps) {
 	const [timeIncrement, setTimeIncrement] = useState<string>("")
 
 	function handleSelectPreset(preset: Preset) {
-		setTime(preset)
-		setSecondTime(preset)
+		if (target !== "second") setTime(preset)
+		if (target !== "primary") setSecondTime(preset)
 		navigation.popToTop()
 	}
 
 	async function refreshFlatlist() {
-		const presets = await getAllPresets()
-		setFlatlistData(orderPresetsByDuration(presets))
+		try {
+			const presets = await getAllPresets()
+			setFlatlistData(orderPresetsByDuration(presets))
+		} catch (e) {
+			console.log("Something went wrong loading the presets", e)
+		}
 	}
 
 	async function handleSaveTimeModal() {
@@ -59,8 +65,15 @@ export default function Presets({ navigation }: PresetsProps) {
 			timeIncrementMs: parseStringToNumber(timeIncrement) * 1000,
 		}
 
-		await postPreset(parsePresetToDatabasePreset(newPreset))
-		refreshFlatlist()
+		try {
+			await postPreset(parsePresetToDatabasePreset(newPreset))
+		} catch (e) {
+			// Leave the modal open with the typed values so the save can be retried.
+			console.log("Something went wrong saving the preset", e)
+			return
+		}
+
+		await refreshFlatlist()
 		setTimeModalVisible(false)
 	}
 
@@ -74,10 +87,16 @@ export default function Presets({ navigation }: PresetsProps) {
 	}
 
 	async function handleConfirmDeletion() {
-		if (!selectedItem) return
+		if (selectedItem?.id === undefined) return
 
-		await deletePreset(selectedItem)
-		refreshFlatlist()
+		try {
+			await deletePreset(selectedItem.id)
+		} catch (e) {
+			console.log("Something went wrong deleting the preset", e)
+			return
+		}
+
+		await refreshFlatlist()
 		setConfirmationModalVisible(false)
 	}
 
@@ -107,7 +126,7 @@ export default function Presets({ navigation }: PresetsProps) {
 			<View style={styles.flatlistContainer}>
 				<FlatList
 					data={flatlistData}
-					keyExtractor={(item) => item.name}
+					keyExtractor={(item) => String(item.id)}
 					renderItem={({ item }) => (
 						<TouchableOpacity
 							onPress={() => handlePressItem(item)}

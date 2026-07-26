@@ -31,10 +31,18 @@ export default function Navigator() {
 			<Stack.Screen
 				name="Presets"
 				component={Presets}
-				options={{
-					header: ({ back }) => (
-						<HeaderWithLabel label={t("configs.presets-many")} back={back} />
-					),
+				options={({ route }) => {
+					const target = route.params?.target
+					const player = target === "primary" ? " 1" : target === "second" ? " 2" : ""
+
+					return {
+						header: ({ back }) => (
+							<HeaderWithLabel
+								label={`${t("configs.presets-many")}${player}`}
+								back={back}
+							/>
+						),
+					}
 				}}
 			/>
 			<Stack.Screen name="Clock" component={Clock} options={{ headerShown: false }} />
