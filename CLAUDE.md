@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Chess Clock — an Expo / React Native app (SDK 54, new architecture enabled, Android-focused). Two tappable player clocks with increments, presets, orientation and sound settings, translated into 36 languages.
+Chess Clock — an Expo / React Native app (SDK 57, React Native 0.86, Android-focused). Two tappable player clocks with increments, presets, orientation and sound settings, translated into 36 languages.
+
+The New Architecture is the only architecture in SDK 57, so there is no `newArchEnabled` flag — it was removed from the config schema and setting it fails `expo-doctor`.
 
 ## Commands
 
@@ -16,6 +18,8 @@ npm run build-dev    # eas build --profile development --platform android
 npm run build-prev   # eas build --profile preview --platform android
 npm run build-prod   # eas build --profile production --platform android
 ```
+
+Installs need `--legacy-peer-deps` (`npx expo install <pkg> -- --legacy-peer-deps`). The SDK 57 upgrade moved the project to `typescript ~6.0.3`, but `i18next` declares a `peerOptional typescript@^5`, so a plain `npm install` fails with `ERESOLVE`. The peer is optional and only affects i18next's own types, but the flag is currently load-bearing for a clean install.
 
 There is no test suite and no `lint` script. ESLint 9 is installed with a legacy `.eslintrc.js` (`extends: ["expo", "prettier"]`), and the `prettier/prettier` rule is deliberately turned **off** — formatting is enforced only by Prettier itself (`.prettierrc`: tabs, width 4, no semicolons, double quotes, trailing commas).
 
@@ -80,3 +84,4 @@ Translation key types are augmented from the English file via [src/types/i18next
 - Imports are sorted alphabetically, braced/named imports first, then default imports — match this when editing existing files.
 - `src/types/` holds shared types; screens/components declare their own local `Props` type just above the component.
 - Builds are Android-only today (`app.json` has no `ios` block); `eas.json` production uses `autoIncrement` with `appVersionSource: "remote"`.
+- The splash screen is configured through the `expo-splash-screen` plugin entry in `app.json`, not a top-level `splash` key — that key was removed from the SDK 57 schema. Run `npm run doc` after editing `app.json`; the schema check catches keys that newer SDKs dropped.
