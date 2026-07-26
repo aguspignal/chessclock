@@ -3,7 +3,7 @@ import { SQLiteDatabase } from "expo-sqlite"
 import presets from "../resources/defaultpresets.json"
 
 export async function onSQLiteProviderInit(db: SQLiteDatabase) {
-	const DATABASE_VERSION = 1
+	const DATABASE_VERSION = 2
 	let result = await db.getFirstAsync<{ user_version: number }>("PRAGMA user_version")
 
 	if (result === null) return
@@ -30,7 +30,23 @@ export async function onSQLiteProviderInit(db: SQLiteDatabase) {
 			VALUES
 				${parseJSONPresetsToQueryValue(presets)}
 		`)
-		result.user_version = 1
+		currentDbVersion = 1
+	}
+
+	if (currentDbVersion === 1) {
+		console.log("migration for dbVersion=1 ")
+		// A preset is defined by its duration, so rows that only differ by id or
+		// by name are duplicates. Collapse the existing ones, keeping the oldest,
+		// and stop new ones from being inserted.
+		await db.execAsync(`
+			DELETE FROM Presets
+			WHERE id NOT IN
+				(SELECT MIN(id) FROM Presets
+				GROUP BY hours, minutes, seconds, timeIncrementMs);
+			CREATE UNIQUE INDEX IF NOT EXISTS idx_presets_duration
+				ON Presets (hours, minutes, seconds, timeIncrementMs);
+		`)
+		currentDbVersion = 2
 	}
 
 	await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`)

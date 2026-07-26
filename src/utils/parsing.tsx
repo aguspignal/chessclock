@@ -1,5 +1,5 @@
-import { DatabasePreset } from "../types/database"
-import { Preset } from "../types/utils"
+import { DatabasePreset, NewDatabasePreset } from "../types/database"
+import { Preset, PresetTime } from "../types/utils"
 import { StyleProp, Text, TextStyle, View } from "react-native"
 import { theme } from "../resources/theme"
 
@@ -104,6 +104,7 @@ export function parseJSONPresetsToQueryValue(presets: Preset[]) {
 export function parseDatabasePresetsArray(dbPresets: DatabasePreset[]) {
 	return dbPresets.map((p) => {
 		const preset: Preset = {
+			id: p.id,
 			name: p.name,
 			time: {
 				hours: p.hours,
@@ -118,6 +119,7 @@ export function parseDatabasePresetsArray(dbPresets: DatabasePreset[]) {
 
 export function parseDatabasePreset(dbPreset: DatabasePreset) {
 	const preset: Preset = {
+		id: dbPreset.id,
 		name: dbPreset.name,
 		time: {
 			hours: dbPreset.hours,
@@ -130,7 +132,7 @@ export function parseDatabasePreset(dbPreset: DatabasePreset) {
 }
 
 export function parsePresetToDatabasePreset(preset: Preset) {
-	const dbPreset: DatabasePreset = {
+	const dbPreset: NewDatabasePreset = {
 		name: preset.name,
 		hours: preset.time.hours,
 		minutes: preset.time.minutes,
@@ -142,6 +144,14 @@ export function parsePresetToDatabasePreset(preset: Preset) {
 
 export function parseStringToNumber(value: string) {
 	return value.length === 0 || isNaN(Number(value)) ? 0 : Number(value)
+}
+
+export function parseNumberToTimeInput(value: number) {
+	return String(value).padStart(2, "0")
+}
+
+export function isEmptyTime(time: PresetTime) {
+	return time.hours === 0 && time.minutes === 0 && time.seconds === 0
 }
 
 export function getTimeInMillisecondsFromPreset(preset: Preset) {
