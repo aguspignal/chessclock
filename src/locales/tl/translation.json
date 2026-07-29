@@ -5,11 +5,11 @@
         "presets-many": "Mga itinakdang oras",
         "orientation": {
             "title": "Oryentasyon ng orasan",
-            "vertical": "Pataas-pababa",
+            "vertical": "Patayo",
             "horizontal": "Pahalang",
             "orientation": "Oryentasyon"
         },
-        "sound": "Tinig",
+        "sound": "Tunog",
         "different-times": "Iba't ibang oras",
         "language": "Wika"
     },
@@ -21,7 +21,7 @@
     },
     "increment": "Dagdag oras",
     "custom-preset": "Pasadya",
-    "confirm-preset-deletion": "Sigurado ka bang gusto mong tanggalin ang preset na ito",
+    "confirm-preset-deletion": "Sigurado ka bang gusto mong tanggalin ang preset na ito?",
     "adjust-time-title": "Ayusin ang oras",
     "add-preset": "Magdagdag ng preset",
     "new-preset-title": "Gumawa ng bagong preset na oras",

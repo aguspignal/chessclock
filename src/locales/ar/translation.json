@@ -21,9 +21,9 @@
     },
     "increment": "زيادة الوقت",
     "custom-preset": "مخصص",
-    "confirm-preset-deletion": "هل أنت متأكد أنك تريد حذف هذا الوقت المحدد",
+    "confirm-preset-deletion": "هل أنت متأكد أنك تريد حذف هذا الوقت المحدد مسبقًا؟",
     "adjust-time-title": "ضبط الوقت",
-    "add-preset": "إضافة وقت محدد",
+    "add-preset": "إضافة وقت محدد مسبقًا",
     "new-preset-title": "إنشاء وقت محدد جديد",
     "moves": "الحركات",
     "settings": "الإعدادات"

@@ -4,10 +4,10 @@
         "presets": "Önceden ayarlanmış zaman",
         "presets-many": "Önceden ayarlanmış zamanlar",
         "orientation": {
-            "title": "Saat yönü",
+            "title": "Saat yönlendirmesi",
             "vertical": "Dikey",
             "horizontal": "Yatay",
-            "orientation": "Yön"
+            "orientation": "Yönlendirme"
         },
         "sound": "Ses",
         "different-times": "Farklı zamanlar",
@@ -21,7 +21,7 @@
     },
     "increment": "Zaman artışı",
     "custom-preset": "Özel",
-    "confirm-preset-deletion": "Bu ön ayarı silmek istediğinizden emin misiniz",
+    "confirm-preset-deletion": "Bu ön ayarı silmek istediğinizden emin misiniz?",
     "adjust-time-title": "Zamanı ayarla",
     "add-preset": "Ön ayar ekle",
     "new-preset-title": "Yeni ön ayar oluştur",

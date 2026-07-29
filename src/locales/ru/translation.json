@@ -21,7 +21,7 @@
     },
     "increment": "Прибавление времени",
     "custom-preset": "Пользовательский",
-    "confirm-preset-deletion": "Вы уверены, что хотите удалить этот пресет",
+    "confirm-preset-deletion": "Вы уверены, что хотите удалить этот пресет?",
     "adjust-time-title": "Настроить время",
     "add-preset": "Добавить пресет",
     "new-preset-title": "Создать новый пресет времени",

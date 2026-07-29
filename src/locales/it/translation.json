@@ -17,11 +17,11 @@
         "cancel": "Annulla",
         "confirm": "Conferma",
         "delete": "Elimina",
-        "start": "Avvia"
+        "start": "Avvia partita"
     },
     "increment": "Incremento",
     "custom-preset": "Personalizzato",
-    "confirm-preset-deletion": "Sei sicuro di volerlo eliminare?",
+    "confirm-preset-deletion": "Sei sicuro di voler eliminare questo tempo?",
     "adjust-time-title": "Regola tempo",
     "add-preset": "Aggiungi tempo",
     "new-preset-title": "Crea un nuovo tempo",

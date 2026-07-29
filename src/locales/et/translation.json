@@ -21,10 +21,10 @@
     },
     "increment": "Aja lisamine",
     "custom-preset": "Kohandatud",
-    "confirm-preset-deletion": "Kas olete kindel, et soovite selle eelseade kustutada",
+    "confirm-preset-deletion": "Kas olete kindel, et soovite selle eelseade kustutada?",
     "adjust-time-title": "Aja reguleerimine",
     "add-preset": "Lisa eelseade",
     "new-preset-title": "Loo uus eelseatud aeg",
-    "moves": "Liinid",
+    "moves": "Käigud",
     "settings": "Seaded"
 }

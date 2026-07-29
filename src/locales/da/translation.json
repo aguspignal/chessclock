@@ -21,7 +21,7 @@
     },
     "increment": "Tidsforøgelse",
     "custom-preset": "Tilpasset",
-    "confirm-preset-deletion": "Er du sikker på, at du vil slette denne forudindstilling",
+    "confirm-preset-deletion": "Er du sikker på, at du vil slette denne forudindstilling?",
     "adjust-time-title": "Juster tid",
     "add-preset": "Tilføj forudindstilling",
     "new-preset-title": "Opret ny forudindstillet tid",

@@ -17,11 +17,11 @@
         "cancel": "Abbrechen",
         "confirm": "Bestätigen",
         "delete": "Löschen",
-        "start": "Starten"
+        "start": "Spiel starten"
     },
     "increment": "Inkrement",
     "custom-preset": "Benutzerdefiniert",
-    "confirm-preset-deletion": "Sind Sie sicher, dass Sie es löschen möchten?",
+    "confirm-preset-deletion": "Sind Sie sicher, dass Sie diese Zeit löschen möchten?",
     "adjust-time-title": "Zeit anpassen",
     "add-preset": "Zeit hinzufügen",
     "new-preset-title": "Neue Zeit erstellen",

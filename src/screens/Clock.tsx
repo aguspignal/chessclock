@@ -24,7 +24,7 @@ export default function Clock({ navigation }: ClockProps) {
 	const audioPlayer = useAudioPlayer(audioSource)
 	useKeepAwake()
 
-	const intervalId = useRef<NodeJS.Timeout | undefined>(undefined)
+	const intervalId = useRef<ReturnType<typeof setInterval> | undefined>(undefined)
 	const lastUpdateTime = useRef<number>(0)
 	const UPDATE_INTERVAL = 10
 

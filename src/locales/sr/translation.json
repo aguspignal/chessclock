@@ -17,11 +17,11 @@
         "cancel": "Откажи",
         "confirm": "Потврди",
         "delete": "Избриши",
-        "start": "Почни"
+        "start": "Почни игру"
     },
     "increment": "Инкремент",
     "custom-preset": "Прилагођено",
-    "confirm-preset-deletion": "Да ли сте сигурни да желите да обришете?",
+    "confirm-preset-deletion": "Да ли сте сигурни да желите да обришете ово време?",
     "adjust-time-title": "Подеси време",
     "add-preset": "Додај време",
     "new-preset-title": "Креирај ново време",

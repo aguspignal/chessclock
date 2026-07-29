@@ -21,7 +21,7 @@
     },
     "increment": "Increment de timp",
     "custom-preset": "Personalizat",
-    "confirm-preset-deletion": "Ești sigur că vrei să ștergi acest preset",
+    "confirm-preset-deletion": "Ești sigur că vrei să ștergi acest preset?",
     "adjust-time-title": "Ajustează timpul",
     "add-preset": "Adaugă preset",
     "new-preset-title": "Creează un nou timp presetat",

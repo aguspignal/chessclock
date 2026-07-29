@@ -21,7 +21,7 @@
     },
     "increment": "时间增量",
     "custom-preset": "自定义",
-    "confirm-preset-deletion": "您确定要删除此预设吗",
+    "confirm-preset-deletion": "您确定要删除此预设吗？",
     "adjust-time-title": "调整时间",
     "add-preset": "添加预设",
     "new-preset-title": "创建新的预设时间",

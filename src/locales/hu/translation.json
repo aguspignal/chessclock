@@ -21,7 +21,7 @@
     },
     "increment": "Időnövelés",
     "custom-preset": "Egyedi",
-    "confirm-preset-deletion": "Biztosan törölni szeretné ezt az előre beállított értéket",
+    "confirm-preset-deletion": "Biztosan törölni szeretné ezt az előre beállított értéket?",
     "adjust-time-title": "Idő beállítása",
     "add-preset": "Előre beállított idő hozzáadása",
     "new-preset-title": "Új előre beállított idő létrehozása",

@@ -4,10 +4,10 @@
         "presets": "Tiempo preestablecido",
         "presets-many": "Tiempos preestablecidos",
         "orientation": {
-            "title": "Orientacion del reloj",
+            "title": "Orientación del reloj",
             "vertical": "Vertical",
             "horizontal": "Horizontal",
-            "orientation": "Orientacion"
+            "orientation": "Orientación"
         },
         "sound": "Sonido",
         "different-times": "Tiempos diferentes",
@@ -17,14 +17,14 @@
         "cancel": "Cancelar",
         "confirm": "Confirmar",
         "delete": "Eliminar",
-        "start": "Comenzar"
+        "start": "Comenzar partida"
     },
     "increment": "Incremento",
     "custom-preset": "Personalizado",
-    "confirm-preset-deletion": "¿Estas seguro que quieres eliminarlo?",
+    "confirm-preset-deletion": "¿Estás seguro de que quieres eliminar este tiempo?",
     "adjust-time-title": "Ajustar tiempo",
     "add-preset": "Añadir tiempo",
     "new-preset-title": "Crea un nuevo tiempo",
-    "moves": "Movimientos",
+    "moves": "Jugadas",
     "settings": "Ajustes"
 }

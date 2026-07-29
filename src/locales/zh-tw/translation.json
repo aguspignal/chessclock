@@ -1,5 +1,5 @@
 {
-    "app-title": "國際象棋計時器",
+    "app-title": "西洋棋時鐘",
     "configs": {
         "presets": "預設時間",
         "presets-many": "多個預設時間",
@@ -21,7 +21,7 @@
     },
     "increment": "時間增量",
     "custom-preset": "自訂",
-    "confirm-preset-deletion": "您確定要刪除此預設嗎",
+    "confirm-preset-deletion": "您確定要刪除此預設嗎？",
     "adjust-time-title": "調整時間",
     "add-preset": "新增預設",
     "new-preset-title": "建立新的預設時間",

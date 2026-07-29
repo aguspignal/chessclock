@@ -21,7 +21,7 @@
     },
     "increment": "Incremento de tempo",
     "custom-preset": "Personalizado",
-    "confirm-preset-deletion": "Tem a certeza de que pretende eliminar este preset",
+    "confirm-preset-deletion": "Tem a certeza de que pretende eliminar este preset?",
     "adjust-time-title": "Ajustar tempo",
     "add-preset": "Adicionar preset",
     "new-preset-title": "Criar novo tempo predefinido",

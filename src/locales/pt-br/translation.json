@@ -21,10 +21,10 @@
     },
     "increment": "Incremento de tempo",
     "custom-preset": "Personalizado",
-    "confirm-preset-deletion": "Tem certeza de que deseja excluir este preset",
+    "confirm-preset-deletion": "Tem certeza de que deseja excluir este preset?",
     "adjust-time-title": "Ajustar tempo",
     "add-preset": "Adicionar preset",
     "new-preset-title": "Criar novo tempo predefinido",
-    "moves": "Movimentos",
+    "moves": "Lances",
     "settings": "Configurações"
 }

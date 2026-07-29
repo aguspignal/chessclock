@@ -21,7 +21,7 @@
     },
     "increment": "Povećanje vremena",
     "custom-preset": "Prilagođeno",
-    "confirm-preset-deletion": "Jeste li sigurni da želite izbrisati ovu unaprijed postavljenu vrijednost",
+    "confirm-preset-deletion": "Jeste li sigurni da želite izbrisati ovu unaprijed postavljenu vrijednost?",
     "adjust-time-title": "Prilagodba vremena",
     "add-preset": "Dodaj unaprijed postavljeno vrijeme",
     "new-preset-title": "Stvori novo unaprijed postavljeno vrijeme",

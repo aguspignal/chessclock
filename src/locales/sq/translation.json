@@ -2,15 +2,15 @@
     "app-title": "Orë Shahu",
     "configs": {
         "presets": "Koha e paracaktuar",
-        "presets-many": "Koha të paracaktuara",
+        "presets-many": "Kohët e paracaktuara",
         "orientation": {
             "title": "Orientimi i orës",
             "vertical": "Vertikal",
-            "horizontal": "Horitontal",
+            "horizontal": "Horizontal",
             "orientation": "Orientimi"
         },
         "sound": "Zëri",
-        "different-times": "Koha të ndryshme",
+        "different-times": "Kohë të ndryshme",
         "language": "Gjuha"
     },
     "actions": {
@@ -21,7 +21,7 @@
     },
     "increment": "Shtim kohe",
     "custom-preset": "Personalizuar",
-    "confirm-preset-deletion": "A jeni i sigurt që dëshironi të fshini këtë paracaktim",
+    "confirm-preset-deletion": "A jeni i sigurt që dëshironi të fshini këtë paracaktim?",
     "adjust-time-title": "Rregullo kohën",
     "add-preset": "Shto paracaktim",
     "new-preset-title": "Krijo kohë të re të paracaktuar",

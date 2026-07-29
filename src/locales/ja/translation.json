@@ -21,7 +21,7 @@
     },
     "increment": "時間増分",
     "custom-preset": "カスタム",
-    "confirm-preset-deletion": "このプリセットを削除してもよろしいですか",
+    "confirm-preset-deletion": "このプリセットを削除してもよろしいですか？",
     "adjust-time-title": "時間を調整",
     "add-preset": "プリセットを追加",
     "new-preset-title": "新しいプリセット時間を作成",
