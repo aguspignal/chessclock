@@ -10,16 +10,28 @@
             "orientation": "Προσανατολισμός"
         },
         "sound": "Ήχος",
+        "vibration": "Δόνηση",
         "different-times": "Διαφορετικοί χρόνοι",
-        "language": "Γλώσσα"
+        "clock": "Ρολόι",
+        "shared": "Κοινό",
+        "per-player": "Ανά παίκτη",
+        "language": "Γλώσσα",
+        "theme": "Θέμα"
     },
     "actions": {
         "cancel": "Ακύρωση",
         "confirm": "Επιβεβαίωση",
         "delete": "Διαγραφή",
+        "edit": "Επεξεργασία",
         "start": "Έναρξη παιχνιδιού"
     },
+    "players": {
+        "white": "Λευκά",
+        "black": "Μαύρα"
+    },
+    "time": "Χρόνος",
     "increment": "Αύξηση χρόνου",
+    "increment-short": "αύξηση",
     "custom-preset": "Προσαρμοσμένο",
     "confirm-preset-deletion": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την προεπιλογή;",
     "adjust-time-title": "Ρύθμιση χρόνου",

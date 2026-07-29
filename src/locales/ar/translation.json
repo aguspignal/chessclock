@@ -10,16 +10,28 @@
             "orientation": "الاتجاه"
         },
         "sound": "الصوت",
+        "vibration": "الاهتزاز",
         "different-times": "أوقات مختلفة",
-        "language": "اللغة"
+        "clock": "الساعة",
+        "shared": "مشتركة",
+        "per-player": "لكل لاعب",
+        "language": "اللغة",
+        "theme": "المظهر"
     },
     "actions": {
         "cancel": "إلغاء",
         "confirm": "تأكيد",
         "delete": "حذف",
+        "edit": "تعديل",
         "start": "بدء اللعبة"
     },
+    "players": {
+        "white": "أبيض",
+        "black": "أسود"
+    },
+    "time": "الوقت",
     "increment": "زيادة الوقت",
+    "increment-short": "زيادة",
     "custom-preset": "مخصص",
     "confirm-preset-deletion": "هل أنت متأكد أنك تريد حذف هذا الوقت المحدد مسبقًا؟",
     "adjust-time-title": "ضبط الوقت",

@@ -10,16 +10,28 @@
             "orientation": "Ausrichtung"
         },
         "sound": "Ton",
+        "vibration": "Vibration",
         "different-times": "Unterschiedliche Zeiten",
-        "language": "Sprache"
+        "clock": "Uhr",
+        "shared": "Gemeinsam",
+        "per-player": "Pro Spieler",
+        "language": "Sprache",
+        "theme": "Design"
     },
     "actions": {
         "cancel": "Abbrechen",
         "confirm": "Bestätigen",
         "delete": "Löschen",
+        "edit": "Bearbeiten",
         "start": "Spiel starten"
     },
+    "players": {
+        "white": "Weiß",
+        "black": "Schwarz"
+    },
+    "time": "Zeit",
     "increment": "Inkrement",
+    "increment-short": "Inkrement",
     "custom-preset": "Benutzerdefiniert",
     "confirm-preset-deletion": "Sind Sie sicher, dass Sie diese Zeit löschen möchten?",
     "adjust-time-title": "Zeit anpassen",

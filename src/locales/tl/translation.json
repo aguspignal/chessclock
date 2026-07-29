@@ -10,16 +10,28 @@
             "orientation": "Oryentasyon"
         },
         "sound": "Tunog",
+        "vibration": "Pag-vibrate",
         "different-times": "Iba't ibang oras",
-        "language": "Wika"
+        "clock": "Orasan",
+        "shared": "Magkasama",
+        "per-player": "Bawat manlalaro",
+        "language": "Wika",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "Kanselahin",
         "confirm": "Kumpirmahin",
         "delete": "Tanggalin",
+        "edit": "I-edit",
         "start": "Simulan ang laro"
     },
+    "players": {
+        "white": "Puti",
+        "black": "Itim"
+    },
+    "time": "Oras",
     "increment": "Dagdag oras",
+    "increment-short": "dagdag",
     "custom-preset": "Pasadya",
     "confirm-preset-deletion": "Sigurado ka bang gusto mong tanggalin ang preset na ito?",
     "adjust-time-title": "Ayusin ang oras",

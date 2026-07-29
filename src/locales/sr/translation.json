@@ -10,16 +10,28 @@
             "orientation": "Оријентација"
         },
         "sound": "Звук",
+        "vibration": "Вибрација",
         "different-times": "Различита времена",
-        "language": "Језик"
+        "clock": "Сат",
+        "shared": "Заједнички",
+        "per-player": "По играчу",
+        "language": "Језик",
+        "theme": "Тема"
     },
     "actions": {
         "cancel": "Откажи",
         "confirm": "Потврди",
         "delete": "Избриши",
+        "edit": "Измени",
         "start": "Почни игру"
     },
+    "players": {
+        "white": "Бели",
+        "black": "Црни"
+    },
+    "time": "Време",
     "increment": "Инкремент",
+    "increment-short": "инкремент",
     "custom-preset": "Прилагођено",
     "confirm-preset-deletion": "Да ли сте сигурни да желите да обришете ово време?",
     "adjust-time-title": "Подеси време",

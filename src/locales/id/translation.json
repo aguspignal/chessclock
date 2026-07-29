@@ -10,16 +10,28 @@
             "orientation": "Orientasi"
         },
         "sound": "Suara",
+        "vibration": "Getaran",
         "different-times": "Waktu berbeda",
-        "language": "Bahasa"
+        "clock": "Jam",
+        "shared": "Bersama",
+        "per-player": "Per pemain",
+        "language": "Bahasa",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "Batal",
         "confirm": "Konfirmasi",
         "delete": "Hapus",
+        "edit": "Ubah",
         "start": "Mulai permainan"
     },
+    "players": {
+        "white": "Putih",
+        "black": "Hitam"
+    },
+    "time": "Waktu",
     "increment": "Penambahan waktu",
+    "increment-short": "penambahan",
     "custom-preset": "Kustom",
     "confirm-preset-deletion": "Apakah Anda yakin ingin menghapus preset ini?",
     "adjust-time-title": "Sesuaikan waktu",

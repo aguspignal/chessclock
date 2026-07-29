@@ -10,16 +10,28 @@
             "orientation": "दिशा"
         },
         "sound": "ध्वनि",
+        "vibration": "कंपन",
         "different-times": "अलग समय",
-        "language": "भाषा"
+        "clock": "घड़ी",
+        "shared": "साझा",
+        "per-player": "प्रति खिलाड़ी",
+        "language": "भाषा",
+        "theme": "थीम"
     },
     "actions": {
         "cancel": "रद्द करें",
         "confirm": "पुष्टि करें",
         "delete": "हटाएँ",
+        "edit": "संपादित करें",
         "start": "खेल शुरू करें"
     },
+    "players": {
+        "white": "सफेद",
+        "black": "काला"
+    },
+    "time": "समय",
     "increment": "समय वृद्धि",
+    "increment-short": "वृद्धि",
     "custom-preset": "कस्टम",
     "confirm-preset-deletion": "क्या आप वाकई इस पूर्वनिर्धारित समय को हटाना चाहते हैं?",
     "adjust-time-title": "समय समायोजित करें",

@@ -10,16 +10,28 @@
             "orientation": "Tájolás"
         },
         "sound": "Hang",
+        "vibration": "Rezgés",
         "different-times": "Különböző idők",
-        "language": "Nyelv"
+        "clock": "Óra",
+        "shared": "Közös",
+        "per-player": "Játékosonként",
+        "language": "Nyelv",
+        "theme": "Téma"
     },
     "actions": {
         "cancel": "Mégse",
         "confirm": "Megerősítés",
         "delete": "Törlés",
+        "edit": "Szerkesztés",
         "start": "Játék indítása"
     },
+    "players": {
+        "white": "Világos",
+        "black": "Sötét"
+    },
+    "time": "Idő",
     "increment": "Időnövelés",
+    "increment-short": "növelés",
     "custom-preset": "Egyedi",
     "confirm-preset-deletion": "Biztosan törölni szeretné ezt az előre beállított értéket?",
     "adjust-time-title": "Idő beállítása",

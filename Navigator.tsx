@@ -4,13 +4,13 @@ import {
 } from "@react-navigation/native-stack"
 import { Header } from "@react-navigation/elements"
 import { ParamListBase } from "@react-navigation/native"
-import { Pressable } from "react-native"
 import { StackParamList } from "./src/types/navigation"
 import { theme } from "./src/resources/theme"
 import { useTranslation } from "react-i18next"
+import { View } from "react-native"
+import ActionButton from "./src/components/ActionButton"
 import Clock from "./src/screens/Clock"
 import Home from "./src/screens/Home"
-import Icon from "@expo/vector-icons/MaterialCommunityIcons"
 import Presets from "./src/screens/Presets"
 import Settings from "./src/screens/Settings"
 
@@ -69,19 +69,15 @@ function HomeHeader({ navigation }: HomeHeaderProps) {
 			headerTitleStyle={{
 				color: theme.colors.textLight,
 				fontSize: theme.fontSize.xxl,
-				textAlign: "center",
 			}}
 			headerRight={() => (
-				<Pressable
-					onPressIn={() => navigation.navigate("Settings")}
-					style={{ marginRight: theme.spacing.xs }}
-				>
-					<Icon name="cog" size={theme.fontSize.h3} color={theme.colors.textLight} />
-				</Pressable>
+				<View style={{ marginRight: theme.spacing.s }}>
+					<ActionButton icon="cog" onPress={() => navigation.navigate("Settings")} />
+				</View>
 			)}
 			headerStyle={{ backgroundColor: theme.colors.backgroundDark }}
 			headerShadowVisible={false}
-			headerTitleAlign="center"
+			headerTitleAlign="left"
 		/>
 	)
 }

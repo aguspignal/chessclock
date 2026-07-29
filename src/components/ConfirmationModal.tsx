@@ -1,7 +1,8 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { StyleSheet, Text } from "react-native"
 import { theme } from "../resources/theme"
-import { useTranslation } from "react-i18next"
+import Card from "./Card"
 import Modal from "react-native-modal"
+import ModalActions from "./ModalActions"
 
 type Props = {
 	isVisible: boolean
@@ -18,66 +19,35 @@ export default function ConfirmationModal({
 	saveActionTitle = "Save",
 	onSave,
 }: Props) {
-	const { t } = useTranslation()
-
 	return (
 		<Modal
 			isVisible={isVisible}
 			onBackButtonPress={() => setIsVisible(false)}
 			onBackdropPress={() => setIsVisible(false)}
 		>
-			<View style={styles.container}>
-				<Text style={styles.text}>{title}</Text>
+			<Card style={styles.card}>
+				<Text style={styles.title}>{title}</Text>
 
-				<View style={styles.actionsContainer}>
-					<TouchableOpacity
-						onPress={() => setIsVisible(false)}
-						style={styles.actionContainer}
-					>
-						<Text style={styles.text}>{t("actions.cancel")}</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						onPress={onSave}
-						style={[styles.confirmDeleteAction, styles.actionContainer]}
-					>
-						<Text style={[styles.text, { color: theme.colors.textDark }]}>
-							{saveActionTitle}
-						</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
+				<ModalActions
+					onCancel={() => setIsVisible(false)}
+					onConfirm={onSave}
+					confirmTitle={saveActionTitle}
+					isDestructive
+				/>
+			</Card>
 		</Modal>
 	)
 }
 
 const styles = StyleSheet.create({
-	container: {
-		alignItems: "center",
-		alignSelf: "center",
-		backgroundColor: theme.colors.backgroundDark,
-		borderRadius: theme.spacing.s,
-		justifyContent: "center",
+	card: {
+		marginHorizontal: 0,
 		padding: theme.spacing.m,
 	},
-	text: {
+	title: {
 		color: theme.colors.textLight,
 		fontSize: theme.fontSize.m,
 		fontWeight: "500",
 		textAlign: "center",
-	},
-	actionsContainer: {
-		alignItems: "center",
-		flexDirection: "row",
-		justifyContent: "center",
-		paddingTop: theme.spacing.l,
-	},
-	actionContainer: {
-		flex: 1,
-	},
-	confirmDeleteAction: {
-		backgroundColor: theme.colors.red,
-		borderRadius: theme.spacing.xxs,
-		paddingVertical: theme.spacing.xxs,
 	},
 })

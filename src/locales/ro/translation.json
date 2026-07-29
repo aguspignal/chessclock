@@ -10,16 +10,28 @@
             "orientation": "Orientare"
         },
         "sound": "Sunet",
+        "vibration": "Vibrații",
         "different-times": "Timpuri diferite",
-        "language": "Limba"
+        "clock": "Ceas",
+        "shared": "Comun",
+        "per-player": "Per jucător",
+        "language": "Limba",
+        "theme": "Temă"
     },
     "actions": {
         "cancel": "Anulează",
         "confirm": "Confirmă",
         "delete": "Șterge",
+        "edit": "Editează",
         "start": "Pornește jocul"
     },
+    "players": {
+        "white": "Alb",
+        "black": "Negru"
+    },
+    "time": "Timp",
     "increment": "Increment de timp",
+    "increment-short": "increment",
     "custom-preset": "Personalizat",
     "confirm-preset-deletion": "Ești sigur că vrei să ștergi acest preset?",
     "adjust-time-title": "Ajustează timpul",

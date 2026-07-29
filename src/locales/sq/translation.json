@@ -10,16 +10,28 @@
             "orientation": "Orientimi"
         },
         "sound": "Zëri",
+        "vibration": "Dridhje",
         "different-times": "Kohë të ndryshme",
-        "language": "Gjuha"
+        "clock": "Ora",
+        "shared": "I përbashkët",
+        "per-player": "Për lojtar",
+        "language": "Gjuha",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "Anulo",
         "confirm": "Konfirmo",
         "delete": "Fshi",
+        "edit": "Ndrysho",
         "start": "Fillo lojën"
     },
+    "players": {
+        "white": "Të bardhat",
+        "black": "Të zezat"
+    },
+    "time": "Koha",
     "increment": "Shtim kohe",
+    "increment-short": "shtim",
     "custom-preset": "Personalizuar",
     "confirm-preset-deletion": "A jeni i sigurt që dëshironi të fshini këtë paracaktim?",
     "adjust-time-title": "Rregullo kohën",

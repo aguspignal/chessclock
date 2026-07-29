@@ -46,6 +46,15 @@ export function parseTimeToPresetName(hs: string, min: string, sec: string, inc:
 	return `${hours}${minutes}${seconds}${increment}`
 }
 
+// "05:00", or "01:05:00" once there are hours to show.
+export function parsePresetTimeToText(time: PresetTime) {
+	const hours = String(time.hours).padStart(2, "0")
+	const minutes = String(time.minutes).padStart(2, "0")
+	const seconds = String(time.seconds).padStart(2, "0")
+
+	return `${time.hours > 0 ? `${hours}:` : ""}${minutes}:${seconds}`
+}
+
 export function parseHoursToText(hours: number) {
 	if (hours === 0) return <></>
 

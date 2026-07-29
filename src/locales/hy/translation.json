@@ -10,16 +10,28 @@
             "orientation": "Կողմնորոշում"
         },
         "sound": "Ձայն",
+        "vibration": "Թրթռոց",
         "different-times": "Տարբեր ժամանակներ",
-        "language": "Լեզու"
+        "clock": "Ժամացույց",
+        "shared": "Ընդհանուր",
+        "per-player": "Յուրաքանչյուր խաղացողի",
+        "language": "Լեզու",
+        "theme": "Թեմա"
     },
     "actions": {
         "cancel": "Չեղարկել",
         "confirm": "Հաստատել",
         "delete": "Ջնջել",
+        "edit": "Խմբագրել",
         "start": "Սկսել խաղը"
     },
+    "players": {
+        "white": "Սպիտակ",
+        "black": "Սև"
+    },
+    "time": "Ժամանակ",
     "increment": "Ժամանակի ավելացում",
+    "increment-short": "ավելացում",
     "custom-preset": "Անհատականացված",
     "confirm-preset-deletion": "Համոզվա՞ծ եք, որ ուզում եք ջնջել այս նախօրոք սահմանված ժամանակը",
     "adjust-time-title": "Ժամանակը կարգավորել",

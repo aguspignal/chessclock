@@ -10,16 +10,28 @@
             "orientation": "방향"
         },
         "sound": "소리",
+        "vibration": "진동",
         "different-times": "다른 시간",
-        "language": "언어"
+        "clock": "시계",
+        "shared": "공유",
+        "per-player": "플레이어별",
+        "language": "언어",
+        "theme": "테마"
     },
     "actions": {
         "cancel": "취소",
         "confirm": "확인",
         "delete": "삭제",
+        "edit": "편집",
         "start": "게임 시작"
     },
+    "players": {
+        "white": "백",
+        "black": "흑"
+    },
+    "time": "시간",
     "increment": "시간 증가",
+    "increment-short": "추가",
     "custom-preset": "사용자 정의",
     "confirm-preset-deletion": "이 프리셋을 삭제하시겠습니까?",
     "adjust-time-title": "시간 조정",

@@ -10,16 +10,28 @@
             "orientation": "Oriëntatie"
         },
         "sound": "Geluid",
+        "vibration": "Trillen",
         "different-times": "Verschillende tijden",
-        "language": "Taal"
+        "clock": "Klok",
+        "shared": "Gedeeld",
+        "per-player": "Per speler",
+        "language": "Taal",
+        "theme": "Thema"
     },
     "actions": {
         "cancel": "Annuleren",
         "confirm": "Bevestigen",
         "delete": "Verwijderen",
+        "edit": "Bewerken",
         "start": "Start spel"
     },
+    "players": {
+        "white": "Wit",
+        "black": "Zwart"
+    },
+    "time": "Tijd",
     "increment": "Tijdtoename",
+    "increment-short": "toename",
     "custom-preset": "Aangepast",
     "confirm-preset-deletion": "Weet je zeker dat je deze voorinstelling wilt verwijderen?",
     "adjust-time-title": "Tijd aanpassen",

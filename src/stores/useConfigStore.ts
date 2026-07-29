@@ -1,18 +1,22 @@
 import { AppLanguage } from "../types/languages"
-import { ClockOrientation } from "../types/utils"
+import { AppTheme, ClockOrientation } from "../types/utils"
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 type State = {
 	hasHydrated: boolean
+	appTheme: AppTheme
 	language: AppLanguage | null
 	orientation: ClockOrientation
 	soundEnabled: boolean
+	vibrationEnabled: boolean
 	withDifferentTimes: boolean
+	setAppTheme: (t: AppTheme) => void
 	setLanguage: (lng: AppLanguage | null) => void
 	setOrientation: (o: ClockOrientation) => void
 	toggleSoundEnabled: () => void
+	toggleVibrationEnabled: () => void
 	toggleWithDifferentTimes: () => void
 }
 
@@ -20,14 +24,19 @@ export const useConfigStore = create<State>()(
 	persist(
 		(set) => ({
 			hasHydrated: false,
+			appTheme: "System",
 			language: null,
 			orientation: "Vertical",
 			soundEnabled: true,
+			vibrationEnabled: true,
 			withDifferentTimes: false,
 
+			setAppTheme: (t) => set({ appTheme: t }),
 			setLanguage: (lng) => set({ language: lng }),
 			setOrientation: (o) => set({ orientation: o }),
 			toggleSoundEnabled: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
+			toggleVibrationEnabled: () =>
+				set((state) => ({ vibrationEnabled: !state.vibrationEnabled })),
 			toggleWithDifferentTimes: () =>
 				set((state) => ({ withDifferentTimes: !state.withDifferentTimes })),
 		}),
@@ -45,9 +54,11 @@ export const useConfigStore = create<State>()(
 			},
 
 			partialize: (state) => ({
+				appTheme: state.appTheme,
 				language: state.language,
 				orientation: state.orientation,
 				soundEnabled: state.soundEnabled,
+				vibrationEnabled: state.vibrationEnabled,
 				withDifferentTimes: state.withDifferentTimes,
 			}),
 		},

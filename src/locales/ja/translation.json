@@ -10,16 +10,28 @@
             "orientation": "向き"
         },
         "sound": "音",
+        "vibration": "バイブレーション",
         "different-times": "異なる時間",
-        "language": "言語"
+        "clock": "時計",
+        "shared": "共通",
+        "per-player": "プレイヤーごと",
+        "language": "言語",
+        "theme": "テーマ"
     },
     "actions": {
         "cancel": "キャンセル",
         "confirm": "確認",
         "delete": "削除",
+        "edit": "編集",
         "start": "ゲーム開始"
     },
+    "players": {
+        "white": "白",
+        "black": "黒"
+    },
+    "time": "時間",
     "increment": "時間増分",
+    "increment-short": "加算",
     "custom-preset": "カスタム",
     "confirm-preset-deletion": "このプリセットを削除してもよろしいですか？",
     "adjust-time-title": "時間を調整",

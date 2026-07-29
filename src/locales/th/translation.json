@@ -10,16 +10,28 @@
             "orientation": "การวางแนว"
         },
         "sound": "เสียง",
+        "vibration": "การสั่น",
         "different-times": "เวลาที่ต่างกัน",
-        "language": "ภาษา"
+        "clock": "นาฬิกา",
+        "shared": "ใช้ร่วมกัน",
+        "per-player": "แยกผู้เล่น",
+        "language": "ภาษา",
+        "theme": "ธีม"
     },
     "actions": {
         "cancel": "ยกเลิก",
         "confirm": "ยืนยัน",
         "delete": "ลบ",
+        "edit": "แก้ไข",
         "start": "เริ่มเกม"
     },
+    "players": {
+        "white": "ขาว",
+        "black": "ดำ"
+    },
+    "time": "เวลา",
     "increment": "การเพิ่มเวลา",
+    "increment-short": "เพิ่มเวลา",
     "custom-preset": "กำหนดเอง",
     "confirm-preset-deletion": "คุณแน่ใจหรือว่าต้องการลบการตั้งค่านี้",
     "adjust-time-title": "ปรับเวลา",

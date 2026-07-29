@@ -10,16 +10,28 @@
             "orientation": "方向"
         },
         "sound": "声音",
+        "vibration": "震动",
         "different-times": "不同时间",
-        "language": "语言"
+        "clock": "时钟",
+        "shared": "共用",
+        "per-player": "每位玩家",
+        "language": "语言",
+        "theme": "主题"
     },
     "actions": {
         "cancel": "取消",
         "confirm": "确认",
         "delete": "删除",
+        "edit": "编辑",
         "start": "开始游戏"
     },
+    "players": {
+        "white": "白方",
+        "black": "黑方"
+    },
+    "time": "时间",
     "increment": "时间增量",
+    "increment-short": "加秒",
     "custom-preset": "自定义",
     "confirm-preset-deletion": "您确定要删除此预设吗？",
     "adjust-time-title": "调整时间",

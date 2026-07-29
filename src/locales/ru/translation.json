@@ -10,16 +10,28 @@
             "orientation": "Ориентация"
         },
         "sound": "Звук",
+        "vibration": "Вибрация",
         "different-times": "Разное время",
-        "language": "Язык"
+        "clock": "Часы",
+        "shared": "Общие",
+        "per-player": "Для каждого",
+        "language": "Язык",
+        "theme": "Тема"
     },
     "actions": {
         "cancel": "Отмена",
         "confirm": "Подтвердить",
         "delete": "Удалить",
+        "edit": "Изменить",
         "start": "Начать игру"
     },
+    "players": {
+        "white": "Белые",
+        "black": "Чёрные"
+    },
+    "time": "Время",
     "increment": "Прибавление времени",
+    "increment-short": "прибавление",
     "custom-preset": "Пользовательский",
     "confirm-preset-deletion": "Вы уверены, что хотите удалить этот пресет?",
     "adjust-time-title": "Настроить время",

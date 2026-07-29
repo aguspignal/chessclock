@@ -10,16 +10,28 @@
             "orientation": "Orientatsioon"
         },
         "sound": "Heli",
+        "vibration": "Vibratsioon",
         "different-times": "Erinevad ajad",
-        "language": "Keel"
+        "clock": "Kell",
+        "shared": "Jagatud",
+        "per-player": "Mängija kohta",
+        "language": "Keel",
+        "theme": "Teema"
     },
     "actions": {
         "cancel": "Tühista",
         "confirm": "Kinnita",
         "delete": "Kustuta",
+        "edit": "Muuda",
         "start": "Alusta mängu"
     },
+    "players": {
+        "white": "Valge",
+        "black": "Must"
+    },
+    "time": "Aeg",
     "increment": "Aja lisamine",
+    "increment-short": "lisaaeg",
     "custom-preset": "Kohandatud",
     "confirm-preset-deletion": "Kas olete kindel, et soovite selle eelseade kustutada?",
     "adjust-time-title": "Aja reguleerimine",

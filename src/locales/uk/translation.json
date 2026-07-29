@@ -10,16 +10,28 @@
             "orientation": "Орієнтація"
         },
         "sound": "Звук",
+        "vibration": "Вібрація",
         "different-times": "Різні часи",
-        "language": "Мова"
+        "clock": "Годинник",
+        "shared": "Спільний",
+        "per-player": "Для кожного",
+        "language": "Мова",
+        "theme": "Тема"
     },
     "actions": {
         "cancel": "Скасувати",
         "confirm": "Підтвердити",
         "delete": "Видалити",
+        "edit": "Змінити",
         "start": "Почати гру"
     },
+    "players": {
+        "white": "Білі",
+        "black": "Чорні"
+    },
+    "time": "Час",
     "increment": "Приріст часу",
+    "increment-short": "приріст",
     "custom-preset": "Налаштований",
     "confirm-preset-deletion": "Ви впевнені, що хочете видалити цей пресет?",
     "adjust-time-title": "Налаштувати час",

@@ -10,16 +10,28 @@
             "orientation": "Orientation"
         },
         "sound": "Son",
+        "vibration": "Vibration",
         "different-times": "Temps différents",
-        "language": "Langue"
+        "clock": "Horloge",
+        "shared": "Partagée",
+        "per-player": "Par joueur",
+        "language": "Langue",
+        "theme": "Thème"
     },
     "actions": {
         "cancel": "Annuler",
         "confirm": "Confirmer",
         "delete": "Supprimer",
+        "edit": "Modifier",
         "start": "Démarrer la partie"
     },
+    "players": {
+        "white": "Blancs",
+        "black": "Noirs"
+    },
+    "time": "Temps",
     "increment": "Incrément",
+    "increment-short": "incrément",
     "custom-preset": "Personnalisé",
     "confirm-preset-deletion": "Êtes-vous sûr de vouloir supprimer ce temps ?",
     "adjust-time-title": "Ajuster le temps",

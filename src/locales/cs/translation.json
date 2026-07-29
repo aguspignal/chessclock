@@ -10,16 +10,28 @@
             "orientation": "Orientace"
         },
         "sound": "Zvuk",
+        "vibration": "Vibrace",
         "different-times": "Různé časy",
-        "language": "Jazyk"
+        "clock": "Hodiny",
+        "shared": "Sdílené",
+        "per-player": "Pro každého",
+        "language": "Jazyk",
+        "theme": "Vzhled"
     },
     "actions": {
         "cancel": "Zrušit",
         "confirm": "Potvrdit",
         "delete": "Smazat",
+        "edit": "Upravit",
         "start": "Spustit hru"
     },
+    "players": {
+        "white": "Bílý",
+        "black": "Černý"
+    },
+    "time": "Čas",
     "increment": "Přírůstek času",
+    "increment-short": "přírůstek",
     "custom-preset": "Vlastní",
     "confirm-preset-deletion": "Opravdu chcete tuto přednastavenou hodnotu smazat?",
     "adjust-time-title": "Upravit čas",

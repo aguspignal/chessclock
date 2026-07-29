@@ -10,16 +10,28 @@
             "orientation": "Orijentacija"
         },
         "sound": "Zvuk",
+        "vibration": "Vibracija",
         "different-times": "Različita vremena",
-        "language": "Jezik"
+        "clock": "Sat",
+        "shared": "Zajednički",
+        "per-player": "Po igraču",
+        "language": "Jezik",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "Otkaži",
         "confirm": "Potvrdi",
         "delete": "Izbriši",
+        "edit": "Uredi",
         "start": "Započni igru"
     },
+    "players": {
+        "white": "Bijeli",
+        "black": "Crni"
+    },
+    "time": "Vrijeme",
     "increment": "Povećanje vremena",
+    "increment-short": "povećanje",
     "custom-preset": "Prilagođeno",
     "confirm-preset-deletion": "Jeste li sigurni da želite izbrisati ovu unaprijed postavljenu vrijednost?",
     "adjust-time-title": "Prilagodba vremena",

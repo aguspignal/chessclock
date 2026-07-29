@@ -10,16 +10,28 @@
             "orientation": "দিকনির্দেশ"
         },
         "sound": "শব্দ",
+        "vibration": "কম্পন",
         "different-times": "ভিন্ন সময়",
-        "language": "ভাষা"
+        "clock": "ঘড়ি",
+        "shared": "ভাগ করা",
+        "per-player": "প্রতি খেলোয়াড়",
+        "language": "ভাষা",
+        "theme": "থিম"
     },
     "actions": {
         "cancel": "বাতিল",
         "confirm": "নিশ্চিত করুন",
         "delete": "মুছে ফেলুন",
+        "edit": "সম্পাদনা",
         "start": "খেলা শুরু করুন"
     },
+    "players": {
+        "white": "সাদা",
+        "black": "কালো"
+    },
+    "time": "সময়",
     "increment": "সময়ের বৃদ্ধি",
+    "increment-short": "বৃদ্ধি",
     "custom-preset": "কাস্টম",
     "confirm-preset-deletion": "আপনি কি নিশ্চিত যে আপনি এই পূর্বনির্ধারিত সময় মুছে ফেলতে চান?",
     "adjust-time-title": "সময় সামঞ্জস্য করুন",
