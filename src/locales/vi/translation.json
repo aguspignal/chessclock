@@ -1,5 +1,5 @@
 {
-    "app-title": "Đồng hồ cờ",
+    "app-title": "Đồng hồ cờ vua",
     "configs": {
         "presets": "Thời gian đặt trước",
         "presets-many": "Các thời gian đặt trước",
@@ -10,18 +10,30 @@
             "orientation": "Hướng"
         },
         "sound": "Âm thanh",
+        "vibration": "Rung",
         "different-times": "Các thời gian khác nhau",
-        "language": "Ngôn ngữ"
+        "clock": "Đồng hồ",
+        "shared": "Dùng chung",
+        "per-player": "Mỗi người chơi",
+        "language": "Ngôn ngữ",
+        "theme": "Giao diện"
     },
     "actions": {
         "cancel": "Hủy",
         "confirm": "Xác nhận",
         "delete": "Xóa",
+        "edit": "Chỉnh sửa",
         "start": "Bắt đầu trò chơi"
     },
+    "players": {
+        "white": "Trắng",
+        "black": "Đen"
+    },
+    "time": "Thời gian",
     "increment": "Tăng thời gian",
+    "increment-short": "cộng thêm",
     "custom-preset": "Tùy chỉnh",
-    "confirm-preset-deletion": "Bạn có chắc chắn muốn xóa cài đặt trước này không",
+    "confirm-preset-deletion": "Bạn có chắc chắn muốn xóa cài đặt trước này không?",
     "adjust-time-title": "Điều chỉnh thời gian",
     "add-preset": "Thêm cài đặt trước",
     "new-preset-title": "Tạo cài đặt thời gian mới",

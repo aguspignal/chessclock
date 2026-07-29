@@ -10,18 +10,30 @@
             "orientation": "כיוון"
         },
         "sound": "צליל",
+        "vibration": "רטט",
         "different-times": "זמנים שונים",
-        "language": "שפה"
+        "clock": "שעון",
+        "shared": "משותף",
+        "per-player": "לכל שחקן",
+        "language": "שפה",
+        "theme": "ערכת נושא"
     },
     "actions": {
         "cancel": "בטל",
         "confirm": "אישור",
         "delete": "מחק",
+        "edit": "עריכה",
         "start": "התחל משחק"
     },
+    "players": {
+        "white": "לבן",
+        "black": "שחור"
+    },
+    "time": "זמן",
     "increment": "תוספת זמן",
+    "increment-short": "תוספת",
     "custom-preset": "מותאם אישית",
-    "confirm-preset-deletion": "האם אתה בטוח שברצונך למחוק את ההגדרה המוגדרת מראש הזו",
+    "confirm-preset-deletion": "האם אתה בטוח שברצונך למחוק את ההגדרה המוגדרת מראש הזו?",
     "adjust-time-title": "כיוון זמן",
     "add-preset": "הוסף הגדרה",
     "new-preset-title": "צור הגדרה חדשה",

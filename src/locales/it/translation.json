@@ -10,18 +10,30 @@
             "orientation": "Orientamento"
         },
         "sound": "Suono",
+        "vibration": "Vibrazione",
         "different-times": "Tempi diversi",
-        "language": "Lingua"
+        "clock": "Orologio",
+        "shared": "Condiviso",
+        "per-player": "Per giocatore",
+        "language": "Lingua",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "Annulla",
         "confirm": "Conferma",
         "delete": "Elimina",
-        "start": "Avvia"
+        "edit": "Modifica",
+        "start": "Avvia partita"
     },
+    "players": {
+        "white": "Bianco",
+        "black": "Nero"
+    },
+    "time": "Tempo",
     "increment": "Incremento",
+    "increment-short": "incremento",
     "custom-preset": "Personalizzato",
-    "confirm-preset-deletion": "Sei sicuro di volerlo eliminare?",
+    "confirm-preset-deletion": "Sei sicuro di voler eliminare questo tempo?",
     "adjust-time-title": "Regola tempo",
     "add-preset": "Aggiungi tempo",
     "new-preset-title": "Crea un nuovo tempo",

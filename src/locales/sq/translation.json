@@ -2,26 +2,38 @@
     "app-title": "Orë Shahu",
     "configs": {
         "presets": "Koha e paracaktuar",
-        "presets-many": "Koha të paracaktuara",
+        "presets-many": "Kohët e paracaktuara",
         "orientation": {
             "title": "Orientimi i orës",
             "vertical": "Vertikal",
-            "horizontal": "Horitontal",
+            "horizontal": "Horizontal",
             "orientation": "Orientimi"
         },
         "sound": "Zëri",
-        "different-times": "Koha të ndryshme",
-        "language": "Gjuha"
+        "vibration": "Dridhje",
+        "different-times": "Kohë të ndryshme",
+        "clock": "Ora",
+        "shared": "I përbashkët",
+        "per-player": "Për lojtar",
+        "language": "Gjuha",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "Anulo",
         "confirm": "Konfirmo",
         "delete": "Fshi",
+        "edit": "Ndrysho",
         "start": "Fillo lojën"
     },
+    "players": {
+        "white": "Të bardhat",
+        "black": "Të zezat"
+    },
+    "time": "Koha",
     "increment": "Shtim kohe",
+    "increment-short": "shtim",
     "custom-preset": "Personalizuar",
-    "confirm-preset-deletion": "A jeni i sigurt që dëshironi të fshini këtë paracaktim",
+    "confirm-preset-deletion": "A jeni i sigurt që dëshironi të fshini këtë paracaktim?",
     "adjust-time-title": "Rregullo kohën",
     "add-preset": "Shto paracaktim",
     "new-preset-title": "Krijo kohë të re të paracaktuar",

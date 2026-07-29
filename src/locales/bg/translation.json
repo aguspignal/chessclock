@@ -10,18 +10,30 @@
             "orientation": "Ориентация"
         },
         "sound": "Звук",
+        "vibration": "Вибрация",
         "different-times": "Различни времена",
-        "language": "Език"
+        "clock": "Часовник",
+        "shared": "Общ",
+        "per-player": "За всеки играч",
+        "language": "Език",
+        "theme": "Тема"
     },
     "actions": {
         "cancel": "Отказ",
         "confirm": "Потвърди",
         "delete": "Изтрий",
-        "start": "Старт"
+        "edit": "Редактиране",
+        "start": "Започни играта"
     },
+    "players": {
+        "white": "Бели",
+        "black": "Черни"
+    },
+    "time": "Време",
     "increment": "Прибавка",
+    "increment-short": "прибавка",
     "custom-preset": "Персонализирано",
-    "confirm-preset-deletion": "Сигурни ли сте, че искате да го изтриете?",
+    "confirm-preset-deletion": "Сигурни ли сте, че искате да изтриете това време?",
     "adjust-time-title": "Настрой време",
     "add-preset": "Добави време",
     "new-preset-title": "Създай ново време",

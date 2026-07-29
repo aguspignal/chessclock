@@ -10,21 +10,33 @@
             "orientation": "Orientação"
         },
         "sound": "Som",
+        "vibration": "Vibração",
         "different-times": "Tempos diferentes",
-        "language": "Idioma"
+        "clock": "Relógio",
+        "shared": "Compartilhado",
+        "per-player": "Por jogador",
+        "language": "Idioma",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "Cancelar",
         "confirm": "Confirmar",
         "delete": "Excluir",
+        "edit": "Editar",
         "start": "Iniciar jogo"
     },
+    "players": {
+        "white": "Brancas",
+        "black": "Pretas"
+    },
+    "time": "Tempo",
     "increment": "Incremento de tempo",
+    "increment-short": "incremento",
     "custom-preset": "Personalizado",
-    "confirm-preset-deletion": "Tem certeza de que deseja excluir este preset",
+    "confirm-preset-deletion": "Tem certeza de que deseja excluir este preset?",
     "adjust-time-title": "Ajustar tempo",
     "add-preset": "Adicionar preset",
     "new-preset-title": "Criar novo tempo predefinido",
-    "moves": "Movimentos",
+    "moves": "Lances",
     "settings": "Configurações"
 }

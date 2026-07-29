@@ -1,7 +1,9 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { StyleSheet, Text, TextInput, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useTranslation } from "react-i18next"
+import Card from "./Card"
 import Modal from "react-native-modal"
+import ModalActions from "./ModalActions"
 
 type Props = {
 	isVisible: boolean
@@ -44,8 +46,8 @@ export default function TimeInputModal({
 			onBackButtonPress={() => setIsVisible(false)}
 			onBackdropPress={() => setIsVisible(false)}
 		>
-			<View style={styles.container}>
-				<Text style={styles.text}>{title}</Text>
+			<Card style={styles.card}>
+				<Text style={styles.title}>{title}</Text>
 
 				<View style={styles.inputsContainer}>
 					<View style={styles.inputContainer}>
@@ -55,7 +57,7 @@ export default function TimeInputModal({
 							value={hours}
 							maxLength={2}
 							placeholder="00"
-							placeholderTextColor={theme.colors.textDark}
+							placeholderTextColor={theme.colors.grayDark}
 							keyboardType="numeric"
 							selectTextOnFocus
 						/>
@@ -72,7 +74,7 @@ export default function TimeInputModal({
 							value={minutes}
 							maxLength={2}
 							placeholder="00"
-							placeholderTextColor={theme.colors.textDark}
+							placeholderTextColor={theme.colors.grayDark}
 							keyboardType="numeric"
 							selectTextOnFocus
 						/>
@@ -89,7 +91,7 @@ export default function TimeInputModal({
 							value={seconds}
 							maxLength={2}
 							placeholder="00"
-							placeholderTextColor={theme.colors.textDark}
+							placeholderTextColor={theme.colors.grayDark}
 							keyboardType="numeric"
 							selectTextOnFocus
 						/>
@@ -97,11 +99,12 @@ export default function TimeInputModal({
 				</View>
 
 				{withIncrementInput ? (
-					<View style={styles.configContainer}>
-						<Text style={styles.text}>{t("increment")}</Text>
-						<View>
+					<View style={styles.incrementContainer}>
+						<Text style={styles.incrementLabel}>{t("increment")}</Text>
+
+						<View style={styles.inputContainer}>
 							<TextInput
-								style={styles.timeIncrementInput}
+								style={[styles.input, styles.incrementInput]}
 								onChangeText={(t) => {
 									Number(t) > 59 ? setIncrement("59") : setIncrement(t)
 								}}
@@ -118,38 +121,22 @@ export default function TimeInputModal({
 					<></>
 				)}
 
-				<View style={styles.actionsContainer}>
-					<TouchableOpacity
-						onPress={() => setIsVisible(false)}
-						style={styles.actionContainer}
-					>
-						<Text style={styles.text}>{t("actions.cancel")}</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						onPress={onSave}
-						style={[styles.actionContainer, styles.confirmAction]}
-					>
-						<Text style={[styles.text, { color: theme.colors.textDark }]}>
-							{saveActionTitle}
-						</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
+				<ModalActions
+					onCancel={() => setIsVisible(false)}
+					onConfirm={onSave}
+					confirmTitle={saveActionTitle}
+				/>
+			</Card>
 		</Modal>
 	)
 }
 
 const styles = StyleSheet.create({
-	container: {
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: theme.colors.backgroundDark,
-		borderRadius: 16,
+	card: {
+		marginHorizontal: 0,
 		padding: theme.spacing.m,
-		marginHorizontal: theme.spacing.s,
 	},
-	text: {
+	title: {
 		color: theme.colors.textLight,
 		fontSize: theme.fontSize.m,
 		fontWeight: "500",
@@ -158,50 +145,42 @@ const styles = StyleSheet.create({
 	inputsContainer: {
 		alignItems: "center",
 		flexDirection: "row",
+		justifyContent: "center",
 		marginTop: theme.spacing.m,
 	},
 	inputContainer: {
-		backgroundColor: theme.colors.grayLight,
-		borderRadius: 8,
-		// paddingVertical: theme.spacing.xxs,
+		backgroundColor: theme.colors.surfaceRaised,
+		borderRadius: theme.spacing.xxs,
 	},
 	input: {
+		color: theme.colors.textLight,
 		fontSize: theme.fontSize.h3,
-		fontWeight: "500",
+		fontWeight: "600",
 		paddingHorizontal: theme.spacing.xs,
+		paddingVertical: 2,
+		textAlign: "center",
 	},
 	colon: {
-		color: theme.colors.grayLight,
+		color: theme.colors.grayDark,
 		fontSize: theme.fontSize.xxl,
 		fontWeight: "600",
 		marginHorizontal: 4,
 	},
-	configContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	timeIncrementInput: {
-		borderBottomColor: theme.colors.textLight,
-		borderBottomWidth: 2,
-		color: theme.colors.textLight,
-		fontSize: theme.fontSize.xl,
-		fontWeight: "500",
-		marginLeft: theme.spacing.xxs,
-		paddingHorizontal: theme.spacing.xxs,
-	},
-	actionsContainer: {
+	incrementContainer: {
 		alignItems: "center",
 		flexDirection: "row",
-		justifyContent: "center",
+		justifyContent: "space-between",
 		marginTop: theme.spacing.s,
 	},
-	actionContainer: {
-		flex: 1,
+	incrementLabel: {
+		color: theme.colors.accent,
+		fontSize: theme.fontSize.xxs,
+		fontWeight: "600",
+		letterSpacing: 1,
+		textTransform: "uppercase",
 	},
-	confirmAction: {
-		backgroundColor: theme.colors.grayLight,
-		borderRadius: theme.spacing.xxs,
-		paddingVertical: theme.spacing.xxs,
+	incrementInput: {
+		fontSize: theme.fontSize.xl,
+		minWidth: theme.spacing.x3l,
 	},
 })

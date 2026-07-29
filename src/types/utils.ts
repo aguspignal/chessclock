@@ -14,3 +14,5 @@ export type PresetTime = {
 }
 
 export type ClockOrientation = "Vertical" | "Horizontal"
+
+export type AppTheme = "System" | "Light" | "Dark"

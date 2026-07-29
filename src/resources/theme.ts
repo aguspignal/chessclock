@@ -1,10 +1,15 @@
 const pallete = {
 	black0: "#121212",
-	black1: "#232323",
+	black1: "#1C1A15",
+	black2: "#24211A",
+	black3: "#2F2B22",
+	black4: "#3D382C",
+	black5: "#37322A",
 	white0: "#FDFCFC",
 	white1: "#FEFEFE",
 	gray0: "#B0B0B0",
 	gray1: "#DADADA",
+	tan0: "#E0A96D",
 	green: "#AACC00",
 	yellow: "#FFDD00",
 	orange: "#E36414",
@@ -18,6 +23,16 @@ export const theme = {
 
 		backgroundDark: pallete.black1,
 		backgroundLight: pallete.white0,
+
+		// Card surfaces used by the home cards: the card sits one step lighter than the
+		// screen, its controls one step lighter again, the active segment lighter still.
+		surface: pallete.black2,
+		surfaceRaised: pallete.black3,
+		surfaceActive: pallete.black4,
+		divider: pallete.black3,
+		border: pallete.black5,
+
+		accent: pallete.tan0,
 
 		grayDark: pallete.gray0,
 		grayLight: pallete.gray1,

@@ -4,16 +4,18 @@ import {
 	parseStringToNumber,
 	parseTimeToPresetName,
 } from "../utils/parsing"
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native"
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native"
 import { Preset } from "../types/utils"
 import { PresetsProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
 import { useTranslation } from "react-i18next"
-import ConfigBox from "../components/ConfigBox"
+import ActionButton from "../components/ActionButton"
+import Card, { CardDivider } from "../components/Card"
 import ConfirmationModal from "../components/ConfirmationModal"
-import IconButton from "../components/IconButton"
+import Icon from "@expo/vector-icons/MaterialCommunityIcons"
+import PresetRow from "../components/PresetRow"
 import TimeInputModal from "../components/TimeInputModal"
 import useDatabase from "../hooks/useDatabase"
 
@@ -108,40 +110,35 @@ export default function Presets({ navigation, route }: PresetsProps) {
 		<View style={styles.container}>
 			<View style={styles.actionsContainer}>
 				{isEditing ? (
-					<View></View>
+					<View />
 				) : (
-					<IconButton
-						onPress={() => setTimeModalVisible(true)}
-						iconName="plus"
-						title={t("add-preset")}
-					/>
+					<Pressable onPress={() => setTimeModalVisible(true)} style={styles.addBtn}>
+						<Icon name="plus" size={theme.fontSize.xxl} color={theme.colors.textDark} />
+						<Text style={styles.addBtnText}>{t("add-preset")}</Text>
+					</Pressable>
 				)}
 
-				<IconButton
+				<ActionButton
+					icon={isEditing ? "window-close" : "pencil"}
 					onPress={() => setIsEditing(!isEditing)}
-					iconName={isEditing ? "window-close" : "pencil"}
 				/>
 			</View>
 
-			<View style={styles.flatlistContainer}>
+			<Card style={styles.listCard}>
 				<FlatList
 					data={flatlistData}
 					keyExtractor={(item) => String(item.id)}
+					ItemSeparatorComponent={CardDivider}
 					renderItem={({ item }) => (
-						<TouchableOpacity
+						<PresetRow
+							label={item.name}
 							onPress={() => handlePressItem(item)}
-							style={styles.flatlistItemContainer}
-							activeOpacity={0.75}
-						>
-							<ConfigBox
-								title={item.name}
-								isIcon
-								valueName={isEditing ? "delete" : "chevron-right"}
-							/>
-						</TouchableOpacity>
+							trailingIcon={isEditing ? "delete" : "chevron-right"}
+							trailingIconColor={isEditing ? theme.colors.red : theme.colors.grayDark}
+						/>
 					)}
 				/>
-			</View>
+			</Card>
 
 			<TimeInputModal
 				isVisible={timeModalVisible}
@@ -177,77 +174,29 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	actionsContainer: {
+		alignItems: "center",
 		flexDirection: "row",
 		justifyContent: "space-between",
+		marginHorizontal: theme.spacing.s,
 		marginVertical: theme.spacing.xs,
-		paddingLeft: theme.spacing.s,
-		paddingRight: theme.spacing.m,
 	},
-	timeModalContainer: {
+	addBtn: {
 		alignItems: "center",
-		alignSelf: "center",
-		backgroundColor: theme.colors.backgroundDark,
-		borderRadius: 16,
-		justifyContent: "center",
-		paddingHorizontal: theme.spacing.l,
-		paddingVertical: theme.spacing.m,
-	},
-	timeModalText: {
-		color: theme.colors.textLight,
-		fontSize: theme.fontSize.m,
-		fontWeight: "500",
-	},
-	timeModalInputsContainer: {
-		alignItems: "center",
+		backgroundColor: theme.colors.accent,
+		borderRadius: theme.spacing.xs,
 		flexDirection: "row",
-	},
-	timeModalInputContainer: {
-		backgroundColor: theme.colors.grayLight,
-		borderRadius: 8,
-		marginTop: theme.spacing.l,
+		gap: 4,
+		paddingHorizontal: theme.spacing.xs,
 		paddingVertical: theme.spacing.xxs,
 	},
-	timeModalInput: {
-		fontSize: theme.fontSize.xl,
-		fontWeight: "500",
-		paddingHorizontal: theme.spacing.s,
+	addBtnText: {
+		color: theme.colors.textDark,
+		fontSize: theme.fontSize.s,
+		fontWeight: "600",
 	},
-	timeModalColon: {
-		color: theme.colors.grayLight,
-		fontSize: theme.fontSize.xl,
-		fontWeight: "500",
-		marginHorizontal: 4,
-	},
-	timeModalActionsContainer: {
-		alignSelf: "flex-end",
-		borderRadius: 8,
-		flexDirection: "row",
-	},
-	configContainer: {
-		alignItems: "center",
-		flexDirection: "row",
-		justifyContent: "center",
-		marginVertical: theme.spacing.l,
-		paddingHorizontal: theme.spacing.s,
-	},
-	configText: {
-		color: theme.colors.textLight,
-		fontSize: theme.fontSize.m,
-		fontWeight: "500",
-	},
-	timeIncrementInput: {
-		borderBottomColor: theme.colors.textLight,
-		borderBottomWidth: 2,
-		color: theme.colors.textLight,
-		fontSize: theme.fontSize.l,
-		fontWeight: "500",
-		marginLeft: theme.spacing.xxs,
-		paddingHorizontal: theme.spacing.xxs,
-	},
-	flatlistContainer: {
+	listCard: {
 		flex: 1,
-	},
-	flatlistItemContainer: {
-		padding: theme.spacing.xxs,
+		marginBottom: theme.spacing.s,
+		overflow: "hidden",
 	},
 })

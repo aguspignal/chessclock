@@ -4,24 +4,36 @@
         "presets": "Önceden ayarlanmış zaman",
         "presets-many": "Önceden ayarlanmış zamanlar",
         "orientation": {
-            "title": "Saat yönü",
+            "title": "Saat yönlendirmesi",
             "vertical": "Dikey",
             "horizontal": "Yatay",
-            "orientation": "Yön"
+            "orientation": "Yönlendirme"
         },
         "sound": "Ses",
+        "vibration": "Titreşim",
         "different-times": "Farklı zamanlar",
-        "language": "Dil"
+        "clock": "Saat",
+        "shared": "Ortak",
+        "per-player": "Oyuncu başına",
+        "language": "Dil",
+        "theme": "Tema"
     },
     "actions": {
         "cancel": "İptal",
         "confirm": "Onayla",
         "delete": "Sil",
+        "edit": "Düzenle",
         "start": "Oyunu başlat"
     },
+    "players": {
+        "white": "Beyaz",
+        "black": "Siyah"
+    },
+    "time": "Süre",
     "increment": "Zaman artışı",
+    "increment-short": "artış",
     "custom-preset": "Özel",
-    "confirm-preset-deletion": "Bu ön ayarı silmek istediğinizden emin misiniz",
+    "confirm-preset-deletion": "Bu ön ayarı silmek istediğinizden emin misiniz?",
     "adjust-time-title": "Zamanı ayarla",
     "add-preset": "Ön ayar ekle",
     "new-preset-title": "Yeni ön ayar oluştur",
