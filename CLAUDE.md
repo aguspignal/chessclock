@@ -19,7 +19,7 @@ npm run build-prev   # eas build --profile preview --platform android
 npm run build-prod   # eas build --profile production --platform android
 ```
 
-Installs need `--legacy-peer-deps` (`npx expo install <pkg> -- --legacy-peer-deps`). The SDK 57 upgrade moved the project to `typescript ~6.0.3`, but `i18next` declares a `peerOptional typescript@^5`, so a plain `npm install` fails with `ERESOLVE`. The peer is optional and only affects i18next's own types, but the flag is currently load-bearing for a clean install.
+Installs need `legacy-peer-deps`. The SDK 57 upgrade moved the project to `typescript ~6.0.3`, but `i18next` declares a `peerOptional typescript@^5`, so a plain `npm install` fails with `ERESOLVE`. The peer is optional and only affects i18next's own types, but the setting is currently load-bearing for a clean install. A committed root [.npmrc](.npmrc) sets `legacy-peer-deps=true` so both local installs and the `npm ci --include=dev` step on EAS Build pick it up automatically — do not delete it, or cloud builds fail during "Install dependencies". Older npm versions (like the one in the EAS build image) enforce peer resolution on `npm ci` even though npm 11.15 locally does not, so the failure only shows up in the cloud.
 
 There is no test suite and no `lint` script. ESLint 9 is installed with a legacy `.eslintrc.js` (`extends: ["expo", "prettier"]`), and the `prettier/prettier` rule is deliberately turned **off** — formatting is enforced only by Prettier itself (`.prettierrc`: tabs, width 4, no semicolons, double quotes, trailing commas).
 
