@@ -1,46 +1,46 @@
 {
-  "expo": {
-    "name": "Chess Clock",
-    "slug": "chessclock",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.aguspignal.chessclock",
-      "permissions": ["android.permission.VIBRATE"]
-    },
-    "extra": {
-      "eas": {
-        "projectId": "e9889827-1da8-4e63-9899-7cede9eea061"
-      }
-    },
-    "plugins": [
-      "expo-sqlite",
-      "expo-audio",
-      "expo-font",
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "enableMinifyInReleaseBuilds": true
-          }
-        }
-      ],
-      "expo-asset",
-      "expo-status-bar",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/splash-icon.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ]
-    ]
-  }
+	"expo": {
+		"name": "Chess Clock",
+		"slug": "chessclock",
+		"version": "1.0.1",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "light",
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.aguspignal.chessclock",
+			"permissions": ["android.permission.VIBRATE"]
+		},
+		"extra": {
+			"eas": {
+				"projectId": "e9889827-1da8-4e63-9899-7cede9eea061"
+			}
+		},
+		"plugins": [
+			"expo-sqlite",
+			"expo-audio",
+			"expo-font",
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"enableMinifyInReleaseBuilds": true
+					}
+				}
+			],
+			"expo-asset",
+			"expo-status-bar",
+			[
+				"expo-splash-screen",
+				{
+					"image": "./assets/splash-icon.png",
+					"resizeMode": "contain",
+					"backgroundColor": "#ffffff"
+				}
+			]
+		]
+	}
 }

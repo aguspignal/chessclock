@@ -282,44 +282,4 @@ const styles = StyleSheet.create({
 		fontSize: theme.fontSize.l,
 		fontWeight: "600",
 	},
-	timeModalContainer: {
-		alignItems: "center",
-		alignSelf: "center",
-		backgroundColor: theme.colors.backgroundDark,
-		borderRadius: 16,
-		justifyContent: "center",
-		paddingHorizontal: theme.spacing.l,
-		paddingVertical: theme.spacing.m,
-	},
-	timeModalText: {
-		color: theme.colors.textLight,
-		fontSize: theme.fontSize.m,
-		fontWeight: "500",
-	},
-	timeModalInputsContainer: {
-		alignItems: "center",
-		flexDirection: "row",
-	},
-	timeModalInputContainer: {
-		backgroundColor: theme.colors.grayLight,
-		borderRadius: 8,
-		marginVertical: theme.spacing.m,
-		paddingVertical: theme.spacing.xxs,
-	},
-	timeModalInput: {
-		fontSize: theme.fontSize.xl,
-		fontWeight: "500",
-		paddingHorizontal: theme.spacing.s,
-	},
-	timeModalColon: {
-		color: theme.colors.grayLight,
-		fontSize: theme.fontSize.xl,
-		fontWeight: "500",
-		marginHorizontal: 4,
-	},
-	timeModalActionsContainer: {
-		alignSelf: "flex-end",
-		borderRadius: 8,
-		flexDirection: "row",
-	},
 })

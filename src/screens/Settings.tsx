@@ -1,11 +1,11 @@
-import { AppLanguage, LANGUAGES_CODES, LANGUAGES_MAP } from "../types/languages"
+import { AppLanguage, LANGUAGES_CODES, LANGUAGES_MAP, toAppLanguage } from "../types/languages"
 import { AppTheme } from "../types/utils"
 import { Dropdown } from "react-native-element-dropdown"
 import { SHOW_THEME_SETTING } from "../utils/constants"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import Card, { CardDivider } from "../components/Card"
 import ConfirmationModal from "../components/ConfirmationModal"
@@ -28,9 +28,23 @@ export default function Settings() {
 		setAppTheme,
 	} = useConfigStore()
 	const { restoreDefaultPresets } = useDatabase()
-	const [selectedLng, setSelectedLng] = useState<AppLanguage | null>(language ?? AppLanguage.en)
 	const [restoreModalVisible, setRestoreModalVisible] = useState<boolean>(false)
 	const [presetsRestored, setPresetsRestored] = useState<boolean>(false)
+
+	// The language actually in effect: the persisted choice when there is one, otherwise
+	// whatever i18next resolved from the device locale. Deriving it rather than seeding
+	// state with a default is what keeps merely opening this screen from persisting that
+	// default and discarding the device locale for good.
+	const activeLanguage = language ?? toAppLanguage(i18n.resolvedLanguage ?? i18n.language)
+
+	// Changing the language is user-initiated, so it belongs in the handler. As an effect
+	// it also ran on mount, which is what wrote the default back to the store.
+	function handleSelectLanguage(lng: AppLanguage) {
+		i18n.changeLanguage(lng.replace("-", "_"), (err) => {
+			if (err) console.log("Something went wrong changing the language", err)
+		})
+		setLanguage(lng)
+	}
 
 	async function handleRestoreDefaultPresets() {
 		try {
@@ -45,15 +59,6 @@ export default function Settings() {
 		setRestoreModalVisible(false)
 	}
 
-	useEffect(() => {
-		if (selectedLng) {
-			i18n.changeLanguage(selectedLng.replace("-", "_"), (err) => {
-				if (err) console.log(err)
-			})
-			setLanguage(selectedLng)
-		}
-	}, [selectedLng])
-
 	return (
 		<View style={styles.container}>
 			<Card>
@@ -67,12 +72,12 @@ export default function Settings() {
 						activeColor={theme.colors.surfaceActive}
 						labelField="label"
 						valueField="value"
-						value={selectedLng ?? ""}
+						value={activeLanguage}
 						data={LANGUAGES_CODES.map((langCode) => ({
 							label: LANGUAGES_MAP[langCode].name,
 							value: langCode,
 						}))}
-						onChange={(i) => setSelectedLng(i.value)}
+						onChange={(i) => handleSelectLanguage(i.value)}
 						renderRightIcon={() => <></>}
 					/>
 				</SettingRow>

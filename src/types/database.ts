@@ -1,9 +1,3 @@
-import { SQLiteDatabase } from "expo-sqlite"
-
-export type DatabaseContextType = {
-	db: SQLiteDatabase | null
-}
-
 export type DatabasePreset = {
 	id: number
 	name: string
