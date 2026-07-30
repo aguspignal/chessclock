@@ -109,7 +109,6 @@ export default function Clock({ navigation }: ClockProps) {
 		if (soundEnabled) {
 			audioPlayer.seekTo(0)
 			audioPlayer.play()
-			// audioPlayer.replace(audioSource)
 		}
 	}
 
@@ -221,8 +220,7 @@ export default function Clock({ navigation }: ClockProps) {
 				isPlaying={isTopPlaying}
 				onMove={handleMove}
 				playerClock={topPlayerClock}
-				movesCount={10}
-				// movesCount={topPlayerCount}
+				movesCount={topPlayerCount}
 			/>
 
 			<View style={[styles.actionsContainer]}>
@@ -261,8 +259,7 @@ export default function Clock({ navigation }: ClockProps) {
 				isPlaying={isBottomPlaying}
 				onMove={handleMove}
 				playerClock={bottomPlayerClock}
-				// movesCount={bottomPlayerCount}
-				movesCount={14}
+				movesCount={bottomPlayerCount}
 			/>
 		</View>
 	)

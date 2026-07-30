@@ -45,11 +45,11 @@ Presets live in a SQLite `Presets` table, not in Zustand. `onSQLiteProviderInit`
 
 CRUD goes through the [useDatabase](src/hooks/useDatabase.ts) hook (`getAllPresets`, `postPreset`, `deletePreset`). `deletePreset` takes the row `id` — never match on `name`, which is neither unique nor stable. A preset is identified by its *duration*: the 1 → 2 migration adds `UNIQUE (hours, minutes, seconds, timeIncrementMs)`, so `postPreset` uses `INSERT OR IGNORE` and saving an existing duration is a deliberate no-op rather than an error.
 
-Two shapes exist for the same entity and must be converted at the boundary, using the helpers in [src/utils/parsing.tsx](src/utils/parsing.tsx):
+Two shapes exist for the same entity and must be converted at the boundary, using the helpers in [src/utils/parsing.ts](src/utils/parsing.ts):
 - `DatabasePreset` (flat: `id, name, hours, minutes, seconds, timeIncrementMs`) — [src/types/database.ts](src/types/database.ts). `NewDatabasePreset` is the same without `id`, for inserts.
 - `Preset` (nested `time: { hours, minutes, seconds }`) — [src/types/utils.ts](src/types/utils.ts). Its `id` is optional: set only on rows read from the DB, absent on store state and the bundled defaults.
 
-`parsing.tsx` is `.tsx` because a few helpers return JSX; it holds all time formatting, preset conversion and string→number coercion. Put new formatting logic there rather than inline in screens.
+`parsing.ts` holds all time formatting, preset conversion and string→number coercion. Put new formatting logic there rather than inline in screens. It was `.tsx` until the last JSX-returning helpers were deleted as dead code — keep it JSX-free so it can stay `.ts`.
 
 ### Clock logic
 

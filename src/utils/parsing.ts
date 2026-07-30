@@ -1,7 +1,5 @@
 import { DatabasePreset, NewDatabasePreset } from "../types/database"
 import { Preset, PresetTime } from "../types/utils"
-import { StyleProp, Text, TextStyle, View } from "react-native"
-import { theme } from "../resources/theme"
 
 export function parseTimeFromMilliseconds(ms: number) {
 	const hours = Math.floor(ms / 3600000)
@@ -17,20 +15,6 @@ export function parseTimeFromMilliseconds(ms: number) {
 
 export function parseTimeToMilisecondsString(ms: number) {
 	return String(Math.floor((ms % 1000) / 10)).padStart(2, "0")
-}
-
-export function parseTimeWithExtra(seconds: number, extra: number) {
-	const hs = Math.floor(seconds / 3600)
-	const min = Math.floor((seconds - hs * 3600) / 60)
-	const sec = seconds - min * 60 - hs * 3600
-
-	const hsString = String(hs).padStart(2, "0") + ":"
-	const minString = String(min).padStart(2, "0") + ":"
-	const secString = String(sec).padStart(2, "0")
-
-	const extraString = " | " + String(extra) + "s"
-
-	return `${hs > 0 ? hsString : ""}${minString + secString}${extra > 0 ? extraString : ""}`
 }
 
 export function parseTimeToPresetName(hs: string, min: string, sec: string, inc: string): string {
@@ -55,46 +39,10 @@ export function parsePresetTimeToText(time: PresetTime) {
 	return `${time.hours > 0 ? `${hours}:` : ""}${minutes}:${seconds}`
 }
 
-export function parseHoursToText(hours: number) {
-	if (hours === 0) return <></>
-
-	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.h3, fontWeight: "500" }
-
-	return (
-		<View style={{ flexDirection: "row" }}>
-			<Text style={textStyle}>{hours < 10 ? `0${hours}` : hours}</Text>
-			{hours === 0 ? <></> : <Text style={textStyle}>:</Text>}
-		</View>
-	)
-}
-
-export function parseMinutesToText(minutes: number) {
-	const text = minutes === 0 ? "00" : minutes < 10 ? `0${minutes}` : `${minutes}`
-
-	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.h3, fontWeight: "500" }
-
-	return (
-		<View style={{ flexDirection: "row" }}>
-			<Text style={textStyle}>{text}</Text>
-			<Text style={textStyle}>:</Text>
-		</View>
-	)
-}
-
-export function parseSecondsToText(seconds: number) {
-	const text = seconds === 0 ? "00" : seconds < 10 ? `0${seconds}` : `${seconds}`
-
-	const textStyle: StyleProp<TextStyle> = { fontSize: theme.fontSize.h3, fontWeight: "500" }
-
-	return (
-		<View style={{ flexDirection: "row" }}>
-			<Text style={textStyle}>{text}</Text>
-		</View>
-	)
-}
-
+// Sorts a copy — `Array.prototype.sort` is in-place, and callers pass arrays they
+// did not expect to have reordered under them.
 export function orderPresetsByDuration(presets: Preset[]): Preset[] {
-	return presets.sort(
+	return [...presets].sort(
 		(a, b) =>
 			a.time.hours - b.time.hours ||
 			a.time.minutes - b.time.minutes ||
@@ -124,20 +72,6 @@ export function parseDatabasePresetsArray(dbPresets: DatabasePreset[]) {
 		}
 		return preset
 	})
-}
-
-export function parseDatabasePreset(dbPreset: DatabasePreset) {
-	const preset: Preset = {
-		id: dbPreset.id,
-		name: dbPreset.name,
-		time: {
-			hours: dbPreset.hours,
-			minutes: dbPreset.minutes,
-			seconds: dbPreset.seconds,
-		},
-		timeIncrementMs: dbPreset.timeIncrementMs,
-	}
-	return preset
 }
 
 export function parsePresetToDatabasePreset(preset: Preset) {

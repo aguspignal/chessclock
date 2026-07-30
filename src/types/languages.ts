@@ -87,3 +87,13 @@ const LANGUAGES = [
 export const LANGUAGES_MAP = Object.fromEntries(
 	LANGUAGES.map((lang) => [lang.code, lang]),
 ) as Record<AppLanguage, typeof LANGUAGES[number]>
+
+// i18next resource keys use underscores while `AppLanguage` uses hyphens, so an active
+// i18next language has to be mapped back before it can be matched against an option.
+// Anything unrecognised — a device locale with no bundle, for instance — falls back to
+// the same language i18next itself falls back to.
+export function toAppLanguage(lng: string | undefined): AppLanguage {
+	const code = (lng ?? "").replace("_", "-")
+
+	return LANGUAGES_CODES.includes(code as AppLanguage) ? (code as AppLanguage) : AppLanguage.en
+}

@@ -59,8 +59,6 @@ type SecondState = {
 	secondTime: Preset
 	secondTimeInMilliseconds: number
 	setSecondTime: (t: Preset) => void
-	setSecondName: (n: string) => void
-	setSecondIncrement: (inc: number) => void
 }
 
 export const useSecondTimeStore = create<SecondState>()(
@@ -71,31 +69,6 @@ export const useSecondTimeStore = create<SecondState>()(
 			setSecondTime: (t) => {
 				set({ secondTime: t })
 				set({ secondTimeInMilliseconds: getTimeInMillisecondsFromPreset(t) })
-			},
-			setSecondName: (n) =>
-				set((state) => ({
-					secondTime: {
-						name: n,
-						time: {
-							hours: state.secondTime.time.hours,
-							minutes: state.secondTime.time.minutes,
-							seconds: state.secondTime.time.seconds,
-						},
-						timeIncrementMs: state.secondTime.timeIncrementMs,
-					},
-				})),
-			setSecondIncrement: (inc) => {
-				set((state) => ({
-					secondTime: {
-						name: state.secondTime.name,
-						time: {
-							hours: state.secondTime.time.hours,
-							minutes: state.secondTime.time.minutes,
-							seconds: state.secondTime.time.seconds,
-						},
-						timeIncrementMs: inc,
-					},
-				}))
 			},
 		}),
 		{
