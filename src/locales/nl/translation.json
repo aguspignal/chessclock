@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Weet je zeker dat je deze voorinstelling wilt verwijderen?",
     "adjust-time-title": "Tijd aanpassen",
     "add-preset": "Voorinstelling toevoegen",
+    "restore-default-presets": "Standaardvoorinstellingen herstellen",
+    "confirm-presets-restore": "De standaardvoorinstellingen herstellen? Je eigen voorinstellingen blijven behouden.",
     "new-preset-title": "Nieuwe vooringestelde tijd maken",
     "moves": "Zetten",
     "settings": "Instellingen"

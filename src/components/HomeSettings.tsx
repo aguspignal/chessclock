@@ -4,30 +4,14 @@ import Card, { CardDivider } from "./Card"
 import React from "react"
 import SegmentedControl from "./SegmentedControl"
 import SettingRow from "./SettingRow"
-import SettingSwitch from "./SettingSwitch"
 
 export default function HomeSettings() {
 	const { t } = useTranslation()
-	const {
-		orientation,
-		setOrientation,
-		soundEnabled,
-		toggleSoundEnabled,
-		withDifferentTimes,
-		toggleWithDifferentTimes,
-	} = useConfigStore()
+	const { orientation, setOrientation, withDifferentTimes, toggleWithDifferentTimes } =
+		useConfigStore()
 
 	return (
 		<Card>
-			<SettingRow
-				icon={soundEnabled ? "volume-high" : "volume-off"}
-				label={t("configs.sound")}
-			>
-				<SettingSwitch value={soundEnabled} onValueChange={toggleSoundEnabled} />
-			</SettingRow>
-
-			<CardDivider />
-
 			<SettingRow icon="account-multiple-outline" label={t("configs.clock")}>
 				<SegmentedControl
 					options={[

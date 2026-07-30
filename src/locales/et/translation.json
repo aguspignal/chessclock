@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Kas olete kindel, et soovite selle eelseade kustutada?",
     "adjust-time-title": "Aja reguleerimine",
     "add-preset": "Lisa eelseade",
+    "restore-default-presets": "Taasta vaikeeelseaded",
+    "confirm-presets-restore": "Kas taastada vaikeeelseaded? Teie enda omad jäävad alles.",
     "new-preset-title": "Loo uus eelseatud aeg",
     "moves": "Käigud",
     "settings": "Seaded"

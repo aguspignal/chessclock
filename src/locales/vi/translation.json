@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Bạn có chắc chắn muốn xóa cài đặt trước này không?",
     "adjust-time-title": "Điều chỉnh thời gian",
     "add-preset": "Thêm cài đặt trước",
+    "restore-default-presets": "Khôi phục cài đặt trước mặc định",
+    "confirm-presets-restore": "Khôi phục các cài đặt trước mặc định? Cài đặt của bạn vẫn được giữ.",
     "new-preset-title": "Tạo cài đặt thời gian mới",
     "moves": "Nước đi",
     "settings": "Cài đặt"

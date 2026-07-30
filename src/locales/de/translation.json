@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Sind Sie sicher, dass Sie diese Zeit löschen möchten?",
     "adjust-time-title": "Zeit anpassen",
     "add-preset": "Zeit hinzufügen",
+    "restore-default-presets": "Voreingestellte Zeiten wiederherstellen",
+    "confirm-presets-restore": "Die voreingestellten Zeiten wiederherstellen? Ihre eigenen Zeiten bleiben erhalten.",
     "new-preset-title": "Neue Zeit erstellen",
     "moves": "Züge",
     "settings": "Einstellungen"

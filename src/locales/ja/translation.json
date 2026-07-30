@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "このプリセットを削除してもよろしいですか？",
     "adjust-time-title": "時間を調整",
     "add-preset": "プリセットを追加",
+    "restore-default-presets": "既定のプリセットを復元",
+    "confirm-presets-restore": "既定のプリセットを復元しますか？お客様のプリセットは保持されます。",
     "new-preset-title": "新しいプリセット時間を作成",
     "moves": "手数",
     "settings": "設定"

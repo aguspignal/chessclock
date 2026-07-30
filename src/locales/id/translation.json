@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Apakah Anda yakin ingin menghapus preset ini?",
     "adjust-time-title": "Sesuaikan waktu",
     "add-preset": "Tambahkan preset",
+    "restore-default-presets": "Pulihkan preset bawaan",
+    "confirm-presets-restore": "Pulihkan preset bawaan? Preset Anda sendiri tetap ada.",
     "new-preset-title": "Buat waktu preset baru",
     "moves": "Langkah",
     "settings": "Pengaturan"

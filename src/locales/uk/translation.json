@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Ви впевнені, що хочете видалити цей пресет?",
     "adjust-time-title": "Налаштувати час",
     "add-preset": "Додати пресет",
+    "restore-default-presets": "Відновити стандартні пресети",
+    "confirm-presets-restore": "Відновити стандартні пресети? Ваші власні буде збережено.",
     "new-preset-title": "Створити новий пресет часу",
     "moves": "Ходи",
     "settings": "Налаштування"

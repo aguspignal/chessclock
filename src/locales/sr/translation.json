@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Да ли сте сигурни да желите да обришете ово време?",
     "adjust-time-title": "Подеси време",
     "add-preset": "Додај време",
+    "restore-default-presets": "Врати подразумевана времена",
+    "confirm-presets-restore": "Да ли да вратим подразумевана времена? Ваша сопствена остају.",
     "new-preset-title": "Креирај ново време",
     "moves": "Потези",
     "settings": "Подешавања"

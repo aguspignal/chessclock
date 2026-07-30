@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "A jeni i sigurt që dëshironi të fshini këtë paracaktim?",
     "adjust-time-title": "Rregullo kohën",
     "add-preset": "Shto paracaktim",
+    "restore-default-presets": "Rikthe paracaktimet fillestare",
+    "confirm-presets-restore": "Të rikthehen paracaktimet fillestare? Të tuajat ruhen.",
     "new-preset-title": "Krijo kohë të re të paracaktuar",
     "moves": "Lëvizjet",
     "settings": "Cilësimet"

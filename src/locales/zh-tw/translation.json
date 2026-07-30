@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "您確定要刪除此預設嗎？",
     "adjust-time-title": "調整時間",
     "add-preset": "新增預設",
+    "restore-default-presets": "還原預設時間",
+    "confirm-presets-restore": "要還原預設的時間嗎？您自己的設定會保留。",
     "new-preset-title": "建立新的預設時間",
     "moves": "步數",
     "settings": "設定"

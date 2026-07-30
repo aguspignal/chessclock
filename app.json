@@ -11,7 +11,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.aguspignal.chessclock"
+      "package": "com.aguspignal.chessclock",
+      "permissions": ["android.permission.VIBRATE"]
     },
     "extra": {
       "eas": {

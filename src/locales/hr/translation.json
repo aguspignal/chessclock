@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Jeste li sigurni da želite izbrisati ovu unaprijed postavljenu vrijednost?",
     "adjust-time-title": "Prilagodba vremena",
     "add-preset": "Dodaj unaprijed postavljeno vrijeme",
+    "restore-default-presets": "Vrati zadana vremena",
+    "confirm-presets-restore": "Vratiti zadana unaprijed postavljena vremena? Vaša vlastita ostaju.",
     "new-preset-title": "Stvori novo unaprijed postavljeno vrijeme",
     "moves": "Potezi",
     "settings": "Postavke"

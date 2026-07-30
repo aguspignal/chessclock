@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Biztosan törölni szeretné ezt az előre beállított értéket?",
     "adjust-time-title": "Idő beállítása",
     "add-preset": "Előre beállított idő hozzáadása",
+    "restore-default-presets": "Alapértelmezett idők visszaállítása",
+    "confirm-presets-restore": "Visszaállítja az alapértelmezett időket? A sajátjai megmaradnak.",
     "new-preset-title": "Új előre beállított idő létrehozása",
     "moves": "Lépések",
     "settings": "Beállítások"

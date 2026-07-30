@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Tem a certeza de que pretende eliminar este preset?",
     "adjust-time-title": "Ajustar tempo",
     "add-preset": "Adicionar preset",
+    "restore-default-presets": "Restaurar tempos predefinidos",
+    "confirm-presets-restore": "Restaurar os tempos predefinidos? Os seus são mantidos.",
     "new-preset-title": "Criar novo tempo predefinido",
     "moves": "Jogadas",
     "settings": "Definições"

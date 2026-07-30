@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Opravdu chcete tuto přednastavenou hodnotu smazat?",
     "adjust-time-title": "Upravit čas",
     "add-preset": "Přidat přednastavený čas",
+    "restore-default-presets": "Obnovit přednastavené časy",
+    "confirm-presets-restore": "Obnovit výchozí přednastavené časy? Vaše vlastní zůstanou zachovány.",
     "new-preset-title": "Vytvořit nový přednastavený čas",
     "moves": "Tahy",
     "settings": "Nastavení"

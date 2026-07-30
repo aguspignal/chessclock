@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Er du sikker på, at du vil slette denne forudindstilling?",
     "adjust-time-title": "Juster tid",
     "add-preset": "Tilføj forudindstilling",
+    "restore-default-presets": "Gendan standardforudindstillinger",
+    "confirm-presets-restore": "Gendan standardforudindstillingerne? Dine egne bevares.",
     "new-preset-title": "Opret ny forudindstillet tid",
     "moves": "Træk",
     "settings": "Indstillinger"
