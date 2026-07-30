@@ -1,8 +1,8 @@
 {
     "app-title": "Reloj de Ajedrez",
     "configs": {
-        "presets": "Tiempo preestablecido",
-        "presets-many": "Tiempos preestablecidos",
+        "presets": "Modalidad",
+        "presets-many": "Modalidades",
         "orientation": {
             "title": "Orientación del reloj",
             "vertical": "Vertical",
@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "¿Estás seguro de que quieres eliminar este tiempo?",
     "adjust-time-title": "Ajustar tiempo",
     "add-preset": "Añadir tiempo",
+    "restore-default-presets": "Restaurar modalidades predeterminadas",
+    "confirm-presets-restore": "¿Restaurar las modalidades predeterminadas? Se conservan las tuyas.",
     "new-preset-title": "Crea un nuevo tiempo",
     "moves": "Jugadas",
     "settings": "Ajustes"

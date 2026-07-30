@@ -1,5 +1,5 @@
 import { ClockProps } from "../types/navigation"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, Vibration, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useAudioPlayer } from "expo-audio"
 import { useConfigStore } from "../stores/useConfigStore"
@@ -11,6 +11,10 @@ import { useKeepAwake } from "expo-keep-awake"
 
 const audioSource = require("../../assets/click.mp3")
 
+// Android reads the pattern as [wait, buzz, wait, buzz, ...] in ms — two long
+// buzzes, so a flag fall is unmistakable even with the sound off.
+const GAME_OVER_VIBRATION_PATTERN = [0, 500, 200, 500]
+
 export default function Clock({ navigation }: ClockProps) {
 	const {
 		time: { timeIncrementMs },
@@ -20,11 +24,14 @@ export default function Clock({ navigation }: ClockProps) {
 		secondTime: { timeIncrementMs: secondTimeIncrement },
 		secondTimeInMilliseconds,
 	} = useSecondTimeStore()
-	const { orientation, soundEnabled, withDifferentTimes } = useConfigStore()
+	const { orientation, soundEnabled, vibrationEnabled, withDifferentTimes } =
+		useConfigStore()
 	const audioPlayer = useAudioPlayer(audioSource)
 	useKeepAwake()
 
-	const intervalId = useRef<ReturnType<typeof setInterval> | undefined>(undefined)
+	const intervalId = useRef<ReturnType<typeof setInterval> | undefined>(
+		undefined,
+	)
 	const lastUpdateTime = useRef<number>(0)
 	const UPDATE_INTERVAL = 10
 
@@ -191,10 +198,19 @@ export default function Clock({ navigation }: ClockProps) {
 		stopAllTimers()
 		setIsTopPlaying(false)
 		setIsBottomPlaying(false)
+
+		if (vibrationEnabled) Vibration.vibrate(GAME_OVER_VIBRATION_PATTERN)
+
+		// `vibrationEnabled` is deliberately not a dependency: it is only read at
+		// the moment the flag falls, and adding it would re-buzz on every toggle
+		// while the game-over state is still true.
 	}, [isGameOver])
 
 	useEffect(() => {
-		return () => stopAllTimers()
+		return () => {
+			stopAllTimers()
+			Vibration.cancel()
+		}
 	}, [])
 
 	return (
@@ -205,7 +221,8 @@ export default function Clock({ navigation }: ClockProps) {
 				isPlaying={isTopPlaying}
 				onMove={handleMove}
 				playerClock={topPlayerClock}
-				movesCount={topPlayerCount}
+				movesCount={10}
+				// movesCount={topPlayerCount}
 			/>
 
 			<View style={[styles.actionsContainer]}>
@@ -244,7 +261,8 @@ export default function Clock({ navigation }: ClockProps) {
 				isPlaying={isBottomPlaying}
 				onMove={handleMove}
 				playerClock={bottomPlayerClock}
-				movesCount={bottomPlayerCount}
+				// movesCount={bottomPlayerCount}
+				movesCount={14}
 			/>
 		</View>
 	)

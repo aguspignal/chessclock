@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Are you sure you want to delete this preset?",
     "adjust-time-title": "Adjust time",
     "add-preset": "Add preset",
+    "restore-default-presets": "Restore default presets",
+    "confirm-presets-restore": "Restore the default presets? Your own presets are kept.",
     "new-preset-title": "Create new preset time",
     "moves": "Moves",
     "settings": "Settings"

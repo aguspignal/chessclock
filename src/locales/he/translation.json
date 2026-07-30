@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "האם אתה בטוח שברצונך למחוק את ההגדרה המוגדרת מראש הזו?",
     "adjust-time-title": "כיוון זמן",
     "add-preset": "הוסף הגדרה",
+    "restore-default-presets": "שחזור ההגדרות המוגדרות מראש",
+    "confirm-presets-restore": "לשחזר את ההגדרות המוגדרות מראש? ההגדרות שלך יישמרו.",
     "new-preset-title": "צור הגדרה חדשה",
     "moves": "מהלכים",
     "settings": "הגדרות"

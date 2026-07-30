@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "이 프리셋을 삭제하시겠습니까?",
     "adjust-time-title": "시간 조정",
     "add-preset": "프리셋 추가",
+    "restore-default-presets": "기본 프리셋 복원",
+    "confirm-presets-restore": "기본 프리셋을 복원하시겠습니까? 직접 만든 프리셋은 유지됩니다.",
     "new-preset-title": "새 프리셋 시간 만들기",
     "moves": "수",
     "settings": "설정"

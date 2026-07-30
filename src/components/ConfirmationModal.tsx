@@ -10,6 +10,7 @@ type Props = {
 	title?: string
 	saveActionTitle?: string
 	onSave: () => void
+	isDestructive?: boolean
 }
 
 export default function ConfirmationModal({
@@ -18,6 +19,7 @@ export default function ConfirmationModal({
 	title = "",
 	saveActionTitle = "Save",
 	onSave,
+	isDestructive = true,
 }: Props) {
 	return (
 		<Modal
@@ -32,7 +34,7 @@ export default function ConfirmationModal({
 					onCancel={() => setIsVisible(false)}
 					onConfirm={onSave}
 					confirmTitle={saveActionTitle}
-					isDestructive
+					isDestructive={isDestructive}
 				/>
 			</Card>
 		</Modal>

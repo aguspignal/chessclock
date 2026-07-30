@@ -53,11 +53,13 @@ export default function PlayerClock({
 		>
 			<View style={[styles.clockContainer, clockColorStyle, verticalOrientationStyle]}>
 				<View style={[horizontalOrientationTextStyle, styles.alignCenter]}>
-					<Icon
-						name="crown"
-						size={theme.fontSize.h3}
-						color={hasWon ? theme.colors.textDark : "transparent"}
-					/>
+					{hasWon && (
+						<Icon
+							name="crown"
+							size={theme.fontSize.h3}
+							color={theme.colors.textDark}
+						/>
+					)}
 
 					<Text style={[styles.timer, playerClock < 3600000 ? styles.biggerText : null]}>
 						{parseTimeFromMilliseconds(playerClock)}

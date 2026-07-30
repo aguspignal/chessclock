@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Ești sigur că vrei să ștergi acest preset?",
     "adjust-time-title": "Ajustează timpul",
     "add-preset": "Adaugă preset",
+    "restore-default-presets": "Restabilește presetările implicite",
+    "confirm-presets-restore": "Restabilești presetările implicite? Presetările tale sunt păstrate.",
     "new-preset-title": "Creează un nou timp presetat",
     "moves": "Mutări",
     "settings": "Setări"

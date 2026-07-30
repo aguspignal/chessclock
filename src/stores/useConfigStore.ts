@@ -26,7 +26,7 @@ export const useConfigStore = create<State>()(
 			hasHydrated: false,
 			appTheme: "System",
 			language: null,
-			orientation: "Vertical",
+			orientation: "Horizontal",
 			soundEnabled: true,
 			vibrationEnabled: true,
 			withDifferentTimes: false,
@@ -34,11 +34,14 @@ export const useConfigStore = create<State>()(
 			setAppTheme: (t) => set({ appTheme: t }),
 			setLanguage: (lng) => set({ language: lng }),
 			setOrientation: (o) => set({ orientation: o }),
-			toggleSoundEnabled: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
+			toggleSoundEnabled: () =>
+				set((state) => ({ soundEnabled: !state.soundEnabled })),
 			toggleVibrationEnabled: () =>
 				set((state) => ({ vibrationEnabled: !state.vibrationEnabled })),
 			toggleWithDifferentTimes: () =>
-				set((state) => ({ withDifferentTimes: !state.withDifferentTimes })),
+				set((state) => ({
+					withDifferentTimes: !state.withDifferentTimes,
+				})),
 		}),
 		{
 			name: "config-store",
@@ -49,7 +52,11 @@ export const useConfigStore = create<State>()(
 			// callback runs on both the success and the failure path, so a broken storage
 			// entry degrades to the defaults instead of blocking startup forever.
 			onRehydrateStorage: () => (_state, error) => {
-				if (error) console.log("Something went wrong rehydrating the config", error)
+				if (error)
+					console.log(
+						"Something went wrong rehydrating the config",
+						error,
+					)
 				useConfigStore.setState({ hasHydrated: true })
 			},
 

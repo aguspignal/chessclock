@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Sigurado ka bang gusto mong tanggalin ang preset na ito?",
     "adjust-time-title": "Ayusin ang oras",
     "add-preset": "Magdagdag ng preset",
+    "restore-default-presets": "Ibalik ang mga default na preset",
+    "confirm-presets-restore": "Ibalik ang mga default na preset? Mananatili ang sarili mong mga preset.",
     "new-preset-title": "Gumawa ng bagong preset na oras",
     "moves": "Mga galaw",
     "settings": "Mga setting"

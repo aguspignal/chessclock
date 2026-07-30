@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Sei sicuro di voler eliminare questo tempo?",
     "adjust-time-title": "Regola tempo",
     "add-preset": "Aggiungi tempo",
+    "restore-default-presets": "Ripristina tempi predefiniti",
+    "confirm-presets-restore": "Ripristinare i tempi predefiniti? I tuoi tempi vengono mantenuti.",
     "new-preset-title": "Crea un nuovo tempo",
     "moves": "Mosse",
     "settings": "Impostazioni"

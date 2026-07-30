@@ -1,7 +1,8 @@
 import { DatabasePreset, NewDatabasePreset } from "../types/database"
-import { parseDatabasePresetsArray } from "../utils/parsing"
+import { parseDatabasePresetsArray, parsePresetToDatabasePreset } from "../utils/parsing"
 import { Preset } from "../types/utils"
 import { useSQLiteContext } from "expo-sqlite"
+import defaultPresets from "../resources/defaultpresets.json"
 
 export default function useDatabase() {
 	const db = useSQLiteContext()
@@ -30,9 +31,22 @@ export default function useDatabase() {
 		await db.runAsync("DELETE FROM Presets WHERE id = ?", id)
 	}
 
+	// The seed in `onSQLiteProviderInit` only runs on the 0 -> 1 migration, so this is
+	// the only way back for someone who deleted the bundled presets. It is additive,
+	// never a reset: `INSERT OR IGNORE` leaves defaults that are still there — and every
+	// custom preset — untouched.
+	async function restoreDefaultPresets(): Promise<void> {
+		await db.withTransactionAsync(async () => {
+			for (const preset of defaultPresets) {
+				await postPreset(parsePresetToDatabasePreset(preset))
+			}
+		})
+	}
+
 	return {
 		getAllPresets,
 		postPreset,
 		deletePreset,
+		restoreDefaultPresets,
 	}
 }

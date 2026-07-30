@@ -36,6 +36,8 @@
     "confirm-preset-deletion": "Bu ön ayarı silmek istediğinizden emin misiniz?",
     "adjust-time-title": "Zamanı ayarla",
     "add-preset": "Ön ayar ekle",
+    "restore-default-presets": "Varsayılan ön ayarları geri yükle",
+    "confirm-presets-restore": "Varsayılan ön ayarlar geri yüklensin mi? Kendi ön ayarlarınız korunur.",
     "new-preset-title": "Yeni ön ayar oluştur",
     "moves": "Hamleler",
     "settings": "Ayarlar"
