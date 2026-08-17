@@ -13,15 +13,23 @@ The New Architecture is the only architecture in SDK 57, so there is no `newArch
 ```powershell
 npm start            # expo start
 npm run android      # expo run:android (native dev build)
-npm run doc          # npx expo-doctor@latest
+npm run typecheck    # tsc --noEmit
+npm run doc          # npx -y expo-doctor@latest
+npm run doc:ci       # npx -y expo-doctor@1.20.2 (pinned; what the workflows call)
 npm run build-dev    # eas build --profile development --platform android
 npm run build-prev   # eas build --profile preview --platform android
 npm run build-prod   # eas build --profile production --platform android
+npm run wf:validate  # eas workflow:validate on both .eas/workflows/*.yml
+npm run wf:dev       # dispatch build.yml with build_type=development
+npm run wf:prod      # dispatch build.yml with build_type=production --ref main
+npm run wf:hotfix    # dispatch publish-production-update.yml --ref main
 ```
+
+`doc` intentionally floats on `@latest` while `doc:ci` is pinned: local goes red first, and a surprise upstream check can never block a release mid-incident. Bump the pin once local has passed.
 
 Installs need `legacy-peer-deps`. The SDK 57 upgrade moved the project to `typescript ~6.0.3`, but `i18next` declares a `peerOptional typescript@^5`, so a plain `npm install` fails with `ERESOLVE`. The peer is optional and only affects i18next's own types, but the setting is currently load-bearing for a clean install. A committed root [.npmrc](.npmrc) sets `legacy-peer-deps=true` so both local installs and the `npm ci --include=dev` step on EAS Build pick it up automatically — do not delete it, or cloud builds fail during "Install dependencies". Older npm versions (like the one in the EAS build image) enforce peer resolution on `npm ci` even though npm 11.15 locally does not, so the failure only shows up in the cloud.
 
-There is no test suite and no `lint` script. ESLint 9 is installed with a legacy `.eslintrc.js` (`extends: ["expo", "prettier"]`), and the `prettier/prettier` rule is deliberately turned **off** — formatting is enforced only by Prettier itself (`.prettierrc`: tabs, width 4, no semicolons, double quotes, trailing commas).
+There is no test suite and no `lint` script — `npm run typecheck` plus `npm run doc:ci` is the whole release gate. ESLint 9 is installed with a legacy `.eslintrc.js` (`extends: ["expo", "prettier"]`), and the `prettier/prettier` rule is deliberately turned **off** — formatting is enforced only by Prettier itself (`.prettierrc`: tabs, width 4, no semicolons, double quotes, trailing commas).
 
 ## Architecture
 
@@ -79,9 +87,31 @@ Adding a language means touching four places:
 
 Translation key types are augmented from the English file via [src/types/i18next.d.ts](src/types/i18next.d.ts), so `en/translation.json` is the source of truth for key names.
 
+## CI/CD and OTA updates
+
+The full runbook — rationale, rehearsal steps and known risks — is [docs/CICD.md](docs/CICD.md). The essentials:
+
+Two dispatch-only EAS Workflows live in `.eas/workflows/`. Neither has an `on.push` trigger, so pushing to `dev` or `main` spends no EAS minutes.
+
+- `build.yml` — typecheck + doctor gate, then either an internal dev-client APK (`build_type: development`) or a production AAB → manual approval → Google Play production track (`build_type: production`).
+- `publish-production-update.yml` — the same gate, then an EAS Update published to the `production` channel. Manual only; nothing auto-publishes to users.
+
+**The runtime-version rule.** `runtimeVersion.policy` is `appVersion`, so:
+
+> **Bump `expo.version` ⟺ a new binary is required. Never bump `expo.version` for an OTA hotfix.**
+
+Bumping it for a hotfix publishes an update against a runtime version no installed binary has — the pipeline goes green and the update reaches zero devices. Keep `expo.version` in [app.json](app.json) and `version` in [package.json](package.json) in lockstep so there is only one answer to "what version is this".
+
+**Production runs must use `--ref main`** (`wf:prod` and `wf:hotfix` already do). `eas workflow:run` without `--ref` uploads the local working directory, so a dirty tree would be built and submitted to Play — past an approval gate that shows a build, not a diff.
+
+Validate workflow YAML with `npm run wf:validate`, never a generic YAML linter: `eas workflow:validate` resolves `profile:` names against the server, which is where the real mistakes are.
+
+In `build.yml`, `submit_to_play` must keep `needs: [approve_submission]` — never `after:`. `after` runs regardless of upstream outcome and a rejected approval is a job *failure*, so `after` would submit to Play after you rejected it.
+
 ## Conventions
 
 - Imports are sorted alphabetically, braced/named imports first, then default imports — match this when editing existing files.
 - `src/types/` holds shared types; screens/components declare their own local `Props` type just above the component.
-- Builds are Android-only today (`app.json` has no `ios` block); `eas.json` production uses `autoIncrement` with `appVersionSource: "remote"`.
+- Builds are Android-only today (`app.json` has no `ios` block — `eas update:configure` adds an empty one, delete it); `eas.json` production uses `autoIncrement` with `appVersionSource: "remote"`.
+- Don't add `"expo-updates"` to the `plugins` array — `@expo/prebuild-config` applies `withExpoUpdates` unconditionally on every prebuild. The `development` profile has no `channel` either; it has no effect when `developmentClient: true`.
 - The splash screen is configured through the `expo-splash-screen` plugin entry in `app.json`, not a top-level `splash` key — that key was removed from the SDK 57 schema. Run `npm run doc` after editing `app.json`; the schema check catches keys that newer SDKs dropped.

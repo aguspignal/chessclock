@@ -1,21 +1,31 @@
 {
-  "cli": {
-    "version": ">= 15.0.12",
-    "appVersionSource": "remote"
-  },
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {
-      "autoIncrement": true
-    }
-  },
-  "submit": {
-    "production": {}
-  }
+	"cli": {
+		"version": ">= 22.0.0",
+		"appVersionSource": "remote"
+	},
+	"build": {
+		"development": {
+			"developmentClient": true,
+			"distribution": "internal",
+			"environment": "development"
+		},
+		"preview": {
+			"distribution": "internal",
+			"channel": "preview",
+			"environment": "preview"
+		},
+		"production": {
+			"autoIncrement": true,
+			"channel": "production",
+			"environment": "production"
+		}
+	},
+	"submit": {
+		"production": {
+			"android": {
+				"track": "production",
+				"releaseStatus": "completed"
+			}
+		}
+	}
 }

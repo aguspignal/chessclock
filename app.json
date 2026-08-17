@@ -2,10 +2,17 @@
 	"expo": {
 		"name": "Chess Clock",
 		"slug": "chessclock",
-		"version": "1.0.1",
+		"owner": "aguspignal",
+		"version": "1.0.2",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
 		"userInterfaceStyle": "light",
+		"runtimeVersion": {
+			"policy": "appVersion"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/e9889827-1da8-4e63-9899-7cede9eea061"
+		},
 		"android": {
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/adaptive-icon.png",
