@@ -1,0 +1,32 @@
+name: Publish production hotfix (OTA)
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        type: string
+        description: What this hotfix changes. Shown on the update in the EAS dashboard.
+        required: true
+
+jobs:
+  pre_checks:
+    name: Typecheck and Expo Doctor
+    env:
+      EXPO_DOCTOR_WARN_ON_NETWORK_ERRORS: "1"
+    steps:
+      - uses: eas/checkout
+      - uses: eas/install_node_modules
+      - name: TypeScript
+        run: npm run typecheck
+      - name: Expo Doctor
+        run: npm run doc:ci
+
+  publish_update:
+    name: Publish to production channel
+    needs: [pre_checks]
+    type: update
+    environment: production
+    params:
+      platform: android
+      channel: production
+      message: ${{ inputs.message }}

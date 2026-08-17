@@ -1,14 +1,20 @@
 {
   "name": "chessclock",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
-    "doc": "npx expo-doctor@latest",
+    "typecheck": "tsc --noEmit",
+    "doc": "npx -y expo-doctor@latest",
+    "doc:ci": "npx -y expo-doctor@1.20.2",
     "icheck": "npx expo install --check",
     "build-dev": "eas build --profile development --platform android",
     "build-prev": "eas build --profile preview --platform android",
     "build-prod": "eas build --profile production --platform android",
+    "wf:validate": "eas workflow:validate .eas/workflows/build.yml && eas workflow:validate .eas/workflows/publish-production-update.yml",
+    "wf:dev": "eas workflow:run .eas/workflows/build.yml -F build_type=development",
+    "wf:prod": "eas workflow:run .eas/workflows/build.yml -F build_type=production --ref main",
+    "wf:hotfix": "eas workflow:run .eas/workflows/publish-production-update.yml --ref main",
     "android": "expo run:android"
   },
   "dependencies": {
@@ -28,6 +34,7 @@
     "expo-splash-screen": "~57.0.7",
     "expo-sqlite": "~57.0.1",
     "expo-status-bar": "~57.0.1",
+    "expo-updates": "~57.0.15",
     "i18next": "^26.3.6",
     "react": "19.2.3",
     "react-i18next": "^17.0.11",

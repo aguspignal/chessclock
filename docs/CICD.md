@@ -1,6 +1,6 @@
 # CI/CD, Store Submission and OTA Updates
 
-> **Status: designed, not implemented.** Nothing in this document exists in the repo yet — there is no `.eas/` directory, `expo-updates` is not installed, and `submit.production` in [eas.json](../eas.json) is still an empty object. This is the runbook for building the pipeline, written against the live EAS Workflows schema and verified against the project's actual EAS state. Work through the phases in order.
+> **Status: phases 1–7 and 11 implemented.** The repo now has `.eas/workflows/`, `expo-updates`, the version bump to 1.0.2, the final `eas.json`, the `wf:*` / `typecheck` / `doc:ci` scripts and the CLAUDE.md notes; typecheck, both doctor lanes and `wf:validate` are green. What remains is everything that cannot be done from the working tree: **Phase 8** (merge to `main`, dev dry run, first production run), **Phase 9** (preview OTA smoke test on a real device) and **Phase 10** (the reachability gap — nothing OTA reaches anyone until 1.0.2 ships and users adopt it).
 
 ## Overview
 
