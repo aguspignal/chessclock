@@ -3,5 +3,6 @@
 # To implement
 
     - theme
+    - version in settings
 
 # To test
