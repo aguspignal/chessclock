@@ -2,16 +2,12 @@
     "app-title": "นาฬิกาหมากรุก",
     "configs": {
         "presets": "เวลาที่ตั้งไว้ล่วงหน้า",
+        "presets-numbered": "เวลาที่ตั้งไว้ล่วงหน้า {{number}}",
         "presets-many": "เวลาที่ตั้งไว้หลายค่า",
-        "orientation": {
-            "title": "การวางแนวของนาฬิกา",
-            "vertical": "แนวตั้ง",
-            "horizontal": "แนวนอน",
-            "orientation": "การวางแนว"
-        },
+        "presets-many-numbered": "เวลาที่ตั้งไว้หลายค่า {{number}}",
+        "orientation": "การวางแนว",
         "sound": "เสียง",
         "vibration": "การสั่น",
-        "different-times": "เวลาที่ต่างกัน",
         "clock": "นาฬิกา",
         "shared": "ใช้ร่วมกัน",
         "per-player": "แยกผู้เล่น",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "คืนค่าการตั้งค่าเวลาเริ่มต้นหรือไม่ การตั้งค่าของคุณจะยังอยู่",
     "new-preset-title": "สร้างเวลาที่ตั้งค่าใหม่",
     "moves": "ตาเดิน",
-    "settings": "การตั้งค่า"
+    "settings": "การตั้งค่า",
+    "errors": {
+        "load-presets": "ไม่สามารถโหลดเวลาที่ตั้งไว้ล่วงหน้าได้",
+        "save-preset": "ไม่สามารถบันทึกการตั้งค่าได้",
+        "delete-preset": "ไม่สามารถลบการตั้งค่าได้",
+        "restore-presets": "ไม่สามารถคืนค่าการตั้งค่าเริ่มต้นได้",
+        "change-language": "ไม่สามารถเปลี่ยนภาษาได้"
+    }
 }

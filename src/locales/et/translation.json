@@ -2,16 +2,12 @@
     "app-title": "Male kell",
     "configs": {
         "presets": "Eelseatud aeg",
+        "presets-numbered": "Eelseatud aeg {{number}}",
         "presets-many": "Eelseatud ajad",
-        "orientation": {
-            "title": "Kella orientatsioon",
-            "vertical": "Vertikaalne",
-            "horizontal": "Horisontaalne",
-            "orientation": "Orientatsioon"
-        },
+        "presets-many-numbered": "Eelseatud ajad {{number}}",
+        "orientation": "Orientatsioon",
         "sound": "Heli",
         "vibration": "Vibratsioon",
-        "different-times": "Erinevad ajad",
         "clock": "Kell",
         "shared": "Jagatud",
         "per-player": "Mängija kohta",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Kas taastada vaikeeelseaded? Teie enda omad jäävad alles.",
     "new-preset-title": "Loo uus eelseatud aeg",
     "moves": "Käigud",
-    "settings": "Seaded"
+    "settings": "Seaded",
+    "errors": {
+        "load-presets": "Eelseadeid ei õnnestunud laadida.",
+        "save-preset": "Eelseadet ei õnnestunud salvestada.",
+        "delete-preset": "Eelseadet ei õnnestunud kustutada.",
+        "restore-presets": "Vaikeeelseadeid ei õnnestunud taastada.",
+        "change-language": "Keelt ei õnnestunud muuta."
+    }
 }

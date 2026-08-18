@@ -2,16 +2,12 @@
     "app-title": "ساعة الشطرنج",
     "configs": {
         "presets": "وقت محدد مسبقًا",
+        "presets-numbered": "وقت محدد مسبقًا {{number}}",
         "presets-many": "أوقات محددة مسبقًا",
-        "orientation": {
-            "title": "اتجاه الساعة",
-            "vertical": "عمودي",
-            "horizontal": "أفقي",
-            "orientation": "الاتجاه"
-        },
+        "presets-many-numbered": "أوقات محددة مسبقًا {{number}}",
+        "orientation": "الاتجاه",
         "sound": "الصوت",
         "vibration": "الاهتزاز",
-        "different-times": "أوقات مختلفة",
         "clock": "الساعة",
         "shared": "مشتركة",
         "per-player": "لكل لاعب",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "هل تريد استعادة الأوقات المحددة مسبقًا الافتراضية؟ سيتم الاحتفاظ بأوقاتك الخاصة.",
     "new-preset-title": "إنشاء وقت محدد جديد",
     "moves": "الحركات",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "errors": {
+        "load-presets": "تعذّر تحميل الأوقات المحددة مسبقًا.",
+        "save-preset": "تعذّر حفظ الوقت المحدد مسبقًا.",
+        "delete-preset": "تعذّر حذف الوقت المحدد مسبقًا.",
+        "restore-presets": "تعذّرت استعادة الأوقات الافتراضية.",
+        "change-language": "تعذّر تغيير اللغة."
+    }
 }

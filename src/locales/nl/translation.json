@@ -2,16 +2,12 @@
     "app-title": "Schaakklok",
     "configs": {
         "presets": "Vooringestelde tijd",
+        "presets-numbered": "Vooringestelde tijd {{number}}",
         "presets-many": "Vooringestelde tijden",
-        "orientation": {
-            "title": "Klokoriëntatie",
-            "vertical": "Verticaal",
-            "horizontal": "Horizontaal",
-            "orientation": "Oriëntatie"
-        },
+        "presets-many-numbered": "Vooringestelde tijden {{number}}",
+        "orientation": "Oriëntatie",
         "sound": "Geluid",
         "vibration": "Trillen",
-        "different-times": "Verschillende tijden",
         "clock": "Klok",
         "shared": "Gedeeld",
         "per-player": "Per speler",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "De standaardvoorinstellingen herstellen? Je eigen voorinstellingen blijven behouden.",
     "new-preset-title": "Nieuwe vooringestelde tijd maken",
     "moves": "Zetten",
-    "settings": "Instellingen"
+    "settings": "Instellingen",
+    "errors": {
+        "load-presets": "De voorinstellingen konden niet worden geladen.",
+        "save-preset": "De voorinstelling kon niet worden opgeslagen.",
+        "delete-preset": "De voorinstelling kon niet worden verwijderd.",
+        "restore-presets": "De standaardvoorinstellingen konden niet worden hersteld.",
+        "change-language": "De taal kon niet worden gewijzigd."
+    }
 }

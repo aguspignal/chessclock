@@ -88,8 +88,24 @@ export const LANGUAGES_MAP = Object.fromEntries(
 	LANGUAGES.map((lang) => [lang.code, lang]),
 ) as Record<AppLanguage, typeof LANGUAGES[number]>
 
-// i18next resource keys use underscores while `AppLanguage` uses hyphens, so an active
-// i18next language has to be mapped back before it can be matched against an option.
+type Underscored<T extends string> = T extends `${infer A}-${infer B}`
+	? `${A}_${Underscored<B>}`
+	: T
+
+// The i18next spelling of every `AppLanguage`. `i18n.ts` types its `resources` map as a
+// full record of this, so a locale added to the enum but never wired into i18next is a
+// typecheck failure instead of a language that silently falls back at runtime.
+export type I18nLanguage = Underscored<`${AppLanguage}`>
+
+// i18next resource keys use underscores while `AppLanguage` uses hyphens, so every
+// `changeLanguage` call has to convert on the way in. Centralised here so a new call site
+// cannot forget it.
+export function toI18nLanguage(code: AppLanguage): I18nLanguage {
+	return code.replace("-", "_") as I18nLanguage
+}
+
+// The reverse: an active i18next language has to be mapped back before it can be matched
+// against an option.
 // Anything unrecognised — a device locale with no bundle, for instance — falls back to
 // the same language i18next itself falls back to.
 export function toAppLanguage(lng: string | undefined): AppLanguage {

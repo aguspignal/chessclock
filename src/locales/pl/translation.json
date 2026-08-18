@@ -2,16 +2,12 @@
     "app-title": "Zegar szachowy",
     "configs": {
         "presets": "Czas wstępnie ustawiony",
+        "presets-numbered": "Czas wstępnie ustawiony {{number}}",
         "presets-many": "Czasy wstępnie ustawione",
-        "orientation": {
-            "title": "Orientacja zegara",
-            "vertical": "Pionowa",
-            "horizontal": "Pozioma",
-            "orientation": "Orientacja"
-        },
+        "presets-many-numbered": "Czasy wstępnie ustawione {{number}}",
+        "orientation": "Orientacja",
         "sound": "Dźwięk",
         "vibration": "Wibracje",
-        "different-times": "Różne czasy",
         "clock": "Zegar",
         "shared": "Wspólny",
         "per-player": "Na gracza",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Przywrócić domyślne presety? Twoje własne zostaną zachowane.",
     "new-preset-title": "Utwórz nowy czas preset",
     "moves": "Ruchy",
-    "settings": "Ustawienia"
+    "settings": "Ustawienia",
+    "errors": {
+        "load-presets": "Nie udało się wczytać presetów.",
+        "save-preset": "Nie udało się zapisać presetu.",
+        "delete-preset": "Nie udało się usunąć presetu.",
+        "restore-presets": "Nie udało się przywrócić domyślnych presetów.",
+        "change-language": "Nie udało się zmienić języka."
+    }
 }

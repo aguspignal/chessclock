@@ -2,16 +2,12 @@
     "app-title": "দাবার ঘড়ি",
     "configs": {
         "presets": "পূর্বনির্ধারিত সময়",
+        "presets-numbered": "পূর্বনির্ধারিত সময় {{number}}",
         "presets-many": "পূর্বনির্ধারিত সময়সমূহ",
-        "orientation": {
-            "title": "ঘড়ির দিকনির্দেশ",
-            "vertical": "উল্লম্ব",
-            "horizontal": "আনুভূমিক",
-            "orientation": "দিকনির্দেশ"
-        },
+        "presets-many-numbered": "পূর্বনির্ধারিত সময়সমূহ {{number}}",
+        "orientation": "দিকনির্দেশ",
         "sound": "শব্দ",
         "vibration": "কম্পন",
-        "different-times": "ভিন্ন সময়",
         "clock": "ঘড়ি",
         "shared": "ভাগ করা",
         "per-player": "প্রতি খেলোয়াড়",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "ডিফল্ট পূর্বনির্ধারিত সময় পুনরুদ্ধার করবেন? আপনার নিজের সময়গুলি রাখা হবে।",
     "new-preset-title": "নতুন পূর্বনির্ধারিত সময় তৈরি করুন",
     "moves": "চালসমূহ",
-    "settings": "সেটিংস"
+    "settings": "সেটিংস",
+    "errors": {
+        "load-presets": "পূর্বনির্ধারিত সময়গুলি লোড করা যায়নি।",
+        "save-preset": "পূর্বনির্ধারিত সময় সংরক্ষণ করা যায়নি।",
+        "delete-preset": "পূর্বনির্ধারিত সময় মুছে ফেলা যায়নি।",
+        "restore-presets": "ডিফল্ট পূর্বনির্ধারিত সময় পুনরুদ্ধার করা যায়নি।",
+        "change-language": "ভাষা পরিবর্তন করা যায়নি।"
+    }
 }

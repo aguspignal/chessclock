@@ -2,16 +2,12 @@
     "app-title": "Orë Shahu",
     "configs": {
         "presets": "Koha e paracaktuar",
+        "presets-numbered": "Koha e paracaktuar {{number}}",
         "presets-many": "Kohët e paracaktuara",
-        "orientation": {
-            "title": "Orientimi i orës",
-            "vertical": "Vertikal",
-            "horizontal": "Horizontal",
-            "orientation": "Orientimi"
-        },
+        "presets-many-numbered": "Kohët e paracaktuara {{number}}",
+        "orientation": "Orientimi",
         "sound": "Zëri",
         "vibration": "Dridhje",
-        "different-times": "Kohë të ndryshme",
         "clock": "Ora",
         "shared": "I përbashkët",
         "per-player": "Për lojtar",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Të rikthehen paracaktimet fillestare? Të tuajat ruhen.",
     "new-preset-title": "Krijo kohë të re të paracaktuar",
     "moves": "Lëvizjet",
-    "settings": "Cilësimet"
+    "settings": "Cilësimet",
+    "errors": {
+        "load-presets": "Paracaktimet nuk mund të ngarkoheshin.",
+        "save-preset": "Paracaktimi nuk mund të ruhej.",
+        "delete-preset": "Paracaktimi nuk mund të fshihej.",
+        "restore-presets": "Paracaktimet fillestare nuk mund të rikthehen.",
+        "change-language": "Gjuha nuk mund të ndryshohej."
+    }
 }

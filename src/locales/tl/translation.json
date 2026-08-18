@@ -2,16 +2,12 @@
     "app-title": "Oras ng Chess",
     "configs": {
         "presets": "Itinakdang oras",
+        "presets-numbered": "Itinakdang oras {{number}}",
         "presets-many": "Mga itinakdang oras",
-        "orientation": {
-            "title": "Oryentasyon ng orasan",
-            "vertical": "Patayo",
-            "horizontal": "Pahalang",
-            "orientation": "Oryentasyon"
-        },
+        "presets-many-numbered": "Mga itinakdang oras {{number}}",
+        "orientation": "Oryentasyon",
         "sound": "Tunog",
         "vibration": "Pag-vibrate",
-        "different-times": "Iba't ibang oras",
         "clock": "Orasan",
         "shared": "Magkasama",
         "per-player": "Bawat manlalaro",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Ibalik ang mga default na preset? Mananatili ang sarili mong mga preset.",
     "new-preset-title": "Gumawa ng bagong preset na oras",
     "moves": "Mga galaw",
-    "settings": "Mga setting"
+    "settings": "Mga setting",
+    "errors": {
+        "load-presets": "Hindi ma-load ang mga preset.",
+        "save-preset": "Hindi ma-save ang preset.",
+        "delete-preset": "Hindi matanggal ang preset.",
+        "restore-presets": "Hindi maibalik ang mga default na preset.",
+        "change-language": "Hindi mapalitan ang wika."
+    }
 }

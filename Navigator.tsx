@@ -33,15 +33,17 @@ export default function Navigator() {
 				component={Presets}
 				options={({ route }) => {
 					const target = route.params?.target
-					const player = target === "primary" ? " 1" : target === "second" ? " 2" : ""
+					const player = target === "primary" ? 1 : target === "second" ? 2 : null
+
+					// Interpolating rather than concatenating leaves the number's position to
+					// the translation, which is what the RTL locales need.
+					const label =
+						player === null
+							? t("configs.presets-many")
+							: t("configs.presets-many-numbered", { number: player })
 
 					return {
-						header: ({ back }) => (
-							<HeaderWithLabel
-								label={`${t("configs.presets-many")}${player}`}
-								back={back}
-							/>
-						),
+						header: ({ back }) => <HeaderWithLabel label={label} back={back} />,
 					}
 				}}
 			/>

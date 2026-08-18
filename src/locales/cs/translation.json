@@ -2,16 +2,12 @@
     "app-title": "Šachové hodiny",
     "configs": {
         "presets": "Přednastavený čas",
+        "presets-numbered": "Přednastavený čas {{number}}",
         "presets-many": "Přednastavené časy",
-        "orientation": {
-            "title": "Orientace hodin",
-            "vertical": "Svisle",
-            "horizontal": "Vodorovně",
-            "orientation": "Orientace"
-        },
+        "presets-many-numbered": "Přednastavené časy {{number}}",
+        "orientation": "Orientace",
         "sound": "Zvuk",
         "vibration": "Vibrace",
-        "different-times": "Různé časy",
         "clock": "Hodiny",
         "shared": "Sdílené",
         "per-player": "Pro každého",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Obnovit výchozí přednastavené časy? Vaše vlastní zůstanou zachovány.",
     "new-preset-title": "Vytvořit nový přednastavený čas",
     "moves": "Tahy",
-    "settings": "Nastavení"
+    "settings": "Nastavení",
+    "errors": {
+        "load-presets": "Přednastavené časy se nepodařilo načíst.",
+        "save-preset": "Přednastavený čas se nepodařilo uložit.",
+        "delete-preset": "Přednastavený čas se nepodařilo smazat.",
+        "restore-presets": "Přednastavené časy se nepodařilo obnovit.",
+        "change-language": "Jazyk se nepodařilo změnit."
+    }
 }

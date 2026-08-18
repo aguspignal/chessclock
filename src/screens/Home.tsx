@@ -11,6 +11,7 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native"
+import { CUSTOM_PRESET_NAME } from "../utils/constants"
 import { HomeProps } from "../types/navigation"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
@@ -54,6 +55,12 @@ export default function Home({ navigation }: HomeProps) {
 		timeInMilliseconds === 0 ||
 		(withDifferentTimes && secondTimeInMilliseconds === 0)
 
+	// A hand-edited time is stored under a language-independent sentinel, so it is
+	// translated only on its way to the screen.
+	function presetLabel(name: string) {
+		return name === CUSTOM_PRESET_NAME ? t("custom-preset") : name
+	}
+
 	// Seeding the inputs from the current time keeps a blank confirm from meaning
 	// 00:00:00, and clears whatever was typed the last time the modal was open.
 	function handleOpenTimeModal() {
@@ -83,7 +90,7 @@ export default function Home({ navigation }: HomeProps) {
 		if (isEmptyTime(newTime)) return
 
 		setTime({
-			name: "Custom",
+			name: CUSTOM_PRESET_NAME,
 			time: newTime,
 			timeIncrementMs: parseStringToNumber(incrementInput) * 1000,
 		})
@@ -99,7 +106,7 @@ export default function Home({ navigation }: HomeProps) {
 		if (isEmptyTime(newSecondTime)) return
 
 		setSecondTime({
-			name: "Custom",
+			name: CUSTOM_PRESET_NAME,
 			time: newSecondTime,
 			timeIncrementMs: parseStringToNumber(secondIncrementInput) * 1000,
 		})
@@ -119,8 +126,10 @@ export default function Home({ navigation }: HomeProps) {
 							{withDifferentTimes ? (
 								<>
 									<PresetRow
-										label={`${t("configs.presets")} 1`}
-										value={time.name}
+										label={t("configs.presets-numbered", {
+											number: 1,
+										})}
+										value={presetLabel(time.name)}
 										onPress={() =>
 											navigation.navigate("Presets", {
 												target: "primary",
@@ -131,8 +140,10 @@ export default function Home({ navigation }: HomeProps) {
 									<CardDivider />
 
 									<PresetRow
-										label={`${t("configs.presets")} 2`}
-										value={secondTime.name}
+										label={t("configs.presets-numbered", {
+											number: 2,
+										})}
+										value={presetLabel(secondTime.name)}
 										onPress={() =>
 											navigation.navigate("Presets", {
 												target: "second",
@@ -143,7 +154,7 @@ export default function Home({ navigation }: HomeProps) {
 							) : (
 								<PresetRow
 									label={t("configs.presets")}
-									value={time.name}
+									value={presetLabel(time.name)}
 									onPress={() =>
 										navigation.navigate("Presets", {
 											target: "both",
@@ -179,8 +190,8 @@ export default function Home({ navigation }: HomeProps) {
 								onPressTime={handleOpenTimeModal}
 								onChangeIncrementMs={(ms) => {
 									setIncrement(ms)
-									if (time.name !== "Custom")
-										setName("Custom")
+									if (time.name !== CUSTOM_PRESET_NAME)
+										setName(CUSTOM_PRESET_NAME)
 								}}
 							/>
 						)}

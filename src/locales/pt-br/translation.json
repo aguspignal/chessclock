@@ -2,16 +2,12 @@
     "app-title": "Relógio de Xadrez",
     "configs": {
         "presets": "Tempo predefinido",
+        "presets-numbered": "Tempo predefinido {{number}}",
         "presets-many": "Tempos predefinidos",
-        "orientation": {
-            "title": "Orientação do relógio",
-            "vertical": "Vertical",
-            "horizontal": "Horizontal",
-            "orientation": "Orientação"
-        },
+        "presets-many-numbered": "Tempos predefinidos {{number}}",
+        "orientation": "Orientação",
         "sound": "Som",
         "vibration": "Vibração",
-        "different-times": "Tempos diferentes",
         "clock": "Relógio",
         "shared": "Compartilhado",
         "per-player": "Por jogador",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Restaurar os tempos predefinidos? Os seus são mantidos.",
     "new-preset-title": "Criar novo tempo predefinido",
     "moves": "Lances",
-    "settings": "Configurações"
+    "settings": "Configurações",
+    "errors": {
+        "load-presets": "Não foi possível carregar os presets.",
+        "save-preset": "Não foi possível salvar o preset.",
+        "delete-preset": "Não foi possível excluir o preset.",
+        "restore-presets": "Não foi possível restaurar os tempos predefinidos.",
+        "change-language": "Não foi possível alterar o idioma."
+    }
 }

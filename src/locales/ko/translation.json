@@ -2,16 +2,12 @@
     "app-title": "체스 시계",
     "configs": {
         "presets": "미리 설정된 시간",
+        "presets-numbered": "미리 설정된 시간 {{number}}",
         "presets-many": "미리 설정된 시간들",
-        "orientation": {
-            "title": "시계 방향",
-            "vertical": "세로",
-            "horizontal": "가로",
-            "orientation": "방향"
-        },
+        "presets-many-numbered": "미리 설정된 시간들 {{number}}",
+        "orientation": "방향",
         "sound": "소리",
         "vibration": "진동",
-        "different-times": "다른 시간",
         "clock": "시계",
         "shared": "공유",
         "per-player": "플레이어별",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "기본 프리셋을 복원하시겠습니까? 직접 만든 프리셋은 유지됩니다.",
     "new-preset-title": "새 프리셋 시간 만들기",
     "moves": "수",
-    "settings": "설정"
+    "settings": "설정",
+    "errors": {
+        "load-presets": "프리셋을 불러오지 못했습니다.",
+        "save-preset": "프리셋을 저장하지 못했습니다.",
+        "delete-preset": "프리셋을 삭제하지 못했습니다.",
+        "restore-presets": "기본 프리셋을 복원하지 못했습니다.",
+        "change-language": "언어를 변경하지 못했습니다."
+    }
 }

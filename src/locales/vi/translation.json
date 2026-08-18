@@ -2,16 +2,12 @@
     "app-title": "Đồng hồ cờ vua",
     "configs": {
         "presets": "Thời gian đặt trước",
+        "presets-numbered": "Thời gian đặt trước {{number}}",
         "presets-many": "Các thời gian đặt trước",
-        "orientation": {
-            "title": "Hướng đồng hồ",
-            "vertical": "Dọc",
-            "horizontal": "Ngang",
-            "orientation": "Hướng"
-        },
+        "presets-many-numbered": "Các thời gian đặt trước {{number}}",
+        "orientation": "Hướng",
         "sound": "Âm thanh",
         "vibration": "Rung",
-        "different-times": "Các thời gian khác nhau",
         "clock": "Đồng hồ",
         "shared": "Dùng chung",
         "per-player": "Mỗi người chơi",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Khôi phục các cài đặt trước mặc định? Cài đặt của bạn vẫn được giữ.",
     "new-preset-title": "Tạo cài đặt thời gian mới",
     "moves": "Nước đi",
-    "settings": "Cài đặt"
+    "settings": "Cài đặt",
+    "errors": {
+        "load-presets": "Không thể tải cài đặt trước.",
+        "save-preset": "Không thể lưu cài đặt trước.",
+        "delete-preset": "Không thể xóa cài đặt trước.",
+        "restore-presets": "Không thể khôi phục cài đặt trước mặc định.",
+        "change-language": "Không thể thay đổi ngôn ngữ."
+    }
 }

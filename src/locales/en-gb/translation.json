@@ -2,16 +2,12 @@
     "app-title": "Chess Clock",
     "configs": {
         "presets": "Preset time",
+        "presets-numbered": "Preset time {{number}}",
         "presets-many": "Preset times",
-        "orientation": {
-            "title": "Clock orientation",
-            "vertical": "Vertical",
-            "horizontal": "Horizontal",
-            "orientation": "Orientation"
-        },
+        "presets-many-numbered": "Preset times {{number}}",
+        "orientation": "Orientation",
         "sound": "Sound",
         "vibration": "Vibration",
-        "different-times": "Different times",
         "clock": "Clock",
         "shared": "Shared",
         "per-player": "Per player",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Restore the default presets? Your own presets are kept.",
     "new-preset-title": "Create new preset time",
     "moves": "Moves",
-    "settings": "Settings"
+    "settings": "Settings",
+    "errors": {
+        "load-presets": "Couldn't load your presets.",
+        "save-preset": "Couldn't save the preset.",
+        "delete-preset": "Couldn't delete the preset.",
+        "restore-presets": "Couldn't restore the default presets.",
+        "change-language": "Couldn't change the language."
+    }
 }

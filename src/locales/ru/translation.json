@@ -2,16 +2,12 @@
     "app-title": "Шахматные часы",
     "configs": {
         "presets": "Предустановленное время",
+        "presets-numbered": "Предустановленное время {{number}}",
         "presets-many": "Предустановленные времена",
-        "orientation": {
-            "title": "Ориентация часов",
-            "vertical": "Вертикально",
-            "horizontal": "Горизонтально",
-            "orientation": "Ориентация"
-        },
+        "presets-many-numbered": "Предустановленные времена {{number}}",
+        "orientation": "Ориентация",
         "sound": "Звук",
         "vibration": "Вибрация",
-        "different-times": "Разное время",
         "clock": "Часы",
         "shared": "Общие",
         "per-player": "Для каждого",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Восстановить стандартные пресеты? Ваши собственные будут сохранены.",
     "new-preset-title": "Создать новый пресет времени",
     "moves": "Ходы",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "errors": {
+        "load-presets": "Не удалось загрузить пресеты.",
+        "save-preset": "Не удалось сохранить пресет.",
+        "delete-preset": "Не удалось удалить пресет.",
+        "restore-presets": "Не удалось восстановить стандартные пресеты.",
+        "change-language": "Не удалось изменить язык."
+    }
 }

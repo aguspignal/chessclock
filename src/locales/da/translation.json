@@ -2,16 +2,12 @@
     "app-title": "Skakur",
     "configs": {
         "presets": "Forudindstillet tid",
+        "presets-numbered": "Forudindstillet tid {{number}}",
         "presets-many": "Forudindstillede tider",
-        "orientation": {
-            "title": "Urets retning",
-            "vertical": "Vertikal",
-            "horizontal": "Horisontal",
-            "orientation": "Retning"
-        },
+        "presets-many-numbered": "Forudindstillede tider {{number}}",
+        "orientation": "Retning",
         "sound": "Lyd",
         "vibration": "Vibration",
-        "different-times": "Forskellige tider",
         "clock": "Ur",
         "shared": "Fælles",
         "per-player": "Pr. spiller",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Gendan standardforudindstillingerne? Dine egne bevares.",
     "new-preset-title": "Opret ny forudindstillet tid",
     "moves": "Træk",
-    "settings": "Indstillinger"
+    "settings": "Indstillinger",
+    "errors": {
+        "load-presets": "Forudindstillingerne kunne ikke indlæses.",
+        "save-preset": "Forudindstillingen kunne ikke gemmes.",
+        "delete-preset": "Forudindstillingen kunne ikke slettes.",
+        "restore-presets": "Standardforudindstillingerne kunne ikke gendannes.",
+        "change-language": "Sproget kunne ikke ændres."
+    }
 }

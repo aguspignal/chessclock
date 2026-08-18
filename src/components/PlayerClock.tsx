@@ -1,5 +1,5 @@
 import { parseTimeFromMilliseconds, parseTimeToMilisecondsString } from "../utils/parsing"
-import { STATUS_BAR_HEIGHT } from "../utils/constants"
+import { ROTATED_CLOCK_PADDING } from "../utils/constants"
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 	},
 	verticalOrientation: {
 		transform: [{ rotate: "180deg" }],
-		paddingBottom: STATUS_BAR_HEIGHT / 1.2,
+		paddingBottom: ROTATED_CLOCK_PADDING,
 	},
 	horizontalOrientation: {
 		transform: [{ rotate: "90deg" }],
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	extraInfoText: {
-		color: "#888888",
+		color: theme.colors.textMuted,
 		fontSize: theme.fontSize.s,
 	},
 	timer: {

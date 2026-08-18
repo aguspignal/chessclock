@@ -2,16 +2,12 @@
     "app-title": "Шаховски сат",
     "configs": {
         "presets": "Предефинисано време",
+        "presets-numbered": "Предефинисано време {{number}}",
         "presets-many": "Предефинисана времена",
-        "orientation": {
-            "title": "Оријентација сата",
-            "vertical": "Вертикално",
-            "horizontal": "Хоризонтално",
-            "orientation": "Оријентација"
-        },
+        "presets-many-numbered": "Предефинисана времена {{number}}",
+        "orientation": "Оријентација",
         "sound": "Звук",
         "vibration": "Вибрација",
-        "different-times": "Различита времена",
         "clock": "Сат",
         "shared": "Заједнички",
         "per-player": "По играчу",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Да ли да вратим подразумевана времена? Ваша сопствена остају.",
     "new-preset-title": "Креирај ново време",
     "moves": "Потези",
-    "settings": "Подешавања"
+    "settings": "Подешавања",
+    "errors": {
+        "load-presets": "Предефинисана времена није могуће учитати.",
+        "save-preset": "Време није могуће сачувати.",
+        "delete-preset": "Време није могуће обрисати.",
+        "restore-presets": "Подразумевана времена није могуће вратити.",
+        "change-language": "Језик није могуће променити."
+    }
 }

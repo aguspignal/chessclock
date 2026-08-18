@@ -2,16 +2,12 @@
     "app-title": "Orologio degli scacchi",
     "configs": {
         "presets": "Tempo preimpostato",
+        "presets-numbered": "Tempo preimpostato {{number}}",
         "presets-many": "Tempi preimpostati",
-        "orientation": {
-            "title": "Orientamento dell'orologio",
-            "vertical": "Verticale",
-            "horizontal": "Orizzontale",
-            "orientation": "Orientamento"
-        },
+        "presets-many-numbered": "Tempi preimpostati {{number}}",
+        "orientation": "Orientamento",
         "sound": "Suono",
         "vibration": "Vibrazione",
-        "different-times": "Tempi diversi",
         "clock": "Orologio",
         "shared": "Condiviso",
         "per-player": "Per giocatore",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Ripristinare i tempi predefiniti? I tuoi tempi vengono mantenuti.",
     "new-preset-title": "Crea un nuovo tempo",
     "moves": "Mosse",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "errors": {
+        "load-presets": "Impossibile caricare i tempi preimpostati.",
+        "save-preset": "Impossibile salvare il tempo.",
+        "delete-preset": "Impossibile eliminare il tempo.",
+        "restore-presets": "Impossibile ripristinare i tempi predefiniti.",
+        "change-language": "Impossibile cambiare la lingua."
+    }
 }

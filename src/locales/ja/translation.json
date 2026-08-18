@@ -2,16 +2,12 @@
     "app-title": "チェスクロック",
     "configs": {
         "presets": "プリセット時間",
+        "presets-numbered": "プリセット時間 {{number}}",
         "presets-many": "プリセット時間一覧",
-        "orientation": {
-            "title": "時計の向き",
-            "vertical": "縦",
-            "horizontal": "横",
-            "orientation": "向き"
-        },
+        "presets-many-numbered": "プリセット時間一覧 {{number}}",
+        "orientation": "向き",
         "sound": "音",
         "vibration": "バイブレーション",
-        "different-times": "異なる時間",
         "clock": "時計",
         "shared": "共通",
         "per-player": "プレイヤーごと",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "既定のプリセットを復元しますか？お客様のプリセットは保持されます。",
     "new-preset-title": "新しいプリセット時間を作成",
     "moves": "手数",
-    "settings": "設定"
+    "settings": "設定",
+    "errors": {
+        "load-presets": "プリセットを読み込めませんでした。",
+        "save-preset": "プリセットを保存できませんでした。",
+        "delete-preset": "プリセットを削除できませんでした。",
+        "restore-presets": "既定のプリセットを復元できませんでした。",
+        "change-language": "言語を変更できませんでした。"
+    }
 }

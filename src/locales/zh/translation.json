@@ -2,16 +2,12 @@
     "app-title": "国际象棋时钟",
     "configs": {
         "presets": "预设时间",
+        "presets-numbered": "预设时间 {{number}}",
         "presets-many": "多个预设时间",
-        "orientation": {
-            "title": "时钟方向",
-            "vertical": "竖直",
-            "horizontal": "水平",
-            "orientation": "方向"
-        },
+        "presets-many-numbered": "多个预设时间 {{number}}",
+        "orientation": "方向",
         "sound": "声音",
         "vibration": "震动",
-        "different-times": "不同时间",
         "clock": "时钟",
         "shared": "共用",
         "per-player": "每位玩家",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "要恢复默认预设吗？您自己的预设会保留。",
     "new-preset-title": "创建新的预设时间",
     "moves": "步数",
-    "settings": "设置"
+    "settings": "设置",
+    "errors": {
+        "load-presets": "无法加载预设。",
+        "save-preset": "无法保存预设。",
+        "delete-preset": "无法删除预设。",
+        "restore-presets": "无法恢复默认预设。",
+        "change-language": "无法更改语言。"
+    }
 }

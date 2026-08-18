@@ -2,16 +2,12 @@
     "app-title": "西洋棋時鐘",
     "configs": {
         "presets": "預設時間",
+        "presets-numbered": "預設時間 {{number}}",
         "presets-many": "多個預設時間",
-        "orientation": {
-            "title": "時鐘方向",
-            "vertical": "垂直",
-            "horizontal": "水平",
-            "orientation": "方向"
-        },
+        "presets-many-numbered": "多個預設時間 {{number}}",
+        "orientation": "方向",
         "sound": "聲音",
         "vibration": "震動",
-        "different-times": "不同時間",
         "clock": "時鐘",
         "shared": "共用",
         "per-player": "每位玩家",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "要還原預設的時間嗎？您自己的設定會保留。",
     "new-preset-title": "建立新的預設時間",
     "moves": "步數",
-    "settings": "設定"
+    "settings": "設定",
+    "errors": {
+        "load-presets": "無法載入預設時間。",
+        "save-preset": "無法儲存預設時間。",
+        "delete-preset": "無法刪除預設時間。",
+        "restore-presets": "無法還原預設時間。",
+        "change-language": "無法變更語言。"
+    }
 }
