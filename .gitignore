@@ -10,6 +10,7 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
+google-service-account-key.json
 
 # Native
 *.orig.*
