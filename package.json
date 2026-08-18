@@ -11,9 +11,9 @@
     "build-dev": "eas build --profile development --platform android",
     "build-prev": "eas build --profile preview --platform android",
     "build-prod": "eas build --profile production --platform android",
-    "wf:validate": "eas workflow:validate .eas/workflows/build.yml && eas workflow:validate .eas/workflows/publish-production-update.yml",
-    "wf:dev": "eas workflow:run .eas/workflows/build.yml -F build_type=development",
-    "wf:prod": "eas workflow:run .eas/workflows/build.yml -F build_type=production --ref main",
+    "wf:validate": "eas workflow:validate .eas/workflows/build-development.yml && eas workflow:validate .eas/workflows/release-production.yml && eas workflow:validate .eas/workflows/publish-production-update.yml",
+    "wf:dev": "eas workflow:run .eas/workflows/build-development.yml",
+    "wf:prod": "eas workflow:run .eas/workflows/release-production.yml --ref main",
     "wf:hotfix": "eas workflow:run .eas/workflows/publish-production-update.yml --ref main",
     "android": "expo run:android"
   },

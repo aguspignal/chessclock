@@ -1,5 +1,7 @@
 # CI/CD, Store Submission and OTA Updates
 
+> **Superseded in part by [CICD-BRANCH-TRIGGERS.md](CICD-BRANCH-TRIGGERS.md).** That document wires the pipeline to git pushes: `build.yml` is split into a push-to-`build` development lane and a push-to-`main` production lane, and the `require-approval` gate is removed. Where the two disagree — the single `build_type` workflow, the approval click, "pushing to `dev` or `main` spends no EAS minutes" — the branch-triggers document is current. Everything else below still stands.
+
 > **Status: phases 1–7 and 11 implemented.** The repo now has `.eas/workflows/`, `expo-updates`, the version bump to 1.0.2, the final `eas.json`, the `wf:*` / `typecheck` / `doc:ci` scripts and the CLAUDE.md notes; typecheck, both doctor lanes and `wf:validate` are green. What remains is everything that cannot be done from the working tree: **Phase 8** (merge to `main`, dev dry run, first production run), **Phase 9** (preview OTA smoke test on a real device) and **Phase 10** (the reachability gap — nothing OTA reaches anyone until 1.0.2 ships and users adopt it).
 
 ## Overview
