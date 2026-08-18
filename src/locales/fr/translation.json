@@ -2,16 +2,12 @@
     "app-title": "Horloge d’échecs",
     "configs": {
         "presets": "Temps prédéfini",
+        "presets-numbered": "Temps prédéfini {{number}}",
         "presets-many": "Temps prédéfinis",
-        "orientation": {
-            "title": "Orientation de l’horloge",
-            "vertical": "Verticale",
-            "horizontal": "Horizontale",
-            "orientation": "Orientation"
-        },
+        "presets-many-numbered": "Temps prédéfinis {{number}}",
+        "orientation": "Orientation",
         "sound": "Son",
         "vibration": "Vibration",
-        "different-times": "Temps différents",
         "clock": "Horloge",
         "shared": "Partagée",
         "per-player": "Par joueur",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Restaurer les temps par défaut ? Vos propres temps sont conservés.",
     "new-preset-title": "Créer un nouveau temps",
     "moves": "Coups",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "errors": {
+        "load-presets": "Impossible de charger les temps prédéfinis.",
+        "save-preset": "Impossible d'enregistrer le temps.",
+        "delete-preset": "Impossible de supprimer le temps.",
+        "restore-presets": "Impossible de restaurer les temps par défaut.",
+        "change-language": "Impossible de changer la langue."
+    }
 }

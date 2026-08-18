@@ -2,16 +2,12 @@
     "app-title": "Schachuhr",
     "configs": {
         "presets": "Voreingestellte Zeit",
+        "presets-numbered": "Voreingestellte Zeit {{number}}",
         "presets-many": "Voreingestellte Zeiten",
-        "orientation": {
-            "title": "Ausrichtung der Uhr",
-            "vertical": "Vertikal",
-            "horizontal": "Horizontal",
-            "orientation": "Ausrichtung"
-        },
+        "presets-many-numbered": "Voreingestellte Zeiten {{number}}",
+        "orientation": "Ausrichtung",
         "sound": "Ton",
         "vibration": "Vibration",
-        "different-times": "Unterschiedliche Zeiten",
         "clock": "Uhr",
         "shared": "Gemeinsam",
         "per-player": "Pro Spieler",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Die voreingestellten Zeiten wiederherstellen? Ihre eigenen Zeiten bleiben erhalten.",
     "new-preset-title": "Neue Zeit erstellen",
     "moves": "Züge",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "errors": {
+        "load-presets": "Die voreingestellten Zeiten konnten nicht geladen werden.",
+        "save-preset": "Die Zeit konnte nicht gespeichert werden.",
+        "delete-preset": "Die Zeit konnte nicht gelöscht werden.",
+        "restore-presets": "Die voreingestellten Zeiten konnten nicht wiederhergestellt werden.",
+        "change-language": "Die Sprache konnte nicht geändert werden."
+    }
 }

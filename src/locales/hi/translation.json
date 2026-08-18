@@ -2,16 +2,12 @@
     "app-title": "शतरंज घड़ी",
     "configs": {
         "presets": "पूर्वनिर्धारित समय",
+        "presets-numbered": "पूर्वनिर्धारित समय {{number}}",
         "presets-many": "पूर्वनिर्धारित समय",
-        "orientation": {
-            "title": "घड़ी की दिशा",
-            "vertical": "ऊर्ध्वाधर",
-            "horizontal": "क्षैतिज",
-            "orientation": "दिशा"
-        },
+        "presets-many-numbered": "पूर्वनिर्धारित समय {{number}}",
+        "orientation": "दिशा",
         "sound": "ध्वनि",
         "vibration": "कंपन",
-        "different-times": "अलग समय",
         "clock": "घड़ी",
         "shared": "साझा",
         "per-player": "प्रति खिलाड़ी",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "डिफ़ॉल्ट पूर्वनिर्धारित समय पुनर्स्थापित करें? आपके अपने समय बने रहेंगे।",
     "new-preset-title": "नया पूर्वनिर्धारित समय बनाएं",
     "moves": "चालें",
-    "settings": "सेटिंग्स"
+    "settings": "सेटिंग्स",
+    "errors": {
+        "load-presets": "पूर्वनिर्धारित समय लोड नहीं हो सके।",
+        "save-preset": "पूर्वनिर्धारित समय सहेजा नहीं जा सका।",
+        "delete-preset": "पूर्वनिर्धारित समय हटाया नहीं जा सका।",
+        "restore-presets": "डिफ़ॉल्ट पूर्वनिर्धारित समय पुनर्स्थापित नहीं हो सके।",
+        "change-language": "भाषा नहीं बदली जा सकी।"
+    }
 }

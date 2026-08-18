@@ -9,6 +9,7 @@ const pallete = {
 	white1: "#FEFEFE",
 	gray0: "#B0B0B0",
 	gray1: "#DADADA",
+	gray2: "#888888",
 	tan0: "#E0A96D",
 	green: "#AACC00",
 	yellow: "#FFDD00",
@@ -20,6 +21,7 @@ export const theme = {
 	colors: {
 		textDark: pallete.black0,
 		textLight: pallete.white1,
+		textMuted: pallete.gray2,
 
 		backgroundDark: pallete.black1,
 		backgroundLight: pallete.white0,

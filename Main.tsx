@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar"
+import { toI18nLanguage } from "./src/types/languages"
 import { useConfigStore } from "./src/stores/useConfigStore"
 import { useEffect, useState } from "react"
 import * as RNLocalize from "react-native-localize"
@@ -17,8 +18,13 @@ export default function Main() {
 		if (!hasHydrated) return
 
 		const { language } = useConfigStore.getState()
-		const lng = language ? language.replace("-", "_") : RNLocalize.getLocales()[0].languageCode
+		const lng = language
+			? toI18nLanguage(language)
+			: RNLocalize.getLocales()[0].languageCode
 
+		// No alert here, unlike the other error paths: i18next has not resolved a language
+		// yet, so there is nothing to phrase the message in, and `fallbackLng` already
+		// leaves the app usable in English.
 		i18next.changeLanguage(lng, (err) => {
 			if (err) console.log("Something went wrong loading language", err)
 			setIsLanguageReady(true)

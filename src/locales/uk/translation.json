@@ -2,16 +2,12 @@
     "app-title": "Шахові годинники",
     "configs": {
         "presets": "Попередньо встановлений час",
+        "presets-numbered": "Попередньо встановлений час {{number}}",
         "presets-many": "Попередньо встановлені часи",
-        "orientation": {
-            "title": "Орієнтація годинника",
-            "vertical": "Вертикально",
-            "horizontal": "Горизонтально",
-            "orientation": "Орієнтація"
-        },
+        "presets-many-numbered": "Попередньо встановлені часи {{number}}",
+        "orientation": "Орієнтація",
         "sound": "Звук",
         "vibration": "Вібрація",
-        "different-times": "Різні часи",
         "clock": "Годинник",
         "shared": "Спільний",
         "per-player": "Для кожного",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Відновити стандартні пресети? Ваші власні буде збережено.",
     "new-preset-title": "Створити новий пресет часу",
     "moves": "Ходи",
-    "settings": "Налаштування"
+    "settings": "Налаштування",
+    "errors": {
+        "load-presets": "Не вдалося завантажити пресети.",
+        "save-preset": "Не вдалося зберегти пресет.",
+        "delete-preset": "Не вдалося видалити пресет.",
+        "restore-presets": "Не вдалося відновити стандартні пресети.",
+        "change-language": "Не вдалося змінити мову."
+    }
 }

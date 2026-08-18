@@ -29,7 +29,7 @@ export default function HomeSettings() {
 
 			<CardDivider />
 
-			<SettingRow icon="screen-rotation" label={t("configs.orientation.orientation")}>
+			<SettingRow icon="screen-rotation" label={t("configs.orientation")}>
 				<SegmentedControl
 					options={[
 						{ value: "Horizontal", icon: "crop-landscape" },

@@ -2,16 +2,12 @@
     "app-title": "שעון שחמט",
     "configs": {
         "presets": "זמן מוגדר מראש",
+        "presets-numbered": "זמן מוגדר מראש {{number}}",
         "presets-many": "זמנים מוגדרים מראש",
-        "orientation": {
-            "title": "כיוון השעון",
-            "vertical": "אנכי",
-            "horizontal": "אופקי",
-            "orientation": "כיוון"
-        },
+        "presets-many-numbered": "זמנים מוגדרים מראש {{number}}",
+        "orientation": "כיוון",
         "sound": "צליל",
         "vibration": "רטט",
-        "different-times": "זמנים שונים",
         "clock": "שעון",
         "shared": "משותף",
         "per-player": "לכל שחקן",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "לשחזר את ההגדרות המוגדרות מראש? ההגדרות שלך יישמרו.",
     "new-preset-title": "צור הגדרה חדשה",
     "moves": "מהלכים",
-    "settings": "הגדרות"
+    "settings": "הגדרות",
+    "errors": {
+        "load-presets": "לא ניתן היה לטעון את ההגדרות.",
+        "save-preset": "לא ניתן היה לשמור את ההגדרה.",
+        "delete-preset": "לא ניתן היה למחוק את ההגדרה.",
+        "restore-presets": "לא ניתן היה לשחזר את ההגדרות המוגדרות מראש.",
+        "change-language": "לא ניתן היה לשנות את השפה."
+    }
 }

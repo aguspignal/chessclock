@@ -2,16 +2,12 @@
     "app-title": "Ceas de șah",
     "configs": {
         "presets": "Timp presetat",
+        "presets-numbered": "Timp presetat {{number}}",
         "presets-many": "Timpuri presetate",
-        "orientation": {
-            "title": "Orientarea ceasului",
-            "vertical": "Vertical",
-            "horizontal": "Orizontal",
-            "orientation": "Orientare"
-        },
+        "presets-many-numbered": "Timpuri presetate {{number}}",
+        "orientation": "Orientare",
         "sound": "Sunet",
         "vibration": "Vibrații",
-        "different-times": "Timpuri diferite",
         "clock": "Ceas",
         "shared": "Comun",
         "per-player": "Per jucător",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Restabilești presetările implicite? Presetările tale sunt păstrate.",
     "new-preset-title": "Creează un nou timp presetat",
     "moves": "Mutări",
-    "settings": "Setări"
+    "settings": "Setări",
+    "errors": {
+        "load-presets": "Presetările nu au putut fi încărcate.",
+        "save-preset": "Presetarea nu a putut fi salvată.",
+        "delete-preset": "Presetarea nu a putut fi ștearsă.",
+        "restore-presets": "Presetările implicite nu au putut fi restabilite.",
+        "change-language": "Limba nu a putut fi schimbată."
+    }
 }

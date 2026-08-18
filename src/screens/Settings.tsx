@@ -1,7 +1,14 @@
-import { AppLanguage, LANGUAGES_CODES, LANGUAGES_MAP, toAppLanguage } from "../types/languages"
+import {
+	AppLanguage,
+	LANGUAGES_CODES,
+	LANGUAGES_MAP,
+	toAppLanguage,
+	toI18nLanguage,
+} from "../types/languages"
 import { AppTheme } from "../types/utils"
 import { Dropdown } from "react-native-element-dropdown"
 import { SHOW_THEME_SETTING } from "../utils/constants"
+import { showError } from "../utils/feedback"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../resources/theme"
 import { useConfigStore } from "../stores/useConfigStore"
@@ -40,8 +47,8 @@ export default function Settings() {
 	// Changing the language is user-initiated, so it belongs in the handler. As an effect
 	// it also ran on mount, which is what wrote the default back to the store.
 	function handleSelectLanguage(lng: AppLanguage) {
-		i18n.changeLanguage(lng.replace("-", "_"), (err) => {
-			if (err) console.log("Something went wrong changing the language", err)
+		i18n.changeLanguage(toI18nLanguage(lng), (err) => {
+			if (err) showError(t("errors.change-language"), err)
 		})
 		setLanguage(lng)
 	}
@@ -51,7 +58,7 @@ export default function Settings() {
 			await restoreDefaultPresets()
 		} catch (e) {
 			// Leave the modal open so the restore can be retried.
-			console.log("Something went wrong restoring the default presets", e)
+			showError(t("errors.restore-presets"), e)
 			return
 		}
 

@@ -2,16 +2,12 @@
     "app-title": "Sakkóra",
     "configs": {
         "presets": "Előre beállított idő",
+        "presets-numbered": "Előre beállított idő {{number}}",
         "presets-many": "Előre beállított idők",
-        "orientation": {
-            "title": "Óra tájolása",
-            "vertical": "Függőleges",
-            "horizontal": "Vízszintes",
-            "orientation": "Tájolás"
-        },
+        "presets-many-numbered": "Előre beállított idők {{number}}",
+        "orientation": "Tájolás",
         "sound": "Hang",
         "vibration": "Rezgés",
-        "different-times": "Különböző idők",
         "clock": "Óra",
         "shared": "Közös",
         "per-player": "Játékosonként",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Visszaállítja az alapértelmezett időket? A sajátjai megmaradnak.",
     "new-preset-title": "Új előre beállított idő létrehozása",
     "moves": "Lépések",
-    "settings": "Beállítások"
+    "settings": "Beállítások",
+    "errors": {
+        "load-presets": "Az előre beállított időket nem sikerült betölteni.",
+        "save-preset": "Az előre beállított időt nem sikerült menteni.",
+        "delete-preset": "Az előre beállított időt nem sikerült törölni.",
+        "restore-presets": "Az alapértelmezett időket nem sikerült visszaállítani.",
+        "change-language": "A nyelvet nem sikerült módosítani."
+    }
 }

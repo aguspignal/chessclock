@@ -109,7 +109,9 @@ All three keep a `workflow_dispatch` entry, so the manual path survives alongsid
 
 **`[eas skip]` in a commit message suppresses push- and pull-request-triggered runs** (also `[skip eas]` / `[no eas]`). This is the escape hatch for doc, config or tooling commits that reach `main` without warranting a release. Merging through a GitHub PR? The token must be in the merge commit message, not the PR title — the merge commit body is what GitHub sends in the webhook.
 
-Both triggered workflows carry `paths: ["**", "!**/*.md"]`, so Markdown-only commits do not spend minutes. Anything else on `main` needs `[eas skip]`.
+Both triggered workflows carry `paths: ["**", "!**/*.md"]`, so Markdown-only commits do not spend minutes. Anything else on `main` needs `[eas skip]`. Both halves are verified on `build`: a docs-only push started nothing, the next push carrying a `.tsx` file started the lane.
+
+**Creating a branch does not trigger anything** — only ordinary pushes to it do. Pushing `build` into existence for the first time started no run; the first real commit on it did.
 
 **The runtime-version rule.** `runtimeVersion.policy` is `appVersion`, so:
 

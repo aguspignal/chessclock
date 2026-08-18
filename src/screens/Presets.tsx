@@ -7,6 +7,7 @@ import {
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native"
 import { Preset } from "../types/utils"
 import { PresetsProps } from "../types/navigation"
+import { showError } from "../utils/feedback"
 import { theme } from "../resources/theme"
 import { useEffect, useState } from "react"
 import { useSecondTimeStore, useTimeStore } from "../stores/useTimeStore"
@@ -49,7 +50,7 @@ export default function Presets({ navigation, route }: PresetsProps) {
 			const presets = await getAllPresets()
 			setFlatlistData(orderPresetsByDuration(presets))
 		} catch (e) {
-			console.log("Something went wrong loading the presets", e)
+			showError(t("errors.load-presets"), e)
 		}
 	}
 
@@ -71,7 +72,7 @@ export default function Presets({ navigation, route }: PresetsProps) {
 			await postPreset(parsePresetToDatabasePreset(newPreset))
 		} catch (e) {
 			// Leave the modal open with the typed values so the save can be retried.
-			console.log("Something went wrong saving the preset", e)
+			showError(t("errors.save-preset"), e)
 			return
 		}
 
@@ -94,7 +95,7 @@ export default function Presets({ navigation, route }: PresetsProps) {
 		try {
 			await deletePreset(selectedItem.id)
 		} catch (e) {
-			console.log("Something went wrong deleting the preset", e)
+			showError(t("errors.delete-preset"), e)
 			return
 		}
 

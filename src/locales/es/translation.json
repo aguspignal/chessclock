@@ -2,16 +2,12 @@
     "app-title": "Reloj de Ajedrez",
     "configs": {
         "presets": "Modalidad",
+        "presets-numbered": "Modalidad {{number}}",
         "presets-many": "Modalidades",
-        "orientation": {
-            "title": "Orientación del reloj",
-            "vertical": "Vertical",
-            "horizontal": "Horizontal",
-            "orientation": "Orientación"
-        },
+        "presets-many-numbered": "Modalidades {{number}}",
+        "orientation": "Orientación",
         "sound": "Sonido",
         "vibration": "Vibración",
-        "different-times": "Tiempos diferentes",
         "clock": "Reloj",
         "shared": "Compartido",
         "per-player": "Por jugador",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "¿Restaurar las modalidades predeterminadas? Se conservan las tuyas.",
     "new-preset-title": "Crea un nuevo tiempo",
     "moves": "Jugadas",
-    "settings": "Ajustes"
+    "settings": "Ajustes",
+    "errors": {
+        "load-presets": "No se pudieron cargar las modalidades.",
+        "save-preset": "No se pudo guardar la modalidad.",
+        "delete-preset": "No se pudo eliminar la modalidad.",
+        "restore-presets": "No se pudieron restaurar las modalidades predeterminadas.",
+        "change-language": "No se pudo cambiar el idioma."
+    }
 }

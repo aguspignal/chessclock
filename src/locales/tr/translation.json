@@ -2,16 +2,12 @@
     "app-title": "Satranç Saati",
     "configs": {
         "presets": "Önceden ayarlanmış zaman",
+        "presets-numbered": "Önceden ayarlanmış zaman {{number}}",
         "presets-many": "Önceden ayarlanmış zamanlar",
-        "orientation": {
-            "title": "Saat yönlendirmesi",
-            "vertical": "Dikey",
-            "horizontal": "Yatay",
-            "orientation": "Yönlendirme"
-        },
+        "presets-many-numbered": "Önceden ayarlanmış zamanlar {{number}}",
+        "orientation": "Yönlendirme",
         "sound": "Ses",
         "vibration": "Titreşim",
-        "different-times": "Farklı zamanlar",
         "clock": "Saat",
         "shared": "Ortak",
         "per-player": "Oyuncu başına",
@@ -40,5 +36,12 @@
     "confirm-presets-restore": "Varsayılan ön ayarlar geri yüklensin mi? Kendi ön ayarlarınız korunur.",
     "new-preset-title": "Yeni ön ayar oluştur",
     "moves": "Hamleler",
-    "settings": "Ayarlar"
+    "settings": "Ayarlar",
+    "errors": {
+        "load-presets": "Ön ayarlar yüklenemedi.",
+        "save-preset": "Ön ayar kaydedilemedi.",
+        "delete-preset": "Ön ayar silinemedi.",
+        "restore-presets": "Varsayılan ön ayarlar geri yüklenemedi.",
+        "change-language": "Dil değiştirilemedi."
+    }
 }
