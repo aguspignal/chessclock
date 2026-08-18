@@ -1,7 +1,9 @@
 # Branch-triggered CI/CD
 
 > Follow-up to [CICD.md](CICD.md). That document built the pipeline; this one wires it to git pushes.
-> **Status: phases 1, 2 and 5 implemented** — the two new workflow files, the `wf:*` scripts and the CLAUDE.md rewrite are in the working tree, with `typecheck` and `wf:validate` green. Outstanding: deleting `.eas/workflows/build.yml`, and everything that leaves the working tree — **Phase 3** (push `dev`, create `build`, merge to `main` with `[eas skip]`) and **Phase 4** (the three rehearsal pushes and the concurrency check).
+> **Status: phases 1, 2, 3 and 5 implemented.** `build.yml` is deleted, both new lanes are on `dev`, `build` and `main`, and the merge to `main` (`864ecda`) carried `[eas skip]` and correctly fired nothing.
+>
+> **Open question from Phase 3 step 2: creating and pushing `build` did not start a run.** `eas workflow:runs` still shows only the one pre-existing manual run. That push predated `build-development.yml` reaching `main`, and a new-branch push may not arrive as a `push` event at all — so this is not yet evidence the `paths` glob is broken. **Phase 4** is now the diagnostic, and its step 3 (code-only push to `build`) is the one that matters: a `paths` block matching nothing fails *closed*, and `main` already carries the same block.
 
 ## Goal
 
