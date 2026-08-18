@@ -1,0 +1,44 @@
+name: Release to Google Play (Android)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**"
+      - "!**/*.md"
+  workflow_dispatch: {}
+
+concurrency:
+  cancel_in_progress: true
+  group: ${{ workflow.filename }}-${{ github.ref }}
+
+jobs:
+  pre_checks:
+    name: Typecheck and Expo Doctor
+    env:
+      EXPO_DOCTOR_WARN_ON_NETWORK_ERRORS: "1"
+    steps:
+      - uses: eas/checkout
+      - uses: eas/install_node_modules
+      - name: TypeScript
+        run: npm run typecheck
+      - name: Expo Doctor
+        run: npm run doc:ci
+
+  build_production:
+    name: Build production AAB
+    needs: [pre_checks]
+    type: build
+    params:
+      platform: android
+      profile: production
+      message: Production release
+
+  submit_to_play:
+    name: Submit to Google Play (production track)
+    needs: [build_production]
+    type: submit
+    params:
+      build_id: ${{ needs.build_production.outputs.build_id }}
+      profile: production

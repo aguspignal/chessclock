@@ -19,9 +19,9 @@ npm run doc:ci       # npx -y expo-doctor@1.20.2 (pinned; what the workflows cal
 npm run build-dev    # eas build --profile development --platform android
 npm run build-prev   # eas build --profile preview --platform android
 npm run build-prod   # eas build --profile production --platform android
-npm run wf:validate  # eas workflow:validate on both .eas/workflows/*.yml
-npm run wf:dev       # dispatch build.yml with build_type=development
-npm run wf:prod      # dispatch build.yml with build_type=production --ref main
+npm run wf:validate  # eas workflow:validate on all three .eas/workflows/*.yml
+npm run wf:dev       # dispatch build-development.yml
+npm run wf:prod      # dispatch release-production.yml --ref main
 npm run wf:hotfix    # dispatch publish-production-update.yml --ref main
 ```
 
@@ -91,10 +91,25 @@ Translation key types are augmented from the English file via [src/types/i18next
 
 The full runbook — rationale, rehearsal steps and known risks — is [docs/CICD.md](docs/CICD.md). The essentials:
 
-Two dispatch-only EAS Workflows live in `.eas/workflows/`. Neither has an `on.push` trigger, so pushing to `dev` or `main` spends no EAS minutes.
+Three EAS Workflows live in `.eas/workflows/`. Two are wired to git pushes, one is dispatch-only:
 
-- `build.yml` — typecheck + doctor gate, then either an internal dev-client APK (`build_type: development`) or a production AAB → manual approval → Google Play production track (`build_type: production`).
-- `publish-production-update.yml` — the same gate, then an EAS Update published to the `production` channel. Manual only; nothing auto-publishes to users.
+| Push to | Workflow | Runs | Ends at |
+|---|---|---|---|
+| `dev` | — | nothing | — |
+| `build` | `build-development.yml` | typecheck + doctor gate → dev-client APK | internal APK on the EAS dashboard |
+| `main` | `release-production.yml` | typecheck + doctor gate → production AAB → submit | live on Google Play, 100% rollout |
+
+- `publish-production-update.yml` — the same gate, then an EAS Update published to the `production` channel. Dispatch-only; nothing auto-publishes to users. OTA is the emergency lane, and an emergency lane that fires on its own is not one you can reason about mid-incident.
+
+All three keep a `workflow_dispatch` entry, so the manual path survives alongside the triggers.
+
+**`build` is a build trigger, not a feature branch.** Pushing to it spends EAS minutes. Do not use it for work in progress.
+
+**Pushing to `main` releases to Google Play with no confirmation.** There is no approval gate, and `releaseStatus: "completed"` means 100% rollout the moment Google approves. The merge to `main` *is* the release decision. Bump `expo.version` and `package.json` `version` in lockstep as the **last commit on `dev`** before merging — nothing downstream checks this.
+
+**`[eas skip]` in a commit message suppresses push- and pull-request-triggered runs** (also `[skip eas]` / `[no eas]`). This is the escape hatch for doc, config or tooling commits that reach `main` without warranting a release. Merging through a GitHub PR? The token must be in the merge commit message, not the PR title — the merge commit body is what GitHub sends in the webhook.
+
+Both triggered workflows carry `paths: ["**", "!**/*.md"]`, so Markdown-only commits do not spend minutes. Anything else on `main` needs `[eas skip]`.
 
 **The runtime-version rule.** `runtimeVersion.policy` is `appVersion`, so:
 
@@ -102,11 +117,11 @@ Two dispatch-only EAS Workflows live in `.eas/workflows/`. Neither has an `on.pu
 
 Bumping it for a hotfix publishes an update against a runtime version no installed binary has — the pipeline goes green and the update reaches zero devices. Keep `expo.version` in [app.json](app.json) and `version` in [package.json](package.json) in lockstep so there is only one answer to "what version is this".
 
-**Production runs must use `--ref main`** (`wf:prod` and `wf:hotfix` already do). `eas workflow:run` without `--ref` uploads the local working directory, so a dirty tree would be built and submitted to Play — past an approval gate that shows a build, not a diff.
+**Production runs must use `--ref main`** (`wf:prod` and `wf:hotfix` already do). `eas workflow:run` without `--ref` uploads the local working directory, so a dirty tree would be built and submitted to Play. This matters more now that the approval gate is gone: push-triggered runs always use the pushed commit, so a manual dispatch is the only place the risk survives, and there is no screen left to catch it.
 
 Validate workflow YAML with `npm run wf:validate`, never a generic YAML linter: `eas workflow:validate` resolves `profile:` names against the server, which is where the real mistakes are.
 
-In `build.yml`, `submit_to_play` must keep `needs: [approve_submission]` — never `after:`. `after` runs regardless of upstream outcome and a rejected approval is a job *failure*, so `after` would submit to Play after you rejected it.
+In `release-production.yml`, `submit_to_play` must keep `needs: [build_production]` — never `after:`. `after` runs regardless of upstream outcome, so it would try to submit a build that failed.
 
 ## Conventions
 
